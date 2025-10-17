@@ -1,0 +1,173 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7f6f4;
+}
+
+/* Container */
+.auth-container {
+  display: flex;
+  width: 90%;
+  max-width: 1100px;
+  height: 90vh;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Left Section */
+.auth-image {
+  flex: 1;
+  background: url("../images/auth.png") no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.auth-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(59, 44, 32, 0.55); /* brown overlay */
+}
+
+.overlay {
+  position: absolute;
+  bottom: 60px;
+  left: 40px;
+  color: #fff;
+}
+
+.overlay h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.overlay p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Right Section */
+.auth-form {
+  flex: 1;
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-form h2 {
+  font-size: 2rem;
+  color: #3b2c20;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #6c757d;
+  margin-bottom: 30px;
+}
+
+/* Input fields */
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-group i {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #9c9c9c;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 40px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 15px;
+  background: #f7f6f4;
+  transition: 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #3b2c20;
+}
+
+/* Buttons */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: #3b2c20;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #241a12;
+}
+
+/* Options (remember me + forgot password) */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.options a {
+  color: #5a4634;
+  text-decoration: none;
+}
+
+.options a:hover {
+  text-decoration: underline;
+}
+
+/* Switch link */
+.switch {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.switch a {
+  color: #3b2c20;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switch a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .auth-container {
+    flex-direction: column;
+    height: auto;
+  }
+  .auth-image {
+    height: 250px;
+  }
+  .auth-form {
+    padding: 40px;
+  }
+}
