@@ -18,12 +18,102 @@ body {
 .section-title { font-weight: 700; margin-bottom: 1rem; }
 
 /* Navbar */
-.navbar { background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.06); }
-.navbar .nav-link { color:#000; font-weight:500; }
-.navbar .nav-link:hover { color:var(--primary-900); }
-.badge-chip {
-  background:var(--neutral-200); border-radius:999px; padding:.35rem .7rem;
+/* Navbar Base */
+.navbar {
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  padding: 0.8rem 1rem;
 }
+
+/* Brand */
+.navbar-brand {
+  color: #3b2c20;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 1.1rem;
+}
+.navbar-brand:hover {
+  color: #241a12;
+}
+
+/* Navbar link hover effect - Thesara theme */
+.navbar .nav-link {
+  color: #3b2c20;  /* default dark brown */
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Hover color */
+.navbar .nav-link:hover {
+  color: #5a4634;  /* theme gold-brown color */
+}
+
+/* Optional underline animation (makes it feel interactive) */
+.navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #5a4634;
+  transition: width 0.3s ease;
+}
+
+.navbar .nav-link:hover::after {
+  width: 100%;
+}
+
+
+/* Badge chip */
+.badge-chip {
+  background: #f1ede7;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+  color: #3b2c20;
+}
+
+/* Icon buttons (Orders, Cart, Profile) */
+.nav-icon {
+  color: #3b2c20;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}
+
+.nav-icon:hover {
+  color: #5a4634;
+}
+
+/* Profile dropdown */
+.dropdown-menu {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.dropdown-item {
+  color: #3b2c20;
+  font-weight: 500;
+}
+.dropdown-item:hover {
+  background: #f7f6f4;
+  color: #241a12;
+}
+
+/* Navbar spacing fix */
+.navbar-nav {
+  align-items: center;
+}
+
+.navbar .d-flex {
+  align-items: center;
+}
+
 
 
 
@@ -33,7 +123,7 @@ body {
 .hero-section {
   position: relative;
   width: 100%;
-  max-width: 1232px;   
+  max-width: 1232px;
   height: 600px;       /* match collection */
   margin: 0 auto;
   border-radius: 8px;
@@ -42,7 +132,7 @@ body {
   background: url("../images/thesara-hero.png") no-repeat center center;
   background-size: contain;   /* show full image without cropping */
   background-color: #f7f6f4;  /* optional: neutral bg behind image */
-  
+
   display: flex;
   align-items: center;
   justify-content: flex-start;

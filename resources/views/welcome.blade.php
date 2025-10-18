@@ -29,26 +29,57 @@
 
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg sticky-top reveal">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#">THESARA COSMETICS</a>
-      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="nav" class="collapse navbar-collapse">
-        <ul class="navbar-nav mx-auto gap-2">
-          <li class="nav-item"><a href="{{ url('/') }}">Home</a></li>
-          <li class="nav-item"><a href="{{ url('/products') }}">Products</a></li>
-          <li class="nav-item"><a href="{{ url('/about') }}">About</a></li>
-          <li class="nav-item"><a href="{{ url('/faq') }}">FAQ</a></li>
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold text-uppercase" href="{{ url('/') }}">THESARA COSMETICS</a>
+
+    <!-- Mobile Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+      <ul class="navbar-nav gap-4">
+        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url('/products') }}">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url('/faq') }}">FAQ</a></li>
+      </ul>
+    </div>
+
+    <!-- Right Side Buttons -->
+    <div class="d-flex align-items-center gap-3">
+
+
+      <a href="{{ url('/orders') }}" class="nav-icon">
+        <i class="bi bi-box-seam"></i>
+        <span class="d-none d-lg-inline">Orders</span>
+      </a>
+
+      <a href="{{ url('/orders/track') }}" class="nav-icon">
+        <i class="bi bi-truck"></i>
+        <span class="d-none d-lg-inline">Track</span>
+      </a>
+
+      <a href="{{ url('/cart') }}" class="nav-icon">
+        <i class="bi bi-bag"></i>
+        <span class="d-none d-lg-inline">Cart</span>
+      </a>
+
+      <!-- Profile / Login Button -->
+      <div class="dropdown">
+        <a href="#" class="nav-icon dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-circle"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <li><a class="dropdown-item" href="login.html">Login</a></li>
+          <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
         </ul>
-        <div class="d-flex align-items-center gap-2">
-          <span class="badge-chip d-none d-md-inline">Free Shipping $49+</span>
-          <a href="{{ url('/orders') }}">Orders</a><i class="bi bi-box-seam me-1"></i><a href="{{ url('/orders/track') }}">Track Order</a>
-          <i class="bi bi-bag me-1"></i><a href="{{ url('/cart') }}"> Cart</a>
-        </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
   <!-- HERO -->
   <section class="hero-section d-flex align-items-center reveal">
