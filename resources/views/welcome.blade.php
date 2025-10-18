@@ -27,59 +27,53 @@
     </div>
   </div>
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg sticky-top reveal">
+ <nav class="navbar navbar-expand-lg sticky-top reveal">
   <div class="container">
     <!-- Brand -->
     <a class="navbar-brand fw-bold text-uppercase" href="{{ url('/') }}">THESARA COSMETICS</a>
 
     <!-- Mobile Toggler -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+      aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Navbar Links -->
     <div class="collapse navbar-collapse justify-content-center" id="navMenu">
-      <ul class="navbar-nav gap-4">
+      <ul class="navbar-nav gap-4 align-items-center">
+
         <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ url('/products') }}">Products</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ url('/faq') }}">FAQ</a></li>
+
+        <!-- Dropdown beside FAQ -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">Shop</a>
+          <ul class="dropdown-menu" aria-labelledby="shopDropdown">
+            <li><a class="dropdown-item" href="{{ url('/orders/track') }}"><i class="bi bi-truck me-2"></i>Track Order</a></li>
+            <li><a class="dropdown-item" href="{{ url('/orders') }}"><i class="bi bi-box-seam me-2"></i>Orders</a></li>
+            <li><a class="dropdown-item" href="{{ url('/cart') }}"><i class="bi bi-bag me-2"></i>Cart</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
 
-    <!-- Right Side Buttons -->
-    <div class="d-flex align-items-center gap-3">
-
-
-      <a href="{{ url('/orders') }}" class="nav-icon">
-        <i class="bi bi-box-seam"></i>
-        <span class="d-none d-lg-inline">Orders</span>
+    <!-- Profile Icon Dropdown -->
+    <div class="dropdown">
+      <a href="#" class="nav-icon dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <i class="bi bi-person-circle fs-4"></i>
       </a>
-
-      <a href="{{ url('/orders/track') }}" class="nav-icon">
-        <i class="bi bi-truck"></i>
-        <span class="d-none d-lg-inline">Track</span>
-      </a>
-
-      <a href="{{ url('/cart') }}" class="nav-icon">
-        <i class="bi bi-bag"></i>
-        <span class="d-none d-lg-inline">Cart</span>
-      </a>
-
-      <!-- Profile / Login Button -->
-      <div class="dropdown">
-        <a href="#" class="nav-icon dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-person-circle"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-          <li><a class="dropdown-item" href="login.html">Login</a></li>
-          <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
-        </ul>
-      </div>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
+        <li><a class="dropdown-item" href="signup.html"><i class="bi bi-person-plus me-2"></i>Sign Up</a></li>
+      </ul>
     </div>
   </div>
 </nav>
+
 
   <!-- HERO -->
   <section class="hero-section d-flex align-items-center reveal">
@@ -249,6 +243,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Local Bootstrap (optional local copy) -->
   <script src="{{ asset('bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <!-- Custom JS -->
   <script src="{{ asset('js/script.js') }}"></script>
   <script src="{{ asset('js/splash.js') }}"></script>

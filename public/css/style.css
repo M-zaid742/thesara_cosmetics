@@ -18,100 +18,96 @@ body {
 .section-title { font-weight: 700; margin-bottom: 1rem; }
 
 /* Navbar */
-/* Navbar Base */
+/* Navbar Styling */
 .navbar {
   background: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   padding: 0.8rem 1rem;
+  z-index: 9999;
 }
 
-/* Brand */
+/* Brand Name */
 .navbar-brand {
   color: #3b2c20;
   font-weight: 700;
-  letter-spacing: 0.5px;
   font-size: 1.1rem;
+  letter-spacing: 0.5px;
 }
-.navbar-brand:hover {
-  color: #241a12;
-}
+.navbar-brand:hover { color: #5a4634; }
 
-/* Navbar link hover effect - Thesara theme */
+/* Navbar links - base */
 .navbar .nav-link {
   color: #3b2c20;  /* default dark brown */
   font-weight: 500;
   position: relative;
   transition: color 0.3s ease;
+  padding-bottom: 4px;
 }
 
 /* Hover color */
 .navbar .nav-link:hover {
-  color: #5a4634;  /* theme gold-brown color */
+  color: #5a4634;  /* theme brown-gold */
 }
 
-/* Optional underline animation (makes it feel interactive) */
+/* Elegant underline animation (pointer effect) */
 .navbar .nav-link::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  width: 0%;
   height: 2px;
-  background-color: #5a4634;
-  transition: width 0.3s ease;
+  background-color: #5a4634; /* theme color */
+  transition: width 0.3s ease-in-out;
 }
 
+/* Expand underline when hovered */
 .navbar .nav-link:hover::after {
   width: 100%;
 }
 
-
-/* Badge chip */
-.badge-chip {
-  background: #f1ede7;
-  border-radius: 999px;
-  padding: 0.35rem 0.7rem;
-  font-size: 0.85rem;
-  color: #3b2c20;
-}
-
-/* Icon buttons (Orders, Cart, Profile) */
-.nav-icon {
-  color: #3b2c20;
-  text-decoration: none;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color 0.3s ease;
-}
-
-.nav-icon:hover {
+/* Active page indicator (keeps underline visible on current page) */
+.navbar .nav-link.active {
   color: #5a4634;
 }
 
-/* Profile dropdown */
+.navbar .nav-link.active::after {
+  width: 100%;
+}
+
+
+/* Dropdowns */
 .dropdown-menu {
-  border-radius: 8px;
   border: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease;
 }
 .dropdown-item {
   color: #3b2c20;
   font-weight: 500;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 .dropdown-item:hover {
   background: #f7f6f4;
-  color: #241a12;
+  color: #5a4634;
 }
 
-/* Navbar spacing fix */
-.navbar-nav {
-  align-items: center;
+/* Profile Icon */
+.nav-icon {
+  color: #3b2c20;
+  text-decoration: none;
+  margin-left: 15px;
+  transition: color 0.3s ease;
+}
+.nav-icon:hover {
+  color: #5a4634;
 }
 
-.navbar .d-flex {
-  align-items: center;
+/* Dropdown animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 
