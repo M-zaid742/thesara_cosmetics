@@ -67,8 +67,13 @@
         <i class="bi bi-person-circle fs-4"></i>
       </a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+<<<<<<< HEAD
         <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
         <li><a class="dropdown-item" href="signup.html"><i class="bi bi-person-plus me-2"></i>Sign Up</a></li>
+=======
+        <li><a class="dropdown-item" href="{{ url('/login') }}"><i class="bi bi-bag me-2"></i>login</a></li>
+        <a class="dropdown-item" href="{{ url('/register') }}"><i class="bi bi-bag me-2"></i>signup</a>
+>>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
       </ul>
     </div>
   </div>
@@ -104,7 +109,11 @@
           <div class="category-content">
             <h5>Foundation Cream</h5>
             <p class="text-muted">Elevate Your Natural Beauty</p>
+<<<<<<< HEAD
             <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Shop Now</a>
+=======
+             <a href="{{ url('/shop') }}" class="btn btn-outline-dark">Shop Now</a>
+>>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
           </div>
         </div>
       </div>
@@ -115,7 +124,11 @@
           <div class="category-content">
             <h5>Lip Serum</h5>
             <p class="text-muted">Elevate Your Natural Beauty</p>
+<<<<<<< HEAD
              <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Shop Now</a>
+=======
+            <a href="{{ url('/shop') }}" class="btn btn-outline-dark">Shop Now</a>
+>>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
           </div>
         </div>
       </div>
@@ -126,7 +139,11 @@
           <div class="category-content">
             <h5>Sunscreen</h5>
             <p class="text-muted">Elevate Your Natural Beauty</p>
+<<<<<<< HEAD
             <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Shop Now</a>>
+=======
+            <a href="{{ url('/shop') }}" class="btn btn-outline-dark">Shop Now</a>
+>>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
           </div>
         </div>
       </div>
@@ -244,6 +261,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Local Bootstrap (optional local copy) -->
   <script src="{{ asset('bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+<<<<<<< HEAD
+=======
+  <!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+>>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
 
   <!-- Custom JS -->
   <script src="{{ asset('js/script.js') }}"></script>

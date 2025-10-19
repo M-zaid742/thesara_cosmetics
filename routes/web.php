@@ -75,3 +75,24 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // Delete product
     Route::delete('/products/{id}', [AdminController::class, 'deleteProduct'])->name('admin.products.delete');
 });
+
+
+Route::get('/products/cleanser', function () {
+    return view('products.cleanser');
+})->name('products.cleanser');
+
+Route::get('/products/serum', function () {
+    return view('products.serum');
+})->name('products.serum');
+
+Route::get('/products/moisturizer', function () {
+    return view('products.moisturizer');
+})->name('products.moisturizer');
+
+Route::get('/products/sunscreen', function () {
+    return view('products.sunscreen');
+})->name('products.sunscreen');
+
+Route::get('/products/exfoliator', function () {
+    return view('products.exfoliator');
+})->name('products.exfoliator');

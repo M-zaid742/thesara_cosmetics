@@ -23,6 +23,7 @@
     <div class="row justify-content-center g-4">
 
       <div class="col-6 col-md-2">
+<<<<<<< HEAD
         <div class="category-card">
           <img src="{{ asset('images/seller1.png') }}" alt="Cleanser">
 
@@ -56,12 +57,60 @@
         <img src="{{ asset('images/seller4.png') }}"  alt="Exfoliator">
           <h6>Exfoliator</h6>
         </div>
+=======
+        <a href="{{ url('products/cleanser') }}" class="text-decoration-none text-dark">
+          <div class="category-card">
+            <img src="{{ asset('images/seller1.png') }}" alt="Cleanser">
+            <h6>Cleanser</h6>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <a href="{{ url('products/serum') }}" class="text-decoration-none text-dark">
+          <div class="category-card">
+            <img src="{{ asset('images/seller1.png') }}" alt="Serum">
+            <h6>Serum</h6>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <a href="{{ url('products/moisturizer') }}" class="text-decoration-none text-dark">
+          <div class="category-card">
+            <img src="{{ asset('images/seller2.png') }}" alt="Moisturizer">
+            <h6>Moisturizer</h6>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <a href="{{ url('products/sunscreen') }}" class="text-decoration-none text-dark">
+          <div class="category-card">
+            <img src="{{ asset('images/seller3.png') }}" alt="Sunscreen">
+            <h6>Sunscreen</h6>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <a href="{{ url('products/exfoliator') }}" class="text-decoration-none text-dark">
+          <div class="category-card">
+            <img src="{{ asset('images/seller4.png') }}" alt="Exfoliator">
+            <h6>Exfoliator</h6>
+          </div>
+        </a>
+>>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
       </div>
 
     </div>
   </div>
 </section>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
 <!-- FEATURED PRODUCTS -->
 <section class="featured-products py-5">
   <div class="container">
