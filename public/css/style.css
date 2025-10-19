@@ -127,7 +127,8 @@ body {
 
   background: url("../images/thesara-hero.png") no-repeat center center;
   background-size: contain;   /* show full image without cropping */
-  background-color: #f7f6f4;  /* optional: neutral bg behind image */
+  background-color: #e0dcdc;
+  background-repeat: space; /* optional: neutral bg behind image */
 
   display: flex;
   align-items: center;
