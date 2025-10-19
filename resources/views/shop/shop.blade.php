@@ -24,35 +24,36 @@
 
       <div class="col-6 col-md-2">
         <div class="category-card">
-          <img src="{{ asset('images/categories/cleanser.png') }}" alt="Cleanser">
+          <img src="{{ asset('images/seller1.png') }}" alt="Cleanser">
+
           <h6>Cleanser</h6>
         </div>
       </div>
 
       <div class="col-6 col-md-2">
         <div class="category-card">
-          <img src="{{ asset('images/categories/serum.png') }}" alt="Serum">
+          <img src="{{ asset('images/seller1.png') }}" alt="Cleanser">
           <h6>Serum</h6>
         </div>
       </div>
 
       <div class="col-6 col-md-2">
         <div class="category-card">
-          <img src="{{ asset('images/categories/moisturizer.png') }}" alt="Moisturizer">
+          <img src="{{ asset('images/seller2.png') }}"  alt="Moisturizer">
           <h6>Moisturizer</h6>
         </div>
       </div>
 
       <div class="col-6 col-md-2">
         <div class="category-card">
-          <img src="{{ asset('images/categories/sunscreen.png') }}" alt="Sunscreen">
+        <img src="{{ asset('images/seller3.png') }}"  alt="Sunscreen">
           <h6>Sunscreen</h6>
         </div>
       </div>
 
       <div class="col-6 col-md-2">
         <div class="category-card">
-          <img src="{{ asset('images/categories/exfoliator.png') }}" alt="Exfoliator">
+        <img src="{{ asset('images/seller4.png') }}"  alt="Exfoliator">
           <h6>Exfoliator</h6>
         </div>
       </div>
@@ -61,64 +62,85 @@
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products" class="product-section py-5">
+<!-- FEATURED PRODUCTS -->
+<section class="featured-products py-5">
   <div class="container">
-    <h2 class="section-title text-center mb-4">Featured Products</h2>
-    <div class="row g-4">
+    <h2 class="section-title text-center mb-5 fw-bold">Featured Products</h2>
 
-      <!-- PRODUCT 1 -->
-      <div class="col-md-3 col-6">
+    <div class="row justify-content-center g-4">
+
+      <!-- Product Card -->
+      <div class="col-md-3 col-sm-6">
         <div class="product-card">
-          <div class="product-image">
-            <img src="{{ asset('images/products/thesara_cleanser.png') }}" alt="Amino Cleanser">
+          <div class="product-badge">Bestseller</div>
+          <div class="product-img">
+            <img src="{{ asset('images/seller1.png') }}" alt="Moisture Boost">
           </div>
           <div class="product-info">
-            <h6>Gentle Amino Cleanser</h6>
-            <p>$22.00 <span class="discount">$29.00</span></p>
-            <button class="btn btn-theme w-100 mt-2">Add to Cart</button>
+            <h5 class="product-title">Gentle Amino Cleanser</h5>
+            <p class="product-subtitle">For all skin types</p>
+            <div class="price">
+              <span class="new-price">$22.00</span>
+              <span class="old-price">$29.00</span>
+            </div>
+            <button class="add-btn">Add to Bag</button>
           </div>
         </div>
       </div>
 
-      <!-- PRODUCT 2 -->
-      <div class="col-md-3 col-6">
+      <!-- Product Card -->
+      <div class="col-md-3 col-sm-6">
         <div class="product-card">
-          <div class="product-image">
-            <img src="{{ asset('images/products/thesara_serum.png') }}" alt="Vitamin Serum">
+          <div class="product-badge gold">Save $5</div>
+          <div class="product-img">
+            <img src="{{ asset('images/seller2.png') }}" alt="Vitamin Serum">
           </div>
           <div class="product-info">
-            <h6>Vitamin Radiance Serum</h6>
-            <p>$30.00 <span class="discount">$39.00</span></p>
-            <button class="btn btn-theme w-100 mt-2">Add to Cart</button>
+            <h5 class="product-title">Vitamin Radiance Serum</h5>
+            <p class="product-subtitle">Brightening & glow</p>
+            <div class="price">
+              <span class="new-price">$27.00</span>
+              <span class="old-price">$32.00</span>
+            </div>
+            <button class="add-btn">Add to Bag</button>
           </div>
         </div>
       </div>
 
-      <!-- PRODUCT 3 -->
-      <div class="col-md-3 col-6">
+      <!-- Product Card -->
+      <div class="col-md-3 col-sm-6">
         <div class="product-card">
-          <div class="product-image">
-            <img src="{{ asset('images/products/thesara_moisturizer.png') }}" alt="Hydra Moisturizer">
+          <div class="product-badge">New</div>
+          <div class="product-img">
+            <img src="{{ asset('images/seller3.png') }}" alt="Hydra Moisturizer">
           </div>
           <div class="product-info">
-            <h6>Hydra Balance Moisturizer</h6>
-            <p>$25.00 <span class="discount">$30.00</span></p>
-            <button class="btn btn-theme w-100 mt-2">Add to Cart</button>
+            <h5 class="product-title">Hydra Balance Moisturizer</h5>
+            <p class="product-subtitle">Hydration boost</p>
+            <div class="price">
+              <span class="new-price">$25.00</span>
+              <span class="old-price">$30.00</span>
+            </div>
+            <button class="add-btn">Add to Bag</button>
           </div>
         </div>
       </div>
 
-      <!-- PRODUCT 4 -->
-      <div class="col-md-3 col-6">
+      <!-- Product Card -->
+      <div class="col-md-3 col-sm-6">
         <div class="product-card">
-          <div class="product-image">
-            <img src="{{ asset('images/products/thesara_sunscreen.png') }}" alt="HydraGuard SPF 50">
+          <div class="product-badge gold">Top Rated</div>
+          <div class="product-img">
+            <img src="{{ asset('images/seller4.png') }}" alt="SPF 50 Sunscreen">
           </div>
           <div class="product-info">
-            <h6>HydraGuard SPF 50</h6>
-            <p>$27.00 <span class="discount">$34.00</span></p>
-            <button class="btn btn-theme w-100 mt-2">Add to Cart</button>
+            <h5 class="product-title">HydraGuard SPF 50</h5>
+            <p class="product-subtitle">Protect & nourish</p>
+            <div class="price">
+              <span class="new-price">$27.00</span>
+              <span class="old-price">$34.00</span>
+            </div>
+            <button class="add-btn">Add to Bag</button>
           </div>
         </div>
       </div>
@@ -126,6 +148,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- Shop JS -->
 <script src="{{ asset('js/shop.js') }}"></script>
