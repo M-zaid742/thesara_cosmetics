@@ -27,28 +27,53 @@
     </div>
   </div>
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg sticky-top reveal">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#">THESARA COSMETICS</a>
-      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="nav" class="collapse navbar-collapse">
-        <ul class="navbar-nav mx-auto gap-2">
-          <li class="nav-item"><a href="{{ url('/') }}">Home</a></li>
-          <li class="nav-item"><a href="{{ url('/products') }}">Products</a></li>
-          <li class="nav-item"><a href="{{ url('/about') }}">About</a></li>
-          <li class="nav-item"><a href="{{ url('/faq') }}">FAQ</a></li>
-        </ul>
-        <div class="d-flex align-items-center gap-2">
-          <span class="badge-chip d-none d-md-inline">Free Shipping $49+</span>
-          <a href="{{ url('/orders') }}">Orders</a><i class="bi bi-box-seam me-1"></i><a href="{{ url('/orders/track') }}">Track Order</a>
-          <i class="bi bi-bag me-1"></i><a href="{{ url('/cart') }}"> Cart</a>
-        </div>
-      </div>
+ <nav class="navbar navbar-expand-lg sticky-top reveal">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold text-uppercase" href="{{ url('/') }}">THESARA COSMETICS</a>
+
+    <!-- Mobile Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+      aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+      <ul class="navbar-nav gap-4 align-items-center">
+
+        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url('/products') }}">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url('/faq') }}">FAQ</a></li>
+
+        <!-- Dropdown beside FAQ -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">Shop</a>
+          <ul class="dropdown-menu" aria-labelledby="shopDropdown">
+            <li><a class="dropdown-item" href="{{ url('/orders/track') }}"><i class="bi bi-truck me-2"></i>Track Order</a></li>
+            <li><a class="dropdown-item" href="{{ url('/orders') }}"><i class="bi bi-box-seam me-2"></i>Orders</a></li>
+            <li><a class="dropdown-item" href="{{ url('/cart') }}"><i class="bi bi-bag me-2"></i>Cart</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-  </nav>
+
+    <!-- Profile Icon Dropdown -->
+    <div class="dropdown">
+      <a href="#" class="nav-icon dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <i class="bi bi-person-circle fs-4"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
+        <li><a class="dropdown-item" href="signup.html"><i class="bi bi-person-plus me-2"></i>Sign Up</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 
   <!-- HERO -->
   <section class="hero-section d-flex align-items-center reveal">
@@ -78,7 +103,7 @@
           <div class="category-content">
             <h5>Foundation Cream</h5>
             <p class="text-muted">Elevate Your Natural Beauty</p>
-            <button class="btn btn-outline-dark">Shop Now</button>
+             <a href="{{ url('/shop') }}" class="btn btn-outline-dark">Shop Now</a>
           </div>
         </div>
       </div>
@@ -89,7 +114,7 @@
           <div class="category-content">
             <h5>Lip Serum</h5>
             <p class="text-muted">Elevate Your Natural Beauty</p>
-            <button class="btn btn-outline-dark">Shop Now</button>
+            <a href="{{ url('/shop') }}" class="btn btn-outline-dark">Shop Now</a>
           </div>
         </div>
       </div>
@@ -100,7 +125,7 @@
           <div class="category-content">
             <h5>Sunscreen</h5>
             <p class="text-muted">Elevate Your Natural Beauty</p>
-            <button class="btn btn-outline-dark">Shop Now</button>
+            <a href="{{ url('/shop') }}" class="btn btn-outline-dark">Shop Now</a>
           </div>
         </div>
       </div>
@@ -218,6 +243,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Local Bootstrap (optional local copy) -->
   <script src="{{ asset('bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <!-- Custom JS -->
   <script src="{{ asset('js/script.js') }}"></script>
   <script src="{{ asset('js/splash.js') }}"></script>
