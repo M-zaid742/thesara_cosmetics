@@ -2,38 +2,36 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Authenticatable {
-    use HasApiTokens, HasFactory, Notifiable;
+class Review extends Model
+{
+    use HasFactory;
 
-    protected $fillable = ['name', 'email', 'password', 'is_admin'];
+    /**
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = [
+        'user_id',
+        'product_id',
+        'rating',
+        'comment',
+    ];
 
-    public function profile() {
-        return $this->hasOne(Profile::class);
+    /**
+     * Relationship: A review belongs to one user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
-    public function carts() {
-        return $this->hasMany(Cart::class);
-    }
-
-    public function orders() {
-        return $this->hasMany(Order::class);
-    }
-
-    public function reviews() {
-        return $this->hasMany(Review::class);
-    }
-
-    public function wishlists() {
-        return $this->hasMany(Wishlist::class);
-    }
-
-    public function skinAnalyses() {
-        return $this->hasMany(SkinAnalysis::class);
-    }
-
-    public function notifications() {
-        return $this->hasMany(Notification::class);
+    /**
+     * Relationship: A review belongs to one product.
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }
