@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SkinAnalysisController;
 use App\Http\Controllers\ChatbotController;
@@ -10,8 +12,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserControllerAuth;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,28 +20,36 @@ use App\Http\Controllers\UserControllerAuth;
 |--------------------------------------------------------------------------
 */
 
+// Public landing + shop
 Route::get('/', function () {
     return view('welcome');
 });
 
-// 👇 NEW SHOP PAGE ROUTE (publicly accessible)
 Route::get('/shop', function () {
     return view('shop.shop');
 })->name('shop');
 
+// Auth scaffolding (Laravel UI / Breeze / Jetstream, whichever you use)
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Home (after login)
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+// ---------- PUBLIC PRODUCT ROUTES ----------
+/**
+ * ✅ Dynamic product detail page: /product/1, /product/2, ...
+ * This calls ProductController@show and renders resources/views/products/show.blade.php
+ */
+Route::get('/product/{id}', [ProductController::class, 'show'])
+    ->whereNumber('id')
+    ->name('product.show');
 
-// ------------------ AUTHENTICATED USER ROUTES ------------------ //
+// ---------- AUTHENTICATED USER ROUTES ----------
 Route::middleware('auth')->group(function () {
-
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::post('/skin/upload', [SkinAnalysisController::class, 'upload'])->name('skin.upload');
-
     Route::post('/chatbot', [ChatbotController::class, 'chat'])->name('chatbot.chat');
 
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -59,40 +68,20 @@ Route::middleware('auth')->group(function () {
     Route::post('/notifications/{id}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
 });
 
-
-// ------------------ ADMIN ROUTES ------------------ //
+// ---------- ADMIN ROUTES ----------
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/products', [AdminController::class, 'manageProducts'])->name('admin.products');
     Route::post('/products/add', [AdminController::class, 'addProduct'])->name('admin.products.add');
 
-    // Edit product form
     Route::get('/products/{id}/edit', [AdminController::class, 'editProduct'])->name('admin.products.edit');
-
-    // Update product (PUT/PATCH)
     Route::match(['put', 'patch'], '/products/{id}', [AdminController::class, 'updateProduct'])->name('admin.products.update');
-
-    // Delete product
     Route::delete('/products/{id}', [AdminController::class, 'deleteProduct'])->name('admin.products.delete');
 });
 
-
-Route::get('/products/cleanser', function () {
-    return view('products.cleanser');
-})->name('products.cleanser');
-
-Route::get('/products/serum', function () {
-    return view('products.serum');
-})->name('products.serum');
-
-Route::get('/products/moisturizer', function () {
-    return view('products.moisturizer');
-})->name('products.moisturizer');
-
-Route::get('/products/sunscreen', function () {
-    return view('products.sunscreen');
-})->name('products.sunscreen');
-
-Route::get('/products/exfoliator', function () {
-    return view('products.exfoliator');
-})->name('products.exfoliator');
+// (Optional) Static demo views you already had
+Route::get('/products/cleanser', fn () => view('products.cleanser'))->name('products.cleanser');
+Route::get('/products/serum', fn () => view('products.serum'))->name('products.serum');
+Route::get('/products/moisturizer', fn () => view('products.moisturizer'))->name('products.moisturizer');
+Route::get('/products/sunscreen', fn () => view('products.sunscreen'))->name('products.sunscreen');
+Route::get('/products/exfoliator', fn () => view('products.exfoliator'))->name('products.exfoliator');
