@@ -1,16 +1,17 @@
 :root {
-    --primary-gold: #b78b33;
-    --primary-gold-dark: #9a7329;
-    --text-dark: #2d2d2d;
-    --text-muted: #6b6b6b;
-    --bg-light: #fafafa;
-    --border-light: #e5e5e5;
-    --success-green: #10b981;
-    --danger-red: #ef4444;
+    --primary-gold: #caa55d;              /* Soft luxury gold */
+    --primary-gold-dark: #b38e4a;         /* Slightly deeper gold for gradients */
+    --text-dark: #3c2f1e;                 /* Warm dark brown text */
+    --text-muted: #847c73;                /* Muted beige-gray text */
+    --bg-light: #f9f6f1;                  /* Soft beige background */
+    --border-light: #e8e1d4;              /* Light cream border */
+    --success-green: #4ca771;             /* Natural green accent */
+    --danger-red: #d1645d;                /* Muted rose-red */
+    --button-hover: #a67c35;              /* Hover tone for buttons */
 }
 
 body {
-    background-color: #ffffff;
+    background-color: var(--bg-light);
     font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
     color: var(--text-dark);
     line-height: 1.6;
@@ -60,6 +61,7 @@ body {
     overflow: hidden;
     margin-bottom: 20px;
     border: 1px solid var(--border-light);
+    box-shadow: 0 4px 12px rgba(60, 47, 30, 0.05);
 }
 .main-image-container img {
     width: 100%;
@@ -94,7 +96,7 @@ body {
     overflow: hidden;
     cursor: pointer;
     border: 2px solid transparent;
-    background: var(--bg-light);
+    background: #fff;
     transition: all 0.3s ease;
 }
 .thumbnail-item img {
@@ -147,7 +149,7 @@ body {
     border-bottom: 1px solid var(--border-light);
 }
 .stars {
-    color: #fbbf24;
+    color: #f6c85f;
     font-size: 1.25rem;
     letter-spacing: 2px;
 }
@@ -179,11 +181,11 @@ body {
 }
 .stock-status.in-stock {
     color: var(--success-green);
-    background: #f0fdf4;
+    background: #f4fbf6;
 }
 .stock-status.out-of-stock {
     color: var(--danger-red);
-    background: #fef2f2;
+    background: #fdf4f4;
 }
 .stock-dot {
     width: 8px;
@@ -211,6 +213,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(202, 165, 93, 0.25);
 }
 .btn-secondary {
     flex: 1;
@@ -226,7 +229,8 @@ body {
 }
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(183, 139, 51, 0.3);
+    background: linear-gradient(135deg, var(--primary-gold-dark), var(--button-hover));
+    box-shadow: 0 6px 20px rgba(202, 165, 93, 0.3);
 }
 .btn-secondary:hover {
     background: var(--primary-gold);
@@ -255,9 +259,6 @@ body {
     color: var(--primary-gold);
     flex-shrink: 0;
 }
-.feature-icon path {
-    stroke-width: 1.75;
-}
 .feature-text {
     font-size: 0.95rem;
     font-weight: 500;
@@ -270,6 +271,7 @@ body {
     border-radius: 12px;
     margin-bottom: 12px;
     overflow: hidden;
+    background: #fff;
 }
 .accordion-header {
     padding: 20px 24px;
