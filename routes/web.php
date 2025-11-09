@@ -78,6 +78,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::match(['put', 'patch'], '/products/{id}', [AdminController::class, 'updateProduct'])->name('admin.products.update');
     Route::delete('/products/{id}', [AdminController::class, 'deleteProduct'])->name('admin.products.delete');
 });
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [App\Http\Controllers\Auth\AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [App\Http\Controllers\Auth\AdminLoginController::class, 'login'])->name('admin.login.submit');
+    Route::post('/logout', [App\Http\Controllers\Auth\AdminLoginController::class, 'logout'])->name('admin.logout');
+});
 
 // (Optional) Static demo views you already had
 Route::get('/products/cleanser', fn () => view('products.cleanser'))->name('products.cleanser');
