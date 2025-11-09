@@ -67,13 +67,10 @@
         <i class="bi bi-person-circle fs-4"></i>
       </a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-<<<<<<< HEAD
-        <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
-        <li><a class="dropdown-item" href="signup.html"><i class="bi bi-person-plus me-2"></i>Sign Up</a></li>
-=======
+
         <li><a class="dropdown-item" href="{{ url('/login') }}"><i class="bi bi-bag me-2"></i>login</a></li>
         <a class="dropdown-item" href="{{ url('/register') }}"><i class="bi bi-bag me-2"></i>signup</a>
->>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
+
       </ul>
     </div>
   </div>
