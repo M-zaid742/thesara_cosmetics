@@ -18,25 +18,9 @@
         <h2>Welcome Back</h2>
         <p class="subtitle">Login to continue shopping and track your orders.</p>
 
-        <form id="loginForm"
-              method="POST"
-              action="{{ route('login') }}"
-              data-user-action="{{ route('login') }}"
-              data-admin-action="{{ route('admin.login.submit') }}"
-              novalidate>
+        <form method="POST" action="{{ route('login') }}" novalidate>
             @csrf
 
-            <!-- Role selection to match Register page -->
-            <div class="role-toggle" aria-label="Account type">
-                <div class="role-option">
-                    <input type="radio" id="role_user" name="role" value="user" {{ old('role','user')==='user' ? 'checked' : '' }}>
-                    <label class="role-label" for="role_user">User</label>
-                </div>
-                <div class="role-option">
-                    <input type="radio" id="role_admin" name="role" value="admin" {{ old('role')==='admin' ? 'checked' : '' }}>
-                    <label class="role-label" for="role_admin">Admin</label>
-                </div>
-            </div>
 
             <div class="form-group">
                 <i class="bi bi-envelope"></i>
@@ -70,18 +54,4 @@
         </form>
     </div>
 </div>
-<script>
-    // Switch login action between user and admin submissions without backend changes
-    (function(){
-        const form = document.getElementById('loginForm');
-        const radios = document.querySelectorAll('input[name="role"]');
-        const setAction = () => {
-            const role = document.querySelector('input[name="role"]:checked')?.value || 'user';
-            form.action = role === 'admin' ? form.dataset.adminAction : form.dataset.userAction;
-        };
-        radios.forEach(r => r.addEventListener('change', setAction));
-        setAction();
-    })();
-    </script>
 @endsection
-@extends('layouts.app')
