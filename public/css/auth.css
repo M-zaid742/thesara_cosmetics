@@ -6,30 +6,25 @@
   font-family: 'Poppins', sans-serif;
 }
 
-body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f7f6f4;
-}
+body { background-color: #f7f6f4; }
 
 /* Container */
 .auth-container {
   display: flex;
   width: 90%;
   max-width: 1100px;
-  height: 90vh;
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  margin: 48px auto; /* center under navbar */
 }
 
 /* Left Section */
 .auth-image {
   flex: 1;
-  background: url("../images/auth.png") no-repeat center center;
+  /* Use splash screen image to align with brand visuals */
+  background: url("../images/producct.png") no-repeat center center;
   background-size: cover;
   position: relative;
 }
@@ -69,7 +64,8 @@ body {
 
 .auth-form h2 {
   font-size: 2rem;
-  color: #3b2c20;
+
+  color:#7a5c3c;
   margin-bottom: 10px;
 }
 
@@ -104,14 +100,14 @@ body {
 }
 
 .form-group input:focus {
-  border-color: #3b2c20;
+  border-color: #7a5c3c;
 }
 
 /* Buttons */
 .btn-primary {
   width: 100%;
   padding: 12px;
-  background: #3b2c20;
+  background:#7a5c3c;
   border: none;
   color: #fff;
   border-radius: 8px;
@@ -149,7 +145,7 @@ body {
 }
 
 .switch a {
-  color: #3b2c20;
+  color: #7a5c3c;
   font-weight: 600;
   text-decoration: none;
 }
@@ -158,15 +154,36 @@ body {
   text-decoration: underline;
 }
 
+/* Role toggle (user/admin) */
+.role-toggle { display: flex; gap: 10px; margin-bottom: 18px; }
+.role-option { flex: 1; position: relative; }
+.role-option input { display: none; }
+.role-label {
+  cursor: pointer;
+  display: block;
+  padding: 12px 16px;
+  border: 1px solid #d9d6d2;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  color: #7a5c3c;
+  background: #f7f6f4;
+  transition: all 0.3s ease;
+}
+.role-option input:checked + .role-label {
+  background: #7a5c3c;
+  color: #fff;
+  border-color: #3b2c20;
+  box-shadow: 0 4px 14px -4px rgba(59, 44, 32, 0.4);
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .auth-container {
     flex-direction: column;
     height: auto;
   }
-  .auth-image {
-    height: 250px;
-  }
+  .auth-image { height: 250px; }
   .auth-form {
     padding: 40px;
   }
