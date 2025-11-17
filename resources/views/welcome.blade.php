@@ -14,7 +14,7 @@
             Elevate your natural beauty with our premium cosmetic products
             carefully curated to enhance your radiance.
           </p>
-          <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Explore Now</a>
+          <a href="{{ url('/products') }}" class="btn btn-dark hero-btn">Explore Now</a>
         </div>
       </div>
     </div>
