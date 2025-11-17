@@ -15,7 +15,7 @@
 
 
     <style>
-        /* Navbar Styles */
+        /* Navbar Styles (original solid bar) */
         .navbar {
             background: #fff;
             box-shadow: 0 2px 6px rgba(0,0,0,.06);
