@@ -112,10 +112,71 @@
         @yield('content')
     </main>
 
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center mb-4">
+                <div class="col-md-4">
+                    <h4 class="footer-logo">THESARA COSMETICS</h4>
+                    <p class="tagline">Elevate your natural beauty</p>
+                </div>
+                <div class="col-md-8">
+                    <h5 class="subscribe-title">Subscribe To Get 15% Off</h5>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="Please enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <h6>Resources</h6>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Free Demo</a></li>
+                        <li><a href="#">Press Conference</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h6>Legal</h6>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookies Policy</a></li>
+                        <li><a href="#">Data Processing</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h6>Contact</h6>
+                    <p>070 7774 1690</p>
+                    <p>347 Portobello, London</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom mt-4">
+                <p>© THESARA COSMETICS 2025 All rights reserved.</p>
+                <div class="contact-info">
+                    <span><i class="bi bi-envelope"></i> info@thesara.com</span>
+                    <span><i class="bi bi-telephone"></i> +1234-456-7890</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <script src="{{ asset('js/app.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>
