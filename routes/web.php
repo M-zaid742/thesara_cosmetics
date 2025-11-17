@@ -29,6 +29,12 @@ Route::get('/shop', function () {
     return view('shop.shop');
 })->name('shop');
 
+// cart
+Route::get('/shop', function () {
+    return view('shop.index');
+});
+
+
 // Auth scaffolding (Laravel UI / Breeze / Jetstream, whichever you use)
 Auth::routes();
 

@@ -100,11 +100,8 @@
           <div class="category-content">
             <h5>Foundation Cream</h5>
             <p class="text-muted">Elevate Your Natural Beauty</p>
-<<<<<<< HEAD
+
             <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Shop Now</a>
-=======
-             <a href="{{ url('/shop') }}" class="btn btn-outline-dark">Shop Now</a>
->>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
           </div>
         </div>
       </div>
@@ -115,11 +112,9 @@
           <div class="category-content">
             <h5>Lip Serum</h5>
             <p class="text-muted">Elevate Your Natural Beauty</p>
-<<<<<<< HEAD
-             <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Shop Now</a>
-=======
-            <a href="{{ url('/shop') }}" class="btn btn-outline-dark">Shop Now</a>
->>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
+
+            <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Shop Now</a>
+
           </div>
         </div>
       </div>
@@ -130,11 +125,9 @@
           <div class="category-content">
             <h5>Sunscreen</h5>
             <p class="text-muted">Elevate Your Natural Beauty</p>
-<<<<<<< HEAD
+
             <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Shop Now</a>>
-=======
-            <a href="{{ url('/shop') }}" class="btn btn-outline-dark">Shop Now</a>
->>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
+
           </div>
         </div>
       </div>
@@ -183,7 +176,7 @@
     <div class="collection-banner">
       <img src="{{ asset('images/collection.png') }}" alt="New Collection" />
       <div class="banner-overlay">
-       <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Explore Now</a>
+      <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Explore Now</a>
       </div>
     </div>
   </section>
@@ -252,11 +245,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Local Bootstrap (optional local copy) -->
   <script src="{{ asset('bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
-<<<<<<< HEAD
-=======
+
   <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
->>>>>>> 1d863428d7cb302c3ec3e7dea6ed709e7f259d02
+
 
   <!-- Custom JS -->
   <script src="{{ asset('js/script.js') }}"></script>
