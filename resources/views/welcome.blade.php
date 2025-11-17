@@ -16,16 +16,10 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/splash.css') }}">
 </head>
 <body>
 
-  <!-- Splash Screen Overlay -->
-  <div id="splash-screen">
-    <div class="splash-content">
-      <img src="{{ asset('images/splashscreen.png') }}" alt="THESARA COSMETICS" class="splash-logo">
-    </div>
-  </div>
+
 
  <nav class="navbar navbar-expand-lg sticky-top reveal">
   <div class="container">
@@ -266,6 +260,5 @@
 
   <!-- Custom JS -->
   <script src="{{ asset('js/script.js') }}"></script>
-  <script src="{{ asset('js/splash.js') }}"></script>
 </body>
 </html>
