@@ -3,23 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 
 class OrderController extends Controller
 {
+    // Remove the constructor completely OR use this:
+    public function __construct()
+    {
+        // Only protect specific methods
+        $this->middleware('auth')->except(['showTrackForm', 'trackSearch']);
+    }
+
+    // This page is for logged-in users only
     public function index()
     {
-        $orders = Auth::user()->orders()->latest()->paginate(10);
+        $orders = auth()->user()->orders()->latest()->paginate(10);
         return view('orders.index', compact('orders'));
     }
 
-    public function track($id)
+    // These two are PUBLIC - NO LOGIN
+    public function showTrackForm()
     {
-        $order = Order::with('orderItems.product')->findOrFail($id);
-        if ($order->user_id != Auth::user()->id) {
-            abort(403);
+        return view('order.track');
+    }
+
+    public function trackSearch(Request $request)
+    {
+        $request->validate(['order_id' => 'required|numeric']);
+
+        $order = Order::with('orderItems.product')->find($request->order_id);
+
+        if (!$order) {
+            return back()->with('error', 'Order not found!');
         }
-        return view('orders.track', compact('order'));
+
+        return view('order.track-result', compact('order'));
     }
 }

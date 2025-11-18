@@ -1,42 +1,37 @@
+{{-- resources/views/orders/track.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Order #{{ $order->id }} Tracking</h1>
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-    <div class="card">
-        <div class="card-body">
-            <p><strong>Status:</strong> {{ ucfirst($order->status) }}</p>
-            <p><strong>Total:</strong> ${{ number_format($order->total, 2) }}</p>
-            <p><strong>Address:</strong> {{ $order->address }}</p>
-            <p><strong>Payment Method:</strong> {{ $order->payment_method }}</p>
-            <p><strong>Tracking ID:</strong> {{ $order->tracking_id ?? 'Not available yet' }}</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Track Your Order</h3>
+                </div>
+                <div class="card-body">
+                    @if(session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                    @endif
+
+                    <form action="{{ route('track.result') }}" method="GET">
+                        <div class="mb-4">
+                            <label for="order_id" class="form-label fs-5">Enter Order ID</label>
+                            <input type="number" 
+                                   name="order_id" 
+                                   id="order_id"
+                                   class="form-control form-control-lg text-center"
+                                   placeholder="e.g. 12345" 
+                                   required 
+                                   autofocus>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            Track Order
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-    <h2>Order Items</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($order->orderItems as $item)
-                <tr>
-                    <td>{{ $item->product->name ?? 'Product unavailable' }}</td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>${{ number_format($item->price, 2) }}</td>
-                </tr>
-            @empty
-                <tr><td colspan="3">No items in this order.</td></tr>
-            @endforelse
-        </tbody>
-    </table>
-    <a href="{{ route('orders.index') }}" class="btn btn-secondary">Back to Orders</a>
 </div>
 @endsection

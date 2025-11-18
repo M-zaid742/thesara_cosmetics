@@ -78,7 +78,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto gap-3">
                     <li class="nav-item"><a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link {{ request()->is('products') ? 'active' : '' }}" href="{{ url('/products') }}">Products</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('show') ? 'active' : '' }}" href="{{ route('products.index') }}">Products</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ url('/about') }}">About</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('faq') ? 'active' : '' }}" href="{{ url('/faq') }}">FAQ</a></li>
 
@@ -89,8 +89,8 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="shopDropdown">
                             <li><a class="dropdown-item" href="{{ url('/orders') }}">My Orders</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/orders/track') }}">Track Order</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/cart') }}">Cart</a></li>
+                            <li><a class="dropdown-item" href="{{ route('track.order') }}">Track Order</a></li>
+                            <li><a class="dropdown-item" href="{{ route('cart.index') }}">Cart</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -100,7 +100,7 @@
                     <i class="bi bi-person-circle profile-icon dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown"></i>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                         <li><a class="dropdown-item" href="{{ url('/login') }}">Login</a></li>
-                        <li><a class="dropdown-item" href="{{ url('/signup') }}">Sign Up</a></li>
+                        <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
                     </ul>
                 </div>
             </div>
