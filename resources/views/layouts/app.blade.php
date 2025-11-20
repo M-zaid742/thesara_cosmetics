@@ -78,7 +78,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto gap-3">
                     <li class="nav-item"><a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link {{ request()->is('show') ? 'active' : '' }}" href="{{ route('products.index') }}">Products</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('shop') ? 'active' : '' }}" href="{{ route('shop') }}">Products</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ url('/about') }}">About</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('faq') ? 'active' : '' }}" href="{{ url('/faq') }}">FAQ</a></li>
 

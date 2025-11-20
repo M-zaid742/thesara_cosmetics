@@ -8,7 +8,9 @@ use App\Http\Controllers\TrackController;
 
 // ==================== PUBLIC ROUTES (NO LOGIN) ====================
 Route::get('/', fn() => view('welcome'));
-Route::get('/shop', fn() => view('shop.index'))->name('shop');
+Route::get('/shop', fn() => view('shop.shop'))->name('shop');
+
+
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 // Products (public)
