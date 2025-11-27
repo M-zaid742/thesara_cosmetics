@@ -5,7 +5,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TrackController;
-
+use App\Http\Controllers\AboutController;
+// ==================== about us  ====================
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 // ==================== PUBLIC ROUTES (NO LOGIN) ====================
 Route::get('/', fn() => view('welcome'));
 Route::get('/shop', fn() => view('shop.shop'))->name('shop');
