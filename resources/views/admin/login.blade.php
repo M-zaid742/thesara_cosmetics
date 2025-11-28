@@ -18,7 +18,8 @@
         <h2>Welcome Back</h2>
         <p class="subtitle">Login to continue shopping and track your orders.</p>
 
-        <form method="POST" action="{{ route('login') }}" novalidate>
+        <form method="POST" action="{{ route('admin.login.submit') }}" novalidate>
+
             @csrf
 
 
@@ -44,13 +45,10 @@
                 @endif
             </div>
 
-            <button type="submit" class="btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary">Login</button>
 
-            <div class="switch">
-                New here? <a href="{{ route('register') }}">Create an account</a>
-                &nbsp;•&nbsp;
-                <a href="{{ route('admin.login') }}">Admin login</a>
-            </div>
+
+            
         </form>
     </div>
 </div>

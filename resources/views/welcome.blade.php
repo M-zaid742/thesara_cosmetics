@@ -30,7 +30,7 @@
           <div class="category-content">
             <h5>Foundation Cream</h5>
             <p class="text-muted">Elevate Your Natural Beauty</p>
-            <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Shop Now</a>
+            <a href="{{ route('shop') }}" class="btn btn-dark hero-btn">Shop Now</a>
           </div>
         </div>
       </div>

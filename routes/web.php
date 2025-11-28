@@ -6,9 +6,10 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\AdminAuthController;
 // ==================== about us  ====================
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-// ==================== PUBLIC ROUTES (NO LOGIN) ====================
+// ==================== PUBLIC ROUTES ====================
 Route::get('/', fn() => view('welcome'));
 Route::get('/shop', fn() => view('shop.shop'))->name('shop');
 
@@ -27,36 +28,23 @@ Route::get('/track-order/result', [TrackController::class, 'search'])->name('tra
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    
+ // ================= ADMIN AUTH ROUTES =================
+// Route::get('/admin/login', [AdminAuthController::class, 'loginPage'])->name('admin.login');
+// Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+
+// // ================= ADMIN PROTECTED ROUTES =================
+// Route::prefix('admin')->group(function () {
+//     Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('admin.dashboard');
+// });
 
 
-// ==================== PROTECTED ROUTES (LOGIN REQUIRED) ====================
-Route::middleware('auth')->group(function () {
-
-    // Cart (only logged-in users)
-    // Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    
-    // Add to cart & wishlist (POST - login required)
-    Route::post('/cart/add', [ProductController::class, 'addToCart'])->name('cart.add');
-    Route::post('/wishlist/add', [ProductController::class, 'addToWishlist'])->name('wishlist.add');
-
-    // Checkout
-    Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
-
-    // My Orders (only logged-in users)
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-
-    // Profile, etc.
-    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
-});
-
-// Admin login (no auth needed)
 Route::prefix('admin')->group(function () {
-    Route::get('/login', [App\Http\Controllers\Auth\AdminLoginController::class, 'showLoginForm'])
-        ->name('admin.login');
-    Route::post('/login', [App\Http\Controllers\Auth\AdminLoginController::class, 'login'])
-        ->name('admin.login.submit');
-    Route::post('/logout', [App\Http\Controllers\Auth\AdminLoginController::class, 'logout'])
-        ->name('admin.logout');
+    // Show login form
+    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+
+    // Handle login form submission
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+
+    // Dashboard (GET only)
+    Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('admin.dashboard');
 });
