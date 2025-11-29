@@ -48,8 +48,7 @@
 
             <div class="switch">
                 New here? <a href="{{ route('register') }}">Create an account</a>
-                &nbsp;•&nbsp;
-                <a href="{{ route('admin.login') }}">Admin login</a>
+                
             </div>
         </form>
     </div>

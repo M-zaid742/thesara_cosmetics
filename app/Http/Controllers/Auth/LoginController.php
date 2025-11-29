@@ -1,32 +1,44 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+
 
 class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('admin.login');
+        return view('auth.login'); // user login view
     }
 
-    public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
+public function login(Request $request)
+{
+    $request->validate([
+         'name' => $request->name,
+    'email' => $request->email,
+    'password' => $request->password,
+    ]);
 
-        if (Auth::attempt(array_merge($credentials, ['is_admin' => 1]))) {
-            return redirect()->route('admin.dashboard');
-        }
+    $credentials = $request->only('email', 'password');
 
-        return back()->withErrors(['email' => 'Invalid admin credentials.']);
+    if (Auth::guard()->attempt($credentials)) {
+        return redirect()->route('/');
     }
+
+    return back()->withErrors(['email' => 'Invalid login details']);
+}
+
+
 
     public function logout()
     {
-        Auth::logout();
-        return redirect()->route('admin.login');
+        Auth::guard('web')->logout();
+        return redirect()->route('login'); // go to user login
     }
+    
 }

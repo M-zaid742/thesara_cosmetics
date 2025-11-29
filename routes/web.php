@@ -7,8 +7,12 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Auth\LoginController;
 // ==================== about us  ====================
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
 // ==================== PUBLIC ROUTES ====================
 Route::get('/', fn() => view('welcome'));
 Route::get('/shop', fn() => view('shop.shop'))->name('shop');
@@ -37,14 +41,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //     Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('admin.dashboard');
 // });
 
-
 Route::prefix('admin')->group(function () {
-    // Show login form
-    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 
-    // Handle login form submission
-    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+    // Admin login page
+    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])
+        ->name('admin.login');
 
-    // Dashboard (GET only)
-    Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('admin.dashboard');
+    // Admin login submit
+    Route::post('/login', [AdminAuthController::class, 'login'])
+        ->name('admin.login.submit');
+
+    // Admin dashboard
+    Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])
+        ->name('admin.dashboard');
 });

@@ -11,7 +11,20 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = ['name', 'email', 'password', 'is_admin'];
+    protected $fillable = ['name', 'email', 'password'];
+    protected $hidden = ['password', 'remember_token'];
+
+     public function setPasswordAttribute($value)
+    {
+        // Only hash if not already hashed
+        if (!preg_match('/^\$2y\$/', $value)) {
+            $this->attributes['password'] = password_hash($value, PASSWORD_BCRYPT);
+        } else {
+            $this->attributes['password'] = $value;
+        }
+    }
+
+
 
     public function profile() {
         return $this->hasOne(Profile::class);
@@ -40,4 +53,6 @@ class User extends Authenticatable {
     public function notifications() {
         return $this->hasMany(Notification::class);
     }
+ 
+
 }
