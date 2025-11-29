@@ -7,8 +7,14 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminAuthController;
-// ==================== about us  ====================
+// ==================== about us / faq  / CHECK OUT====================
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+use App\Http\Controllers\PageController;
+
+Route::get('/faq', [PageController::class, 'faq']);
+
+Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
+
 // ==================== PUBLIC ROUTES ====================
 Route::get('/', fn() => view('welcome'));
 Route::get('/shop', fn() => view('shop.shop'))->name('shop');

@@ -61,7 +61,7 @@
             <div class="cart-item" data-price="29.99">
                 <div class="row align-items-center">
                     <div class="col-md-3 text-center">
-                        <img src="https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=300&h=300&fit=crop" alt="Radiance Night Cream" class="img-fluid rounded">
+                        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300&h=300&fit=crop" alt="Radiance Night Cream" class="img-fluid rounded">
                     </div>
                     <div class="col-md-4">
                         <h6 class="fw-bold mb-1">Radiance Night Cream</h6>
@@ -94,7 +94,9 @@
                 <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
                     <span>Total</span> <span id="total-amount">$0.00</span>
                 </div>
-                <button class="btn btn-dark w-100 py-2"><i class="fas fa-lock me-2"></i>Checkout</button>
+               <a href="{{ route('checkout') }}" class="btn btn-dark w-100 py-2">
+    <i class="fas fa-lock me-2"></i>Checkout
+</a>
             </div>
         </div>
     </div>
