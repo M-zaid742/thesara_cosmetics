@@ -12,9 +12,14 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 use App\Http\Controllers\PageController;
 
 Route::get('/faq', [PageController::class, 'faq']);
-
+Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
 Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
 
+// ==================== wishlist====================
+
+use App\Http\Controllers\WishlistController; // Don't forget to import this at the top!
+
+Route::post('/wishlist/add', [WishlistController::class, 'store'])->name('wishlist.add');
 // ==================== PUBLIC ROUTES ====================
 Route::get('/', fn() => view('welcome'));
 Route::get('/shop', fn() => view('shop.shop'))->name('shop');
