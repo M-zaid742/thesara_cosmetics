@@ -7,11 +7,29 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\LoginController;
+
+
 // ==================== about us  ====================
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+
+// ==================== about us / faq  / CHECK OUT====================
+
+
+Route::get('/faq', [PageController::class, 'faq']);
+Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
+Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
+
+// ==================== wishlist====================
+
+
+
+Route::post('/wishlist/add', [WishlistController::class, 'store'])->name('wishlist.add');
 
 // ==================== PUBLIC ROUTES ====================
 Route::get('/', fn() => view('welcome'));
@@ -32,24 +50,10 @@ Route::get('/track-order/result', [TrackController::class, 'search'])->name('tra
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
- // ================= ADMIN AUTH ROUTES =================
-// Route::get('/admin/login', [AdminAuthController::class, 'loginPage'])->name('admin.login');
-// Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+Route::prefix('admin')->middleware('web')->group(function () {
+    Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
 
-// // ================= ADMIN PROTECTED ROUTES =================
-// Route::prefix('admin')->group(function () {
-//     Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('admin.dashboard');
-// });
-
-Route::prefix('admin')->group(function () {
-
-    // Admin login page
-    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])
-        ->name('admin.login');
-
-    // Admin login submit
-    Route::post('/login', [AdminAuthController::class, 'login'])
-        ->name('admin.login.submit');
 
     // Admin dashboard
     Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])

@@ -21,10 +21,5 @@ class Admin extends Authenticatable
         'password',
         'remember_token',
     ];
-
-    // Automatically hash password whenever it is set
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = password_hash($value, PASSWORD_BCRYPT);
-    }
 }
+

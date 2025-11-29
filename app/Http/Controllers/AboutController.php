@@ -15,17 +15,17 @@ class AboutController extends Controller
 
     $team = [
         [
-            'name' => 'Sarah Johnson',
+            'name' => 'MUKARRAM MUSHTAQ',
             'role' => 'Founder & CEO',
             'bio' => 'Passionate about clean beauty with 15 years in cosmetic science.'
         ],
         [
-            'name' => 'Dr. Maria Chen',
+            'name' => 'ZAID FARHAN ',
             'role' => 'Chief Formulator',
             'bio' => 'PhD in Dermatology, specializing in natural ingredients.'
         ],
         [
-            'name' => 'Alex Thompson',
+            'name' => 'TEHREEM',
             'role' => 'Creative Director',
             'bio' => 'Award-winning designer bringing beauty to life.'
         ]

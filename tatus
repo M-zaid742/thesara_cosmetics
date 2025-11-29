@@ -1,0 +1,43 @@
+* [33m27df60a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m temp save
+[31m|[m * [33m4de8065[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m product detail page fixed
+[31m|[m * [33m9452043[m FAQ AND CHECKOUT SCREEN COMPLETE ALONG WITH ROUTING
+[31m|[m[31m/[m  
+* [33mdaeb485[m admin dashboard
+* [33m2129802[m about us screen
+* [33mfeb9ef3[m cart screen fixed
+* [33mc7819b6[m changes
+* [33m20f5f13[m changes
+* [33m08ae5b6[m Your commit message here
+* [33mde73e55[m message
+* [33m7ad744d[m message
+* [33m24c6c8e[m your message
+* [33m091799f[m cart page
+* [33mec34bb5[m message
+* [33ma6a715b[m Your commit message here
+* [33m922a66a[m Your commit message here
+* [33m962e792[m Update welcome.blade.php
+*   [33m2d0d4b9[m Merge branch 'main' of https://github.com/M-zaid742/thesara_cosmetics
+[33m|[m[34m\[m  
+[33m|[m * [33mc2e9dbf[m Add admin login system and authentication
+* [34m|[m [33m315f994[m Added ProductsTableSeeder to DatabaseSeeder
+[34m|[m[34m/[m  
+*   [33mf34b4bf[m Merge branch 'main' of https://github.com/M-zaid742/thesara_cosmetics
+[35m|[m[36m\[m  
+[35m|[m * [33mc1aca83[m Initial commit
+* [36m|[m [33me930f22[m Update product.css
+* [36m|[m [33m2f46adc[m new update
+[36m|[m[36m/[m  
+*   [33m1a728e6[m Updated product section
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33m1d86342[m Updated category routes
+[1;31m|[m * [33mc2b784e[m Added product category pages and routes
+* [1;32m|[m [33ma0872d0[m Updated product section
+* [1;32m|[m [33m526480b[m Updated product section
+* [1;32m|[m [33me9188b6[m Updated product section
+* [1;32m|[m [33m6a605df[m Updated product section
+* [1;32m|[m [33m9c6ba27[m Updated product section
+* [1;32m|[m [33m6298e16[m Updated product section
+[1;32m|[m[1;32m/[m  
+* [33m814a910[m Updated product section
+* [33mad8d2a3[m Update README.md
+* [33m2b7cf53[m Initial commit - complete Laravel project setup
