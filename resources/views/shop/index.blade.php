@@ -61,7 +61,7 @@
             <div class="cart-item" data-price="29.99">
                 <div class="row align-items-center">
                     <div class="col-md-3 text-center">
-                        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300&h=300&fit=crop" alt="Radiance Night Cream" class="img-fluid rounded">
+                        <img src="https://plus.unsplash.com/premium_photo-1661575474274-e84aecf9c464?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Radiance Night Cream" class="img-fluid rounded">
                     </div>
                     <div class="col-md-4">
                         <h6 class="fw-bold mb-1">Radiance Night Cream</h6>
