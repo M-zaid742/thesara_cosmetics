@@ -94,7 +94,7 @@
                 <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
                     <span>Total</span> <span id="total-amount">$0.00</span>
                 </div>
-               <a href="{{ route('checkout') }}" class="btn btn-dark w-100 py-2">
+                <a href="{{ route('checkout') }}" class="btn btn-dark w-100 py-2">
     <i class="fas fa-lock me-2"></i>Checkout
 </a>
             </div>
