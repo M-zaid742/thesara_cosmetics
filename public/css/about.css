@@ -208,8 +208,8 @@ body {
 
 .team-card img,
 .team-card .category-img {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   display: block;
   border-radius: 50%;
   object-fit: cover;

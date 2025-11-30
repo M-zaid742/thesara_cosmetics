@@ -51,9 +51,9 @@
         $slug = \Illuminate\Support\Str::slug($member['name'] ?? 'member');
       @endphp
       <article class="team-card" aria-labelledby="member-{{ $slug }}">
-        <img src="{{ asset($member['avatar'] ?? 'images/serum.PNG') }}" 
-             alt="{{ $member['name'] ?? 'Team member' }}" 
-             class="category-img" loading="lazy">
+          <img src="{{ asset($member['avatar'] ?? 'images/person-icon-1682 copy.png') }}" 
+              alt="{{ $member['name'] ?? 'Team member' }}" 
+              class="category-img" loading="lazy">
         <h3 id="member-{{ $slug }}">{{ $member['name'] ?? 'Name' }}</h3>
         <p class="role">{{ $member['role'] ?? '' }}</p>
         <p class="bio">{{ $member['bio'] ?? '' }}</p>
