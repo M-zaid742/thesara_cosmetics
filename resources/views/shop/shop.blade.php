@@ -88,7 +88,7 @@
             <img src="{{ asset('images/seller1.png') }}" alt="Moisture Boost">
           </div>
           <div class="product-info">
-            <h5 class="product-title">Gentle Amino Cleanser</h5>
+            <h5 class="product-title">Sun Screen </h5>
             <p class="product-subtitle">For all skin types</p>
             <div class="price">
               <span class="new-price">$22.00</span>
