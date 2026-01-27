@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Hash;
+=======
+>>>>>>> 4d098648327f2f41bb48ccab51ac6506b000600f
 
 class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;
