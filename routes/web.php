@@ -52,32 +52,36 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::prefix('admin')->group(function () {
+
+    // Admin Login
     Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
 
-    // Protected dashboard
+    // Dashboard
     Route::get('dashboard', [AdminAuthController::class, 'dashboard'])
-        ->name('admin.dashboard')
-        ->middleware('auth:admin');
-          Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+        ->middleware('auth:admin')
+        ->name('admin.dashboard');
 
-    Route::get('logout', function () {
+    // Logout
+    // Show logout confirmation page (GET)
+  // Logout confirmation page (GET)  ✅ FIXES 404
+    Route::get('/logout', function () {
         return view('admin.logout');
-    })->middleware('auth:admin');
+    })->name('admin.logout.page');
 
-    Route::get('forgot-password', function () {
-    return view('admin.forgot-password');
-})->name('admin.password.form');
+    // Actual logout action (POST)
+    Route::post('/logout', [AdminAuthController::class, 'logout'])
+        ->name('admin.logout');
 
-    Route::get('password', function() {
-    return view('admin.updatepassword');
-})->middleware('auth:admin')->name('admin.password.form');
+    // Forgot Password
+    Route::get('forgot-password', fn() => view('admin.forgot-password'))->name('admin.forgot.password');
 
-Route::post('password/update', [AdminAuthController::class, 'updatePassword'])
-    ->middleware('auth:admin')
-    ->name('admin.password.update');
+    // Update Password (logged in)
+    Route::get('password', fn() => view('admin.updatepassword'))->middleware('auth:admin')->name('admin.password.form');
+    Route::post('password/update', [AdminAuthController::class, 'updatePassword'])->middleware('auth:admin')->name('admin.password.update');
 
+    // ✅ ADMIN PROFILE
+    Route::get('profile', [AdminAuthController::class, 'profile'])->middleware('auth:admin')->name('admin.profile');
+    Route::post('profile/update', [AdminAuthController::class, 'updateProfile'])->middleware('auth:admin')->name('admin.profile.update');
 
 });
-
-

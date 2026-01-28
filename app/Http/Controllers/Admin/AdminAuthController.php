@@ -41,14 +41,16 @@ class AdminAuthController extends Controller
     }
 
     // Optional: handle logout
-    public function logout(Request $request)
+   public function logout(Request $request)
 {
     Auth::guard('admin')->logout();
+
     $request->session()->invalidate();
     $request->session()->regenerateToken();
 
     return redirect()->route('admin.login');
 }
+
 public function updatePassword(Request $request)
 {
     $request->validate([
@@ -70,4 +72,28 @@ public function updatePassword(Request $request)
     return back()->with('success', 'Password updated successfully!');
 }
 
+ public function profile()
+    {
+        return view('admin.profile');
+    }
+
+    // Update profile
+    public function updateProfile(Request $request)
+{
+    $admin = auth('admin')->user();
+
+    // Update name & bio
+    $admin->name = $request->name;
+    $admin->bio = $request->bio;
+
+    // Upload profile image if exists
+    if($request->hasFile('profile_image')) {
+        $path = $request->file('profile_image')->store('admin_profiles', 'public');
+        $admin->profile_image = $path;
+    }
+
+    $admin->save();
+
+    return redirect()->back()->with('success', 'Profile updated successfully.');
+}
 }
