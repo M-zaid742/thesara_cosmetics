@@ -65,6 +65,10 @@ Route::prefix('admin')->group(function () {
         return view('admin.logout');
     })->middleware('auth:admin');
 
+    Route::get('forgot-password', function () {
+    return view('admin.forgot-password');
+})->name('admin.password.form');
+
     Route::get('password', function() {
     return view('admin.updatepassword');
 })->middleware('auth:admin')->name('admin.password.form');
