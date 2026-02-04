@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\DashboardController;
 
 
 // ==================== about us  ====================
@@ -58,7 +59,7 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
 
     // Dashboard
-    Route::get('dashboard', [AdminAuthController::class, 'dashboard'])
+    Route::get('dashboard', [DashboardController::class,'index'])
         ->middleware('auth:admin')
         ->name('admin.dashboard');
 

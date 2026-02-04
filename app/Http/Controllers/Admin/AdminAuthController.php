@@ -35,10 +35,10 @@ class AdminAuthController extends Controller
 
 
     // Admin dashboard (protected route)
-    public function dashboard()
-    {
-        return view('admin.dashboard'); // Make sure this view exists
-    }
+    // public function dashboard()
+    // {
+    //     return view('admin.dashboard'); // Make sure this view exists
+    // }
 
     // Optional: handle logout
    public function logout(Request $request)
