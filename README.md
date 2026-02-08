@@ -66,7 +66,7 @@ Follow these steps to set up the project locally:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/thesara-cosmetics.git
+git clone https://github.com/M-zaid742/thesara_cosmetics
 
 # 2. Navigate to the project directory
 cd thesara-cosmetics
