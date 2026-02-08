@@ -37,11 +37,6 @@ This project was developed as a **Final Year Project (FYP)** by a team of three:
 | AI Integration   | Python-based chatbot                  |
 | Version Control  | Git & GitHub                          |
 
-## 🎥 Demo
-
-*GIF demo showcasing the homepage, AI chatbot interaction, and checkout process.*
-
-*(Insert GIF here – e.g., `![Demo GIF](public/demo.gif)`)*
 
 ## 📸 Screenshots
 
