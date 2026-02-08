@@ -53,7 +53,7 @@ Thesara Cosmetics is a modern e-commerce platform dedicated to skincare products
 ![Home Page](https://github.com/M-zaid742/thesara_cosmetics/blob/main/homepage.jpeg?raw=true)
 
 ### Product Page
-*(Insert screenshot here – e.g., `![Product Page](public/screenshots/product.png)`)*
+![Home Page](https://github.com/M-zaid742/thesara_cosmetics/blob/main/products.jpeg?raw=true)
 
 ### Admin Dashboard
 *(Insert screenshot here – e.g., `![Admin Dashboard](public/screenshots/admin.png)`)*
