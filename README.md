@@ -4,7 +4,7 @@
 
 Thesara Cosmetics is a modern e-commerce platform dedicated to skincare products, blending seamless online shopping with AI-powered personalized recommendations. Users can explore products, receive tailored skincare advice through an interactive chatbot, and complete purchases effortlessly.
 
-This project was developed as a **Final Year Project (FYP)** by a team of three:
+## This project was developed as a **Final Year Project (FYP)** by a team of three:
 
 - **Hassan** – AI Chatbot Integration  
 - **Zaid** – Frontend Development  
