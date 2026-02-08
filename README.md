@@ -80,21 +80,7 @@ php artisan migrate --seed
 # 8. Serve the application locally
 php artisan serve
 
-Work Location: In person means?"In person" as a work location means the job requires you to be physically present at the workplace (e.g., office, store, factory, or other company site) for your regular duties.
-Key points:
 
-You must commute to and work from the designated physical location.
-It is the opposite of "remote" (work from home or anywhere) or "hybrid" (mix of in-office and remote days).
-Also commonly called "on-site" or "office-based."
-
-This is typical for roles that involve hands-on tasks, team collaboration, equipment use, or client interactions that can't be done virtually.1.3spaid intership full time ,eans we pay it?No, a paid full-time internship means the company pays you (the intern).
-Here's the clear breakdown:
-
-Paid internship: The employer provides you with a salary or stipend (monthly payment) for your work. You do not pay the company anything. This is the opposite of an "unpaid internship," where you work without any payment.
-Full-time: It means the internship requires you to work regular full-time hours (usually 35–40 hours per week, often 9-to-5, Monday to Friday).
-
-Legitimate paid internships never require you to pay the employer. If any program or company asks you to pay money to join an internship (e.g., "registration fee," "training fee," etc.), it is almost certainly a scam or not a real opportunity.
-In Pakistan, many reputable companies (banks, telecoms, multinationals, etc.) offer genuine paid internships with stipends ranging from PKR 15,000–50,000+ per month depending on the company and role. Always verify the opportunity through official channels.3.9sThesara Cosmetics 🛍️✨
 Project Overview
 Thesara Cosmetics is a modern e-commerce platform for skincare products, combining shopping convenience with AI-powered personalized recommendations. Users can browse products, get skincare advice from our chatbot, and make purchases seamlessly.
 Developed as a Final Year Project (FYP) by a team of three:
