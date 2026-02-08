@@ -37,7 +37,7 @@ This project was developed as a **Final Year Project (FYP)** by a team of three:
 | AI Integration   | Python-based chatbot                  |
 | Version Control  | Git & GitHub                          |
 
-##⚡ Future Enhancements
+## ⚡Future Enhancements
 Payment gateway integration
 Advanced AI personalization using user history
 Reviews & rating system
@@ -50,7 +50,7 @@ Thesara Cosmetics is a modern e-commerce platform dedicated to skincare products
 ## 📸 Screenshots
 
 ### Home Page
-*(Insert screenshot here – e.g., `![Home Page](public/screenshots/home.png)`)*
+![Home Page](https://github.com/M-zaid742/thesara_cosmetics/blob/main/homepage.jpeg?raw=true)
 
 ### Product Page
 *(Insert screenshot here – e.g., `![Product Page](public/screenshots/product.png)`)*
