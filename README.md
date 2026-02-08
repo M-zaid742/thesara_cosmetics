@@ -37,6 +37,15 @@ This project was developed as a **Final Year Project (FYP)** by a team of three:
 | AI Integration   | Python-based chatbot                  |
 | Version Control  | Git & GitHub                          |
 
+##⚡ Future Enhancements
+Payment gateway integration
+Advanced AI personalization using user history
+Reviews & rating system
+Enhanced analytics and reporting
+make it proper headings,subheadings and test of this readme fileThesara Cosmetics 🛍️✨
+Project Overview
+Thesara Cosmetics is a modern e-commerce platform dedicated to skincare products, blending seamless online shopping with AI-powered personalized recommendations. Users can explore products, receive tailored skincare advice through an interactive chatbot, and complete purchases effortlessly.
+
 
 ## 📸 Screenshots
 
@@ -48,6 +57,8 @@ This project was developed as a **Final Year Project (FYP)** by a team of three:
 
 ### Admin Dashboard
 *(Insert screenshot here – e.g., `![Admin Dashboard](public/screenshots/admin.png)`)*
+
+
 
 ## 🚀 Installation & Setup
 
@@ -81,11 +92,4 @@ php artisan migrate --seed
 php artisan serve
 
 
-##⚡ Future Enhancements
-Payment gateway integration
-Advanced AI personalization using user history
-Reviews & rating system
-Enhanced analytics and reporting
-make it proper headings,subheadings and test of this readme fileThesara Cosmetics 🛍️✨
-Project Overview
-Thesara Cosmetics is a modern e-commerce platform dedicated to skincare products, blending seamless online shopping with AI-powered personalized recommendations. Users can explore products, receive tailored skincare advice through an interactive chatbot, and complete purchases effortlessly.
+
