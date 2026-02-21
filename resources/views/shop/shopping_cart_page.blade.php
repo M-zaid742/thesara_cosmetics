@@ -6,7 +6,6 @@
     <!-- Cart specific CSS -->
     <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 @endsection
-
 @section('content')
 
 <!-- Main Content -->

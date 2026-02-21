@@ -25,7 +25,7 @@ class CartController extends Controller
         $total = $carts->sum(fn($item) => $item->quantity * ($item->product->price ?? $item->price));
 
         // YEHI LINE CHANGE KI HAI — AB PERFECT HAI
-        return view('shop.index', compact('carts', 'total'));
+        return view('shop.shopping_cart_page', compact('carts', 'total'));
     }
 
     public function checkout(Request $request)

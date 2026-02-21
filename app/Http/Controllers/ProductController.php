@@ -75,5 +75,12 @@ public function show($id)
 
         return redirect()->back()->with('success', 'Added to wishlist.');
     }
-    
+   /**
+ * Display shop page with featured products
+ */
+public function shop()
+{
+    $featuredProducts = Product::where('is_featured', true)->get();
+    return view('shop.products_page', compact('featuredProducts'));
+} 
 }
