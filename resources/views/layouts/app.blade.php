@@ -104,8 +104,20 @@
                 <div class="dropdown">
                     <i class="bi bi-person-circle profile-icon dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown"></i>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item" href="{{ url('/login') }}">Login</a></li>
-                        <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
+                        @auth
+                            <li>
+                                <a class="dropdown-item" href="{{ route('home') }}">My Account</a>
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+                        @else
+                            <li><a class="dropdown-item" href="{{ url('/login') }}">Login</a></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
+                        @endauth
                     </ul>
                 </div>
             </div>
