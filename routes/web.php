@@ -11,6 +11,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\ProfileController;
 
 // ==================== HOME ====================
 Route::get('/', fn() => view('welcome'));
@@ -43,6 +44,15 @@ Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// ==================== USER PROFILE & ORDERS ====================
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+});
 
 // ==================== ADMIN ====================
 Route::prefix('admin')->group(function () {

@@ -3,37 +3,85 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 use App\Models\Product;
 
 class ProductsTableSeeder extends Seeder
 {
     public function run(): void
     {
-        // Temporarily disable foreign key checks to allow truncate
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
-        // Clear the table (this will now work even with foreign key constraints)
-        Product::truncate();
-
-        // Re-enable foreign key checks after we're done
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
-        // Insert product(s)
-        DB::table('products')->insert([
+        $products = [
             [
-                'name' => 'Hydraguard SPF 50 Sunscreen',
-                'description' => 'A lightweight, non-greasy sunscreen formulated for oily and combination skin. Provides broad-spectrum UVA/UVB protection with SPF 50, helps control shine, and keeps skin hydrated with hyaluronic acid.',
-                'price' => 1750.00,
+                'name' => 'HydraGuard SPF 50',
+                'subtitle' => 'Protect & nourish',
+                'description' => 'Lightweight broad-spectrum SPF 50 protection with a non-greasy finish for daily use.',
+                'price' => 27.00,
+                'old_price' => 34.00,
+                'stock' => 120,
+                'category' => 'sunscreen',
+                'brand' => 'Thesara',
+                'badge' => 'Top Rated',
+                'image_url' => 'images/seller4.png',
+                'is_featured' => true,
+            ],
+            [
+                'name' => 'Vitamin Radiance Serum',
+                'subtitle' => 'Brightening & glow',
+                'description' => 'A brightening serum to help boost radiance and improve the look of uneven tone.',
+                'price' => 27.00,
+                'old_price' => 32.00,
+                'stock' => 80,
+                'category' => 'serum',
+                'brand' => 'Thesara',
+                'badge' => 'Save $5',
+                'image_url' => 'images/seller2.png',
+                'is_featured' => true,
+            ],
+            [
+                'name' => 'Hydra Balance Moisturizer',
+                'subtitle' => 'Hydration boost',
+                'description' => 'Daily moisturizer that supports a soft, hydrated feel without heaviness.',
+                'price' => 25.00,
+                'old_price' => 30.00,
+                'stock' => 60,
+                'category' => 'moisturizer',
+                'brand' => 'Thesara',
+                'badge' => 'New',
+                'image_url' => 'images/seller3.png',
+                'is_featured' => false,
+            ],
+            [
+                'name' => 'Gentle Amino Cleanser',
+                'subtitle' => 'Soft foam cleanse',
+                'description' => 'A gentle cleanser that helps remove impurities while keeping skin comfortable.',
+                'price' => 22.00,
+                'old_price' => 29.00,
                 'stock' => 100,
-                'category' => 'Sun Protection',
-                'brand' => 'Thesara Cosmetics',
-                'image_url' => 'sunscreen/product1/product1.png',
-                'created_at' => Carbon::parse('2025-10-23 10:55:44'),
-                'updated_at' => Carbon::parse('2025-10-23 10:55:44'),
-            ]
-            // Add more products here if needed
-        ]);
+                'category' => 'cleanser',
+                'brand' => 'Thesara',
+                'badge' => 'Bestseller',
+                'image_url' => 'images/seller1.png',
+                'is_featured' => false,
+            ],
+            [
+                'name' => 'Smooth AHA Exfoliator',
+                'subtitle' => 'Refine texture',
+                'description' => 'A gentle exfoliator to help improve the look of texture and dullness.',
+                'price' => 19.00,
+                'old_price' => 24.00,
+                'stock' => 75,
+                'category' => 'exfoliator',
+                'brand' => 'Thesara',
+                'badge' => null,
+                'image_url' => 'images/seller5.png',
+                'is_featured' => false,
+            ],
+        ];
+
+        foreach ($products as $productData) {
+            Product::updateOrCreate(
+                ['name' => $productData['name']],
+                $productData
+            );
+        }
     }
 }

@@ -101,12 +101,22 @@
                 </ul>
 
                 <!-- Profile Button -->
-                <div class="dropdown">
+                <div class="dropdown d-flex align-items-center">
                     <i class="bi bi-person-circle profile-icon dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown"></i>
+                    @auth
+                        <span class="ms-2 small text-muted">{{ Auth::user()->name }}</span>
+                    @endauth
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                         @auth
+                            <li class="dropdown-item-text small text-muted">
+                                Signed in as <strong>{{ Auth::user()->name }}</strong>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item" href="{{ route('home') }}">My Account</a>
+                                <a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('orders.index') }}">My Orders</a>
                             </li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
