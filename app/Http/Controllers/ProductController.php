@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Cart;
 use App\Models\Wishlist;
+use App\Models\Review;
 
 class ProductController extends Controller
 {
@@ -32,15 +33,39 @@ class ProductController extends Controller
 
         return view('products.index', compact('products'));
     }
+public function buyNow(Request $request)
+{
+    $request->validate([
+        'product_id' => 'required|exists:products,id',
+        'quantity'   => 'integer|min:1',
+    ]);
 
-    /**
-     * ✅ Display a single product by ID (Product Detail Page)
-     */
-public function show($id)
-{    $product = Product::with('images')->findOrFail($id);
-    return view('products.product_detail_page', compact('product'));
+    $product  = Product::findOrFail($request->product_id);
+    $quantity = $request->quantity ?? 1;
+
+    // Store buy now item in session (separate from cart)
+    session([
+        'buy_now' => [
+            'product_id' => $product->id,
+            'quantity'   => $quantity,
+            'price'      => $product->price,
+            'name'       => $product->name,
+            'image'      => $product->image_url,
+            'brand'      => $product->brand,
+        ]
+    ]);
+
+    // Redirect to checkout
+    return redirect()->route('checkout');
 }
-
+    /**
+     * Display a single product by ID (Product Detail Page)
+     */
+    public function show($id)
+    {
+        $product = Product::with(['images', 'reviews.user'])->findOrFail($id);
+        return view('products.product_detail_page', compact('product'));
+    }
 
     /**
      * Add product to user's cart
@@ -75,12 +100,22 @@ public function show($id)
 
         return redirect()->back()->with('success', 'Added to wishlist.');
     }
-   /**
- * Display shop page with featured products
- */
-public function shop()
-{
-    $featuredProducts = Product::where('is_featured', true)->get();
-    return view('shop.products_page', compact('featuredProducts'));
-} 
+
+    /**
+     * Display shop page with featured products
+     */
+    public function shop()
+    {
+        $featuredProducts = Product::where('is_featured', true)->get();
+        return view('shop.products_page', compact('featuredProducts'));
+    }
+
+    /**
+     * Category filter page
+     */
+    public function category($category)
+    {
+        $products = Product::where('category', $category)->get();
+        return view('products.category', compact('products', 'category'));
+    }
 }

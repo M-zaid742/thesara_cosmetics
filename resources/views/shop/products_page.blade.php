@@ -96,7 +96,9 @@
           </div>
 
           <div class="product-info">
-            <h5 class="product-title">{{ $product->name }}</h5>
+            <a href="{{ route('product.show', $product->id) }}" class="text-decoration-none text-dark">
+              <h5 class="product-title">{{ $product->name }}</h5>
+            </a>
             <p class="product-subtitle">{{ $product->subtitle }}</p>
             <div class="price">
               <span class="new-price">${{ number_format($product->price, 2) }}</span>

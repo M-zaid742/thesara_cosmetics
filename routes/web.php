@@ -25,34 +25,44 @@ Route::get('/show', [ProductController::class, 'index'])->name('products.index')
 // ==================== CART ====================
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
+Route::patch('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 
 // ==================== WISHLIST ====================
 Route::post('/wishlist/add', [WishlistController::class, 'store'])->name('wishlist.add');
-
-// ==================== CHECKOUT ====================
-Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
-
-// ==================== TRACK ORDER ====================
-Route::get('/track-order', [TrackController::class, 'showForm'])->name('track.order');
-Route::get('/track-order/result', [TrackController::class, 'search'])->name('track.result');
-
-// ==================== ABOUT & FAQ ====================
-Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 
 // ==================== AUTH ====================
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// ==================== USER PROFILE & ORDERS ====================
+// ==================== AUTHENTICATED ROUTES ====================
 Route::middleware('auth')->group(function () {
+
+    // Buy Now
+    Route::post('/buy-now', [ProductController::class, 'buyNow'])->name('buy.now');
+
+    // Checkout
+    Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
+
+    // Orders
+    Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/confirmation/{id}', [OrderController::class, 'confirmation'])->name('orders.confirmation');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+
+    // Profile
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 });
+
+// ==================== TRACK ORDER (PUBLIC) ====================
+Route::get('/track-order', [TrackController::class, 'showForm'])->name('track.order');
+Route::get('/track-order/result', [TrackController::class, 'search'])->name('track.result');
+
+// ==================== ABOUT & FAQ ====================
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 
 // ==================== ADMIN ====================
 Route::prefix('admin')->group(function () {
@@ -67,9 +77,7 @@ Route::prefix('admin')->group(function () {
         ->name('admin.dashboard');
 
     // Admin Logout
-    Route::get('/logout', function () {
-        return view('admin.logout');
-    })->name('admin.logout.page');
+    Route::get('/logout', fn() => view('admin.logout'))->name('admin.logout.page');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
     // Forgot Password
