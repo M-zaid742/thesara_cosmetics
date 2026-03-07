@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Auth;
+>>>>>>> 7592877e842797f969a4291af16db0deba579361
 use App\Models\Product;
 
 class PageController extends Controller
@@ -48,27 +52,71 @@ class PageController extends Controller
         $faqs = [
             [
                 'question' => 'Are your products cruelty-free?',
-                'answer' => 'Yes, all Thesara Cosmetics products are 100% cruelty-free.'
+                'answer'   => 'Yes, all Thesara Cosmetics products are 100% cruelty-free.'
             ],
             [
                 'question' => 'Do you offer international shipping?',
-                'answer' => 'Yes! We ship to most countries with fast delivery options.'
+                'answer'   => 'Yes! We ship to most countries with fast delivery options.'
             ],
             [
                 'question' => 'Are your products suitable for sensitive skin?',
-                'answer' => 'Our products are dermatologically tested and safe for most skin types.'
+                'answer'   => 'Our products are dermatologically tested and safe for most skin types.'
             ],
             [
                 'question' => 'How can I track my order?',
-                'answer' => 'You’ll receive a tracking link once your order is shipped.'
+                'answer'   => 'You\'ll receive a tracking link once your order is shipped.'
             ]
         ];
-        
 
         return view('faq', compact('faqs'));
     }
+
     public function checkout()
-{
-    return view('checkout');
-}
+    {
+        // Must be logged in
+        if (!Auth::check()) {
+            return redirect()->route('login')
+                             ->with('error', 'Please login to checkout.');
+        }
+
+        $isBuyNow = false;
+
+        // Check if coming from Buy Now
+        if (session('buy_now')) {
+            $buyNowItem = session('buy_now');
+            $product    = Product::find($buyNowItem['product_id']);
+
+            if (!$product) {
+                session()->forget('buy_now');
+                return redirect()->route('shop')
+                                 ->with('error', 'Product not found.');
+            }
+
+            $items = collect([(object)[
+                'product'  => $product,
+                'quantity' => $buyNowItem['quantity'],
+                'price'    => $buyNowItem['price'],
+            ]]);
+
+            $isBuyNow = true;
+
+        } else {
+            // Regular cart checkout
+            $items = Auth::user()->carts()->with('product')->get();
+        }
+
+        // Redirect if nothing to checkout
+        if ($items->isEmpty()) {
+            return redirect()->route('cart.index')
+                             ->with('error', 'Your cart is empty.');
+        }
+
+        $subtotal = $items->sum(fn($item) => $item->quantity * $item->product->price);
+        $shipping = $subtotal >= 3000 ? 0 : 500;
+        $total    = $subtotal + $shipping;
+
+        return view('checkout', compact(
+            'items', 'subtotal', 'shipping', 'total', 'isBuyNow'
+        ));
+    }
 }
