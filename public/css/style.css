@@ -184,8 +184,11 @@ body {
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-  width: 394.57px;
+  width: 100%;
+  max-width: 394.57px;
   height: 253px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .category-img {

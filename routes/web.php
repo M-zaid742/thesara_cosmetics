@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
 
 // ==================== HOME ====================
-Route::get('/', fn() => view('welcome'));
+Route::get('/', [PageController::class, 'home']);
 
 // ==================== SHOP ====================
 Route::get('/shop', [ProductController::class, 'shop'])->name('shop');

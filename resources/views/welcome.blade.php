@@ -23,40 +23,52 @@
   <!-- SHOP BY CATEGORY -->
   <section class="container section reveal" id="categories">
     <h3 class="section-title">Shop By Category</h3>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="category-card shadow-sm">
-          <img src="{{ asset('images/serum.PNG') }}" alt="Foundation Cream" class="category-img">
-          <div class="category-content">
-            <h5>Foundation Cream</h5>
-            <p class="text-muted">Elevate Your Natural Beauty</p>
-            <a href="{{ route('shop') }}" class="btn btn-dark hero-btn">Shop Now</a>
-          </div>
-        </div>
-      </div>
+    @php
+      $categorySlides = collect($categories ?? [])->chunk(3);
+    @endphp
 
-      <div class="col-md-4">
-        <div class="category-card shadow-sm">
-          <img src="{{ asset('images/lip-serum.PNG') }}" alt="Lip Serum" class="category-img">
-          <div class="category-content">
-            <h5>Lip Serum</h5>
-            <p class="text-muted">Elevate Your Natural Beauty</p>
-            <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Shop Now</a>
-          </div>
+    @if($categorySlides->isEmpty())
+      <p class="text-muted mb-0">No categories available right now.</p>
+    @else
+      <div id="categoryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-inner">
+          @foreach($categorySlides as $slideIndex => $slide)
+            <div class="carousel-item {{ $slideIndex === 0 ? 'active' : '' }}">
+              <div class="row g-4 justify-content-center">
+                @foreach($slide as $category)
+                  <div class="col-12 col-md-4">
+                    <div class="category-card shadow-sm">
+                      <img
+                        src="{{ asset($category['image_path'] ?: 'images/seller1.png') }}"
+                        alt="{{ $category['name'] }}"
+                        class="category-img"
+                        loading="lazy"
+                      >
+                      <div class="category-content">
+                        <a href="{{ route('products.category', ['category' => $category['name']]) }}" class="btn btn-dark hero-btn">Shop Now</a>
+                      </div>
+                    </div>
+                    <div class="mt-2 text-center">
+                      <div class="fw-semibold">{{ $category['name'] }}</div>
+                      <div class="small text-muted">{{ $category['count'] }} product{{ $category['count'] === 1 ? '' : 's' }}</div>
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            </div>
+          @endforeach
         </div>
-      </div>
 
-      <div class="col-md-4">
-        <div class="category-card shadow-sm">
-          <img src="{{ asset('images/sunscreen.png') }}" alt="Sunscreen" class="category-img">
-          <div class="category-content">
-            <h5>Sunscreen</h5>
-            <p class="text-muted">Elevate Your Natural Beauty</p>
-            <a href="{{ url('/shop') }}" class="btn btn-dark hero-btn">Shop Now</a>>
-          </div>
-        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-    </div>
+    @endif
   </section>
 
   <!-- BEST SELLERS -->

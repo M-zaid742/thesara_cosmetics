@@ -14,7 +14,7 @@ class ProductController extends Controller
     /**
      * Display all products with optional search and category filter
      */
-    public function index(Request $request)
+    public function index(Request $request, ?string $category = null)
     {
         $products = Product::query();
 
@@ -24,8 +24,9 @@ class ProductController extends Controller
         }
 
         // Optional category filter
-        if ($request->category) {
-            $products->where('category', $request->category);
+        $selectedCategory = $category ?: $request->category;
+        if ($selectedCategory) {
+            $products->where('category', $selectedCategory);
         }
 
         $products = $products->paginate(10);
