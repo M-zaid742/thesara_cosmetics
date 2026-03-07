@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
+
+
 use Illuminate\Support\Facades\Auth;
->>>>>>> 7592877e842797f969a4291af16db0deba579361
+
 use App\Models\Product;
 
 class PageController extends Controller
