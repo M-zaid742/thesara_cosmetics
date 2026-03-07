@@ -30,21 +30,21 @@
     @if($categorySlides->isEmpty())
       <p class="text-muted mb-0">No categories available right now.</p>
     @else
-      <div id="categoryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+      <div id="categoryCarousel" class="carousel slide">
         <div class="carousel-inner">
           @foreach($categorySlides as $slideIndex => $slide)
             <div class="carousel-item {{ $slideIndex === 0 ? 'active' : '' }}">
               <div class="row g-4 justify-content-center">
                 @foreach($slide as $category)
                   <div class="col-12 col-md-4">
-                    <div class="category-card shadow-sm">
+                    <div class="home-category-card">
                       <img
                         src="{{ asset($category['image_path'] ?: 'images/seller1.png') }}"
                         alt="{{ $category['name'] }}"
-                        class="category-img"
+                        class="home-category-img"
                         loading="lazy"
                       >
-                      <div class="category-content">
+                      <div class="home-category-content">
                         <a href="{{ route('products.category', ['category' => $category['name']]) }}" class="btn btn-dark hero-btn">Shop Now</a>
                       </div>
                     </div>

@@ -109,3 +109,26 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+// Category carousel: slide only while hovering
+document.addEventListener('DOMContentLoaded', () => {
+  const carouselEl = document.getElementById('categoryCarousel');
+  if (!carouselEl || typeof bootstrap === 'undefined') return;
+
+  const carousel = new bootstrap.Carousel(carouselEl, {
+    interval: 3000,
+    ride: false,
+    pause: false,
+    wrap: true,
+  });
+
+  // Start cycling when user hovers, stop when mouse leaves
+  carouselEl.addEventListener('mouseenter', () => {
+    carousel.cycle();
+  });
+
+  carouselEl.addEventListener('mouseleave', () => {
+    carousel.pause();
+  });
+});
+

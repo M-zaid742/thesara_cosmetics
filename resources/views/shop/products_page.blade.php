@@ -34,7 +34,7 @@
       <div class="col-6 col-md-2">
         <a href="{{ route('products.category', 'serum') }}" class="text-decoration-none text-dark">
           <div class="category-card">
-            <img src="{{ asset('images/seller1.png') }}" alt="Serum">
+            <img src="{{ asset('images/serum.PNG') }}" alt="Serum">
             <h6>Serum</h6>
           </div>
         </a>
@@ -63,6 +63,15 @@
           <div class="category-card">
             <img src="{{ asset('images/seller4.png') }}" alt="Exfoliator">
             <h6>Exfoliator</h6>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <a href="{{ route('products.category', 'toner') }}" class="text-decoration-none text-dark">
+          <div class="category-card">
+            <img src="{{ asset('images/seller5.png') }}" alt="Toner">
+            <h6>Toner</h6>
           </div>
         </a>
       </div>
