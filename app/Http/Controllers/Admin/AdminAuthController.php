@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Contact;
+use App\Models\Notification;
 
 class AdminAuthController extends Controller
 {
@@ -70,6 +72,17 @@ public function updatePassword(Request $request)
     $admin->save();
 
     return back()->with('success', 'Password updated successfully!');
+}
+public function messages()
+{
+    $messages = Contact::latest()->paginate(20);
+    return view('admin.messages',compact('messages'));
+}
+
+public function notifications()
+{
+    $notifications = Notification::latest()->paginate(20);
+    return view('admin.notifications',compact('notifications'));
 }
 
  public function profile()

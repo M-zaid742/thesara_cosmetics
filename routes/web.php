@@ -12,6 +12,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Notification;
+use App\Models\Contact;
 
 // ==================== HOME ====================
 Route::get('/', [PageController::class, 'home']);
@@ -90,6 +92,9 @@ Route::prefix('admin')->group(function () {
     Route::post('password/update', [AdminAuthController::class, 'updatePassword'])
         ->middleware('auth:admin')
         ->name('admin.password.update');
+        Route::get('/admin/messages', [AdminAuthController::class,'messages'])->name('admin.messages');
+
+Route::get('/admin/notifications', [AdminAuthController::class,'notifications'])->name('admin.notifications');
 
     // Admin Profile
     Route::get('profile', [AdminAuthController::class, 'profile'])
