@@ -11,6 +11,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Notification;
 use App\Models\Contact;
@@ -69,38 +70,43 @@ Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 // ==================== ADMIN ====================
 Route::prefix('admin')->group(function () {
 
-    // Admin Login
+    // ================= ADMIN LOGIN =================
     Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
 
-    // Admin Dashboard
-    Route::get('dashboard', [DashboardController::class, 'index'])
-        ->middleware('auth:admin')
-        ->name('admin.dashboard');
+    // ================= PROTECTED ADMIN ROUTES =================
+    Route::middleware('auth:admin')->group(function () {
 
-    // Admin Logout
-    Route::get('/logout', fn() => view('admin.logout'))->name('admin.logout.page');
-    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+        // Dashboard
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    // Forgot Password
-    Route::get('forgot-password', fn() => view('admin.forgot-password'))->name('admin.forgot.password');
+        // Orders
+        // Orders
+Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+Route::get('orders/pending', [AdminOrderController::class, 'pending'])->name('admin.orders.pending');
+Route::get('orders/completed', [AdminOrderController::class, 'completed'])->name('admin.orders.completed');
+Route::get('orders/cancelled', [AdminOrderController::class, 'cancelled'])->name('admin.orders.cancelled');
+Route::get('orders/{id}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
+Route::get('orders/{id}/invoice', [AdminOrderController::class, 'invoice'])->name('admin.orders.invoice');
+Route::put('orders/{id}/status', [AdminOrderController::class, 'status'])->name('admin.orders.status');
+        // Messages
+        Route::get('messages', [AdminAuthController::class,'messages'])->name('admin.messages');
 
-    // Update Password
-    Route::get('password', fn() => view('admin.updatepassword'))
-        ->middleware('auth:admin')
-        ->name('admin.password.form');
-    Route::post('password/update', [AdminAuthController::class, 'updatePassword'])
-        ->middleware('auth:admin')
-        ->name('admin.password.update');
-        Route::get('/admin/messages', [AdminAuthController::class,'messages'])->name('admin.messages');
+        // Notifications
+        Route::get('notifications', [AdminAuthController::class,'notifications'])->name('admin.notifications');
 
-Route::get('/admin/notifications', [AdminAuthController::class,'notifications'])->name('admin.notifications');
+        // Profile
+        Route::get('profile', [AdminAuthController::class, 'profile'])->name('admin.profile');
+        Route::post('profile/update', [AdminAuthController::class, 'updateProfile'])->name('admin.profile.update');
 
-    // Admin Profile
-    Route::get('profile', [AdminAuthController::class, 'profile'])
-        ->middleware('auth:admin')
-        ->name('admin.profile');
-    Route::post('profile/update', [AdminAuthController::class, 'updateProfile'])
-        ->middleware('auth:admin')
-        ->name('admin.profile.update');
+        // Password
+        Route::get('password', fn() => view('admin.updatepassword'))->name('admin.password.form');
+        Route::post('password/update', [AdminAuthController::class, 'updatePassword'])->name('admin.password.update');
+
+        // Logout
+        Route::get('logout', fn() => view('admin.logout'))->name('admin.logout.page');
+        Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+    });
+
 });

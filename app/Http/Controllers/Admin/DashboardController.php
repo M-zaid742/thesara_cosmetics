@@ -51,6 +51,7 @@ class DashboardController extends Controller
             ->groupBy('month')
             ->orderBy(DB::raw('MIN(created_at)'))
             ->pluck('total', 'month');
+        
 
         // ===============================
         // CURRENT MONTH REPORT
@@ -77,7 +78,11 @@ class DashboardController extends Controller
         // ===============================
         // LATEST DATA
         // ===============================
-        $latestOrders   = Order::with('items')->latest()->limit(5)->get();
+        // $latestOrders   = Order::with('items')->latest()->limit(5)->get();
+        $latestOrders = Order::with(['items','user'])
+                ->latest()
+                ->take(10)
+                ->get();
         $latestUsers    = User::latest()->take(8)->get();
         $latestProducts = Product::latest()->take(5)->get();
         $latestMessages = Contact::latest()->take(5)->get();

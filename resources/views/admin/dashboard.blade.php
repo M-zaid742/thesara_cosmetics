@@ -562,59 +562,88 @@ document.addEventListener("DOMContentLoaded", function () {
                     <!-- /.row -->
 
                     <!-- TABLE: LATEST ORDERS -->
-                    <div class="card">
-                        <div class="card-header border-transparent">
-                            <h3 class="card-title">Latest Orders</h3>
+                    <!-- TABLE: LATEST ORDERS -->
+<div class="card">
+    <div class="card-header border-transparent">
+        <h3 class="card-title">Latest Orders</h3>
 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
 
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table m-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Order ID</th>
-                                            <th>Items</th>
-                                            <th>Status</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table m-0">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User</th>
+                        <th>Items</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
 
-                                    <tbody>
-                                        @foreach($latestOrders as $order)
-                                        <tr>
-                                            <td>#{{ $order->id }}</td>
-                                            <td>{{ $order->items->count() ?? 1 }} Items</td>
-                                            <td>
-                                                <span class="badge 
-                                                    @if($order->status=='completed') badge-success
-                                                    @elseif($order->status=='pending') badge-warning
-                                                    @else badge-info
-                                                    @endif">
-                                                    {{ ucfirst($order->status) }}
-                                                </span>
-                                            </td>
-                                            <td>${{ $order->total }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                <tbody>
+                    @forelse($latestOrders as $order)
+                    <tr>
+                        <td>#{{ $order->id }}</td>
 
-                        <div class="card-footer clearfix">
-                            <a href="#" class="btn btn-sm btn-info float-left">Place New Order</a>
-                            <a href="#" class="btn btn-sm btn-secondary float-right">View All Orders</a>
-                        </div>
-                    </div>
+                        <td>
+                            {{ $order->user->name ?? 'Guest' }}
+                        </td>
+
+                        <td>
+                            {{ $order->items->count() }} Items
+                        </td>
+
+                        <td>
+                            <span class="badge
+                                @if($order->status == 'completed') badge-success
+                                @elseif($order->status == 'pending') badge-warning
+                                @elseif($order->status == 'cancelled') badge-danger
+                                @else badge-info
+                                @endif">
+                                {{ ucfirst($order->status) }}
+                            </span>
+                        </td>
+
+                        <td>
+                            ${{ number_format($order->total,2) }}
+                        </td>
+
+                        <td>
+                            {{ $order->created_at->format('d M Y') }}
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="6" class="text-center">No Orders Found</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card-footer clearfix">
+        <a href="{{ url('admin/orders/create') }}" class="btn btn-sm btn-info float-left">
+            Place New Order
+        </a>
+
+        <a href="{{ url('admin/orders') }}" class="btn btn-sm btn-secondary float-right">
+            View All Orders
+        </a>
+    </div>
+</div>
+<!-- /.card -->
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->

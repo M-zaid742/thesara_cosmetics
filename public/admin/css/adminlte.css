@@ -28497,4 +28497,73 @@ a.text-muted:hover {
   background-color: #ffffff;
   border-color: #dee2e6;
 }
+/* Luxury overrides */
+:root {
+    --brand-gold:    #d4af37;
+    --brand-brown:   #4a2c1f;
+    --brand-beige:   #f5f0e9;
+    --brand-light:   #e0d4c2;
+}
+
+.navbar-brown {
+    background-color: var(--brand-brown) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.navbar-badge.badge-golden {
+    background-color: var(--brand-gold);
+    color: #1a0f0a;
+    font-weight: 600;
+}
+
+.text-gold   { color: var(--brand-gold) !important; }
+.bg-brown    { background-color: var(--brand-brown) !important; }
+.btn-navbar  { color: var(--brand-gold) !important; }
+
+.dropdown-menu {
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.form-control-navbar {
+    background-color: rgba(255,255,255,0.08);
+    border: 1px solid rgba(212,175,55,0.2);
+    color: white;
+}
+
+.form-control-navbar::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+/* Target your search input precisely */
+.main-header .form-control-navbar {
+    background-color: #495057 !important;   /* Medium-dark gray — subtle contrast on brown/dark navbar */
+    border: 1px solid #6c757d !important;  /* Light border to outline it clearly */
+    border-radius: 0.25rem !important;     /* Optional: slight rounding if you like */
+}
+
+/* When user clicks/focuses the search bar */
+.main-header .form-control-navbar:focus {
+    background-color: #6c757d !important;  /* Slightly lighter on focus */
+    border-color: #adb5bd !important;
+    box-shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.25) !important; /* subtle glow */
+    color: #ffffff !important;
+}
+
+/* Optional: Make the search button area match better */
+.main-header .input-group-append .btn-navbar {
+    background-color: #495057 !important;  /* Match input bg */
+    border: 1px solid #6c757d !important;
+    color: #d4af37 !important;             /* Keep your gold text/icon */
+}
+
+/* If you want even more contrast (lighter search bar) */
+.main-header .form-control-navbar.alternative {
+    background-color: #6c757d !important;  /* Bootstrap secondary gray */
+}
+
+/* Or darker but with border emphasis */
+.main-header .form-control-navbar.strong-contrast {
+    background-color: #212529 !important;  /* Almost black */
+    border: 1px solid #d4af37 !important;  /* Gold border for luxury feel */
+}
 /*# sourceMappingURL=adminlte.css.map */
