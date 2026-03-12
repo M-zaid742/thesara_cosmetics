@@ -116,13 +116,13 @@ Orders
 <p>Order Details</p>
 </a>
 </li>
-
+<!-- 
 <li class="nav-item">
 <a href="{{ route('admin.orders.index') }}" class="nav-link">
 <i class="far fa-circle nav-icon"></i>
 <p>Order Timeline</p>
 </a>
-</li>
+</li> -->
 
 <li class="nav-item">
 <a href="{{ route('admin.orders.index') }}" class="nav-link">
