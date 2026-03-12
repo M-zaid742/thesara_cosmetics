@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Contact;
 use App\Models\Notification;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,10 +15,16 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             // Get latest 5 messages and unread count
             $messages = Contact::latest()->take(5)->get();
-            $messageCount = Contact::where('is_read', 0)->count(); 
+            $messageCount = Schema::hasColumn('contacts', 'is_read')
+                ? Contact::where('is_read', false)->count()
+                : Contact::count();
             // Get latest 5 notifications and unread count
             $notifications = Notification::latest()->take(5)->get();
-            $notificationCount = Notification::whereNull('read_at')->count();
+            $notificationCount = Schema::hasColumn('notifications', 'read_at')
+                ? Notification::whereNull('read_at')->count()
+                : (Schema::hasColumn('notifications', 'read')
+                    ? Notification::where('read', false)->count()
+                    : Notification::count());
 
             // Pass variables to all views
             $view->with([

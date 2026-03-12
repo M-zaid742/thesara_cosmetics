@@ -8,6 +8,10 @@ class Contact extends Model
 {
     protected $table = 'contacts';
 
+    protected $casts = [
+        'is_read' => 'boolean',
+    ];
+
     protected $fillable = [
         'name',
         'email',
