@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>AdminLTE 3 | Dashboard 2</title>
+  <title>Thesara Cosmetics Admin</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{url('admin/plugins/fontawesome-free/css/all.min.css')}}">
@@ -13,8 +13,11 @@
   <link rel="stylesheet" href="{{url('admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{url('admin/css/adminlte.min.css')}}">
+  <!-- Custom Admin Theme -->
+<link rel="stylesheet" href="{{url('admin/css/custom-admin.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">

@@ -1,0 +1,333 @@
+/* GLOBAL THEME */
+body{
+    background:#f8f5ef;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* SIDEBAR */
+.main-sidebar{
+    background:#1a1208 !important;
+}
+
+.brand-link{
+    background:#1a1208;
+    color:#d4a017 !important;
+    font-weight:600;
+}
+
+/* SIDEBAR LINKS */
+.nav-sidebar .nav-link{
+    color:#cbb37e !important;
+}
+
+.nav-sidebar .nav-link:hover{
+    background:#3a2a15 !important;
+    color:#d4a017 !important;
+}
+
+/* ACTIVE MENU */
+.nav-sidebar .nav-link.active{
+    background:#d4a017 !important;
+    color:#1a1208 !important;
+}
+
+/* NAVBAR */
+.main-header{
+    background:#ffffff;
+    border-bottom:1px solid #eee;
+}
+
+/* CARDS */
+.small-box{
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* DASHBOARD WIDGETS */
+.card{
+    border-radius:12px;
+    border:none;
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* BUTTONS */
+.btn-primary{
+    background:#c89b3c;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#a77f2f;
+}
+
+/* TABLE */
+.table thead{
+    background:#f2e8d5;
+}
+
+/* GOLD STAT CARDS */
+.bg-info{
+    background:#c89b3c !important;
+}
+
+.bg-success{
+    background:#7a5a1f !important;
+}
+
+.bg-warning{
+    background:#e5c57c !important;
+}
+
+.bg-danger{
+    background:#6b3d1a !important;
+}
+/* =========================
+   Dash board
+========================= */
+.content-wrapper{
+background:#f7f4ee;
+}
+.info-box{
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,0.06);
+border:none;
+transition:all .3s ease;
+}
+
+.info-box:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.info-box-icon{
+border-radius:12px 0 0 12px;
+}
+.bg-info{
+background:#c89b3c !important;
+}
+
+.bg-success{
+background:#9c7b35 !important;
+}
+
+.bg-warning{
+background:#e3c787 !important;
+}
+
+.bg-danger{
+background:#6b3d1a !important;
+}
+.card{
+border-radius:14px;
+border:none;
+box-shadow:0 8px 25px rgba(0,0,0,0.06);
+margin-bottom:25px;
+}
+
+.card-header{
+background:white;
+border-bottom:1px solid #f0f0f0;
+font-weight:600;
+}
+.progress{
+border-radius:20px;
+height:8px;
+background:#eee;
+}
+
+.progress-bar{
+background:#c89b3c;
+}
+.table{
+background:white;
+border-radius:10px;
+overflow:hidden;
+}
+
+.table thead{
+background:#f1e6cf;
+font-weight:600;
+}
+
+.table td{
+vertical-align:middle;
+}
+.badge-success{
+background:#2f8f46;
+}
+
+.badge-warning{
+background:#d4a017;
+}
+
+.badge-danger{
+background:#a03232;
+}
+
+.badge-info{
+background:#6f5b2b;
+}
+.products-list .item{
+padding:12px;
+border-bottom:1px solid #f3f3f3;
+}
+
+.products-list .product-title{
+font-weight:600;
+color:#333;
+}
+.btn-info{
+background:#c89b3c;
+border:none;
+}
+
+.btn-info:hover{
+background:#a67d2f;
+}
+
+.btn-secondary{
+background:#333;
+border:none;
+}
+.direct-chat-text{
+border-radius:12px;
+background:#f4ead6;
+border:none;
+}
+
+.direct-chat-warning .right>.direct-chat-text{
+background:#c89b3c;
+color:white;
+}
+.chart{
+padding:10px;
+}
+
+/* =========================
+   SIDEBAR MAIN
+========================= */
+
+.main-sidebar{
+    background:#0f0f0f !important;
+    border-right:1px solid #1f1f1f;
+}
+
+/* =========================
+   BRAND LOGO
+========================= */
+
+.brand-link{
+    background:#000;
+    border-bottom:1px solid #1f1f1f;
+    padding:18px 15px;
+}
+
+.brand-text{
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#d4a017 !important;
+}
+
+/* =========================
+   USER PANEL
+========================= */
+
+.user-panel{
+    border-bottom:1px solid #1f1f1f;
+    padding:15px 10px;
+}
+
+.user-panel .image img{
+    width:45px;
+    height:45px;
+    border:2px solid #d4a017;
+}
+
+.user-panel .info a{
+    font-size:15px;
+    font-weight:600;
+}
+
+/* =========================
+   NAVIGATION ITEMS
+========================= */
+
+.nav-sidebar .nav-item{
+    margin:4px 10px;
+}
+
+.nav-sidebar .nav-link{
+    border-radius:8px;
+    padding:10px 14px;
+    color:#cfcfcf !important;
+    transition:all .25s ease;
+}
+
+/* ICON */
+
+.nav-sidebar .nav-icon{
+    color:#d4a017;
+    font-size:16px;
+}
+
+/* HOVER */
+
+.nav-sidebar .nav-link:hover{
+    background:#1a1a1a;
+    color:#fff !important;
+}
+
+/* ACTIVE MENU */
+
+.nav-sidebar .nav-link.active{
+    background:#d4a017 !important;
+    color:#000 !important;
+    font-weight:600;
+}
+
+.nav-sidebar .nav-link.active i{
+    color:#000 !important;
+}
+
+/* =========================
+   TREEVIEW SUBMENU
+========================= */
+
+.nav-treeview{
+    padding-left:8px;
+}
+
+.nav-treeview .nav-link{
+    font-size:14px;
+    padding:8px 12px;
+}
+
+/* =========================
+   SECTION HEADERS
+========================= */
+
+.nav-header{
+    color:#777 !important;
+    font-size:11px;
+    letter-spacing:1px;
+    padding-left:20px;
+    margin-top:15px;
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.badge-warning{
+    background:#d4a017 !important;
+    color:#000;
+}
+
+/* =========================
+   LOGOUT BUTTON
+========================= */
+
+.nav-sidebar .fa-sign-out-alt{
+    color:#ff5c5c;
+}

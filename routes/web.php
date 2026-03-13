@@ -89,7 +89,7 @@ Route::get('orders/cancelled', [AdminOrderController::class, 'cancelled'])->name
 Route::get('orders/{id}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
 Route::get('orders/{id}/invoice', [AdminOrderController::class, 'invoice'])->name('admin.orders.invoice');
 Route::put('orders/{id}/status', [AdminOrderController::class, 'status'])->name('admin.orders.status');
-        // Messages
+   // Messages
         Route::get('messages', [AdminAuthController::class,'messages'])->name('admin.messages');
 
         // Notifications
