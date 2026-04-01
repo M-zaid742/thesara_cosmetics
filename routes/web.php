@@ -80,16 +80,20 @@ Route::prefix('admin')->group(function () {
         // Dashboard
         Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-        // Orders
-        // Orders
-Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
-Route::get('orders/pending', [AdminOrderController::class, 'pending'])->name('admin.orders.pending');
-Route::get('orders/completed', [AdminOrderController::class, 'completed'])->name('admin.orders.completed');
-Route::get('orders/cancelled', [AdminOrderController::class, 'cancelled'])->name('admin.orders.cancelled');
-Route::get('orders/{id}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
-Route::get('orders/{id}/invoice', [AdminOrderController::class, 'invoice'])->name('admin.orders.invoice');
-Route::put('orders/{id}/status', [AdminOrderController::class, 'status'])->name('admin.orders.status');
-   // Messages
+        // ================= PRODUCTS =================
+        Route::get('products/create', [ProductController::class, 'create'])->name('admin.products.create');
+        Route::post('products/store', [ProductController::class, 'store'])->name('admin.products.store');
+
+        // ================= ORDERS =================
+        Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+        Route::get('orders/pending', [AdminOrderController::class, 'pending'])->name('admin.orders.pending');
+        Route::get('orders/completed', [AdminOrderController::class, 'completed'])->name('admin.orders.completed');
+        Route::get('orders/cancelled', [AdminOrderController::class, 'cancelled'])->name('admin.orders.cancelled');
+        Route::get('orders/{id}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
+        Route::get('orders/{id}/invoice', [AdminOrderController::class, 'invoice'])->name('admin.orders.invoice');
+        Route::put('orders/{id}/status', [AdminOrderController::class, 'status'])->name('admin.orders.status');
+
+        // Messages
         Route::get('messages', [AdminAuthController::class,'messages'])->name('admin.messages');
 
         // Notifications
@@ -106,7 +110,5 @@ Route::put('orders/{id}/status', [AdminOrderController::class, 'status'])->name(
         // Logout
         Route::get('logout', fn() => view('admin.logout'))->name('admin.logout.page');
         Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
-
     });
-
 });

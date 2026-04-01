@@ -16,15 +16,16 @@ class Product extends Model
     protected $fillable = [
         'name',
         'subtitle',
+        'slug',
         'description',
         'price',
+        'cost_price',
         'old_price',
+        'is_featured',
         'stock',
         'category',
         'badge',
-        'brand',
-        'image_url',
-        'is_featured',
+        'image'
     ];
 
     /**
