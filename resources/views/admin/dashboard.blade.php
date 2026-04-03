@@ -770,7 +770,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 @foreach($latestProducts as $product)
                                 <li class="item">
                                     <div class="product-img">
-                                        <img src="{{ asset('storage/'.$product->image) }}"
+                                        <img src="{{ asset($product->image_url) }}"
                                              class="img-size-50">
                                     </div>
 

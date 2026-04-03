@@ -81,21 +81,6 @@
 </section>
 
 
-<!-- <h2 class="section-title text-center mb-5 fw-bold">Featured Products</h2>
- <h2>Featured Products</h2>
-
-@foreach($featuredProducts as $product)
-    <div>
-        <img src="{{ asset('uploads/products/'.$product->image) }}" width="150">
-
-        <h3>{{ $product->name }}</h3>
-
-        <p>{{ $product->price }}</p>
-
-        <p>{{ $product->description }}</p>
-    </div>
-@endforeach -->
-
 <section class="featured-products py-5" id="products">
   <div class="container">
     <h2 class="section-title text-center mb-5 fw-bold">Featured Products</h2>
@@ -114,7 +99,8 @@
 
           <div class="product-img">
             <a href="{{ route('product.show', $product->id) }}">
-              <img src="{{ asset('storage/'.$product->image) }}">
+              {{-- FIXED: use image_url column (no storage/ prefix needed) --}}
+              <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}">
             </a>
           </div>
 
