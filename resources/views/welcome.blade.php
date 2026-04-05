@@ -114,6 +114,40 @@
       </div>
     </div>
   </section>
+
+  <!-- FLOATING DERMAI BUTTON -->
+  <style>
+    .floating-dermai-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      background-color: #212529;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    .floating-dermai-btn:hover {
+      background-color: #343a40;
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+    .floating-dermai-btn i {
+      font-size: 1.2rem;
+      /* If Bootstrap Icons (bi) is loaded. We'll use bi-stars or bi-robot */
+    }
+  </style>
+  <a href="{{ route('dermai.chat') }}" class="floating-dermai-btn">
+    <i class="bi bi-robot"></i> Try DermAI
+  </a>
 @endsection
 
 @push('scripts')

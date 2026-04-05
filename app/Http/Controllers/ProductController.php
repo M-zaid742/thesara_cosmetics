@@ -33,7 +33,7 @@ class ProductController extends Controller
 
         $products = $products->latest()->paginate(10);
 
-        return view('products.index', compact('products'));
+        return view('products.BROWSE_SCREEN', compact('products'));
     }
 
     /**
@@ -112,9 +112,9 @@ class ProductController extends Controller
      * Admin - Show Add Product Form
      */
     public function create()
-{
-    return view('admin.products.create');
-}
+    {
+        return view('admin.products.create');
+    }
 
     /**
      * Admin - Store Product
@@ -128,9 +128,9 @@ class ProductController extends Controller
         ]);
 
         // Upload image
-        $imageName = time().'.'.$request->image->extension();
+        $imageName = time() . '.' . $request->image->extension();
         // $request->image->move(public_path('uploads/products'), $imageName);
-$imagePath = $request->file('image')->store('products', 'public');
+        $imagePath = $request->file('image')->store('products', 'public');
         // Save product
         Product::create([
             'name' => $request->name,
@@ -160,16 +160,16 @@ $imagePath = $request->file('image')->store('products', 'public');
             'quantity' => 'integer|min:1',
         ]);
 
-        $product  = Product::findOrFail($request->product_id);
+        $product = Product::findOrFail($request->product_id);
         $quantity = $request->quantity ?? 1;
 
         session([
             'buy_now' => [
                 'product_id' => $product->id,
-                'quantity'   => $quantity,
-                'price'      => $product->price,
-                'name'       => $product->name,
-                'image'      => $product->image,
+                'quantity' => $quantity,
+                'price' => $product->price,
+                'name' => $product->name,
+                'image' => $product->image,
             ]
         ]);
 

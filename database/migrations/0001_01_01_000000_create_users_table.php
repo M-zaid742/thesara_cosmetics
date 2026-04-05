@@ -82,14 +82,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('skin_analyses', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('image_path');
-            $table->text('analysis_result'); // JSON of detected conditions
-            $table->timestamps();
-        });
-
+        
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

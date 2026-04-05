@@ -21,9 +21,9 @@ Route::get('/', [PageController::class, 'home']);
 
 // ==================== SHOP ====================
 Route::get('/shop', [ProductController::class, 'shop'])->name('shop');
-Route::get('/products/category/{category}', [ProductController::class, 'index'])->name('products.category');
+Route::get('/products/category/{category}', [ProductController::class, 'category'])->name('products.category');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-Route::get('/show', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
 // ==================== CART ====================
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -57,6 +57,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+// ==================== DERMAI ROUTES ====================
+Route::middleware(['auth'])->prefix('dermai')->group(function () {
+    Route::get('/chat', [App\Http\Controllers\DermAI\ChatController::class, 'index'])->name('dermai.chat');
+    Route::post('/chat/send', [App\Http\Controllers\DermAI\ChatController::class, 'sendMessage'])->name('dermai.chat.message');
+    Route::get('/chat/history', [App\Http\Controllers\DermAI\ChatController::class, 'getHistory'])->name('dermai.chat.history');
+    Route::post('/analyze-skin', [App\Http\Controllers\DermAI\SkinController::class, 'analyzeImage'])->name('dermai.analyze');
+
+    Route::get('/progress', [App\Http\Controllers\DermAI\ProgressController::class, 'index'])->name('dermai.progress');
+    Route::post('/progress', [App\Http\Controllers\DermAI\ProgressController::class, 'store'])->name('dermai.progress.log');
 });
 
 // ==================== TRACK ORDER (PUBLIC) ====================
@@ -94,10 +105,10 @@ Route::prefix('admin')->group(function () {
         Route::put('orders/{id}/status', [AdminOrderController::class, 'status'])->name('admin.orders.status');
 
         // Messages
-        Route::get('messages', [AdminAuthController::class,'messages'])->name('admin.messages');
+        Route::get('messages', [AdminAuthController::class, 'messages'])->name('admin.messages');
 
         // Notifications
-        Route::get('notifications', [AdminAuthController::class,'notifications'])->name('admin.notifications');
+        Route::get('notifications', [AdminAuthController::class, 'notifications'])->name('admin.notifications');
 
         // Profile
         Route::get('profile', [AdminAuthController::class, 'profile'])->name('admin.profile');
@@ -110,5 +121,9 @@ Route::prefix('admin')->group(function () {
         // Logout
         Route::get('logout', fn() => view('admin.logout'))->name('admin.logout.page');
         Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+
     });
+
+
 });

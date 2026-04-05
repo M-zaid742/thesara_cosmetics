@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   buttons.forEach(button => {
     button.addEventListener('click', () => {
-      alert('🛒 Product added to cart (frontend demo only)');
+
     });
   });
 });
