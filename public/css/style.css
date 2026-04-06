@@ -18,7 +18,6 @@ body {
 .section-title { font-weight: 700; margin-bottom: 1rem; }
 
 /* Navbar */
-/* Navbar Styling */
 .navbar {
   background: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
@@ -26,7 +25,6 @@ body {
   z-index: 9999;
 }
 
-/* Brand Name */
 .navbar-brand {
   color: #3b2c20;
   font-weight: 700;
@@ -35,21 +33,18 @@ body {
 }
 .navbar-brand:hover { color: #5a4634; }
 
-/* Navbar links - base */
 .navbar .nav-link {
-  color: #3b2c20;  /* default dark brown */
+  color: #3b2c20;
   font-weight: 500;
   position: relative;
   transition: color 0.3s ease;
   padding-bottom: 4px;
 }
 
-/* Hover color */
 .navbar .nav-link:hover {
-  color: #5a4634;  /* theme brown-gold */
+  color: #5a4634;
 }
 
-/* Elegant underline animation (pointer effect) */
 .navbar .nav-link::after {
   content: '';
   position: absolute;
@@ -57,16 +52,14 @@ body {
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: #5a4634; /* theme color */
+  background-color: #5a4634;
   transition: width 0.3s ease-in-out;
 }
 
-/* Expand underline when hovered */
 .navbar .nav-link:hover::after {
   width: 100%;
 }
 
-/* Active page indicator (keeps underline visible on current page) */
 .navbar .nav-link.active {
   color: #5a4634;
 }
@@ -74,7 +67,6 @@ body {
 .navbar .nav-link.active::after {
   width: 100%;
 }
-
 
 /* Dropdowns */
 .dropdown-menu {
@@ -110,25 +102,20 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-
-
-
-
 /* Hero */
-/* HERO SECTION */
 .hero-section {
   position: relative;
   width: 100%;
   max-width: 1232px;
-  height: 600px;       /* match collection */
+  height: 600px;
   margin: 0 auto;
   border-radius: 8px;
   overflow: hidden;
 
   background: url("../images/thesara-hero.png") no-repeat center center;
-  background-size: contain;   /* show full image without cropping */
+  background-size: contain;
   background-color: #e0dcdc;
-  background-repeat: space; /* optional: neutral bg behind image */
+  background-repeat: space;
 
   display: flex;
   align-items: center;
@@ -136,9 +123,6 @@ body {
   color: #2b2b2b;
 }
 
-
-
-/* Text content */
 .hero-text {
   max-width: 500px;
 }
@@ -178,7 +162,9 @@ body {
   border: none;
 }
 
-/* Home page: Category Section (isolated) */
+/* =============================================
+   Home page: Category Section — FIXED
+   ============================================= */
 #categories .home-category-card {
   position: relative;
   width: 100%;
@@ -187,11 +173,14 @@ body {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  height: 400px; /* fixed height so all cards are equal */
 }
 
 #categories .home-category-img {
   width: 100%;
-  height: auto;
+  height: 100%;             /* fill the fixed-height card */
+  object-fit: cover;        /* no distortion, crops neatly */
+  object-position: center;
   display: block;
   border-radius: 10px;
 }
@@ -216,7 +205,6 @@ body {
 }
 
 /* Product Card */
-/* Product Card Hover Overlay Style */
 .product-card {
   position: relative;
   border-radius: 12px;
@@ -231,7 +219,6 @@ body {
   transform: translateY(-6px);
 }
 
-/* Product image area */
 .product-thumb {
   width: 100%;
   height: 100%;
@@ -241,26 +228,23 @@ body {
   justify-content: center;
 }
 
-/* Image fills full grid without distortion */
 .product-thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* fills the card perfectly */
+  object-fit: cover;
   transition: transform 0.4s ease;
 }
 
-/* Slight zoom on hover */
 .product-card:hover .product-thumb img {
   transform: scale(1.08);
 }
 
-/* Product overlay (hidden initially) */
 .product-body {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(59, 44, 32, 0.85); /* transparent dark brown overlay */
+  background: rgba(59, 44, 32, 0.85);
   color: #fff;
   padding: 16px;
   transform: translateY(100%);
@@ -268,12 +252,10 @@ body {
   font-size: 0.9rem;
 }
 
-/* Show overlay on hover */
 .product-card:hover .product-body {
   transform: translateY(0);
 }
 
-/* Text styling inside overlay */
 .product-body .small-muted {
   font-size: 12px;
   opacity: 0.85;
@@ -286,7 +268,7 @@ body {
 
 .product-body .price {
   font-weight: 700;
-  color: #ffd700; /* gold for contrast */
+  color: #ffd700;
 }
 
 .product-body .price del {
@@ -303,7 +285,6 @@ body {
   opacity: 0.9;
 }
 
-/* Hide buttons by default and show on hover */
 .card-actions {
   display: flex;
   justify-content: space-between;
@@ -341,12 +322,11 @@ body {
   transition: color 0.3s ease;
 }
 
-
-
+/* Collection Banner */
 .collection-banner {
   position: relative;
   width: 100%;
-  max-width: 1232px;   /* matches your figma */
+  max-width: 1232px;
   height: 600px;
   border-radius: 8px;
   overflow: hidden;
@@ -356,7 +336,7 @@ body {
 .collection-banner img {
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* ensures full image fills the box */
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -368,7 +348,7 @@ body {
 }
 
 .banner-overlay .btn {
-  background-color: #3b2c20;   /* dark brown theme */
+  background-color: #3b2c20;
   color: #fff;
   padding: 10px 24px;
   border-radius: 6px;
@@ -380,7 +360,7 @@ body {
   background-color: #241a12;
 }
 
-
+/* Footer */
 .footer {
   background: #faf8f5;
   padding: 40px 20px;
@@ -497,7 +477,7 @@ body {
   color: #5a3e1b;
 }
 
-/* Animation */
+/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -508,18 +488,11 @@ body {
     transform: translateY(0);
   }
 }
+
 img {
   max-width: 100%;
   height: auto;
 }
-
-
-
-
-
-
-
-
 
 /* Remove unwanted horizontal scroll */
 html, body {
@@ -532,23 +505,7 @@ html, body {
   max-width: 100%;
 }
 
-
-
-
-
-
-/* animations*/
- .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-/* Reveal animations base */
+/* Reveal animations */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -560,7 +517,6 @@ html, body {
   transform: translateY(0);
 }
 
-/* Variations */
 .reveal-left {
   transform: translateX(-60px);
 }
@@ -574,6 +530,7 @@ html, body {
   transform: translateX(0);
   opacity: 1;
 }
+
 .reveal-delay-1 {
   transition-delay: 0.3s;
 }
@@ -585,11 +542,7 @@ html, body {
 .reveal-delay-3 {
   transition-delay: 0.9s;
 }
+
 .reveal-delay-4 {
   transition-delay: 1.2s;
 }
-
-
-
-
-
