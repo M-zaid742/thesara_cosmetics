@@ -201,6 +201,7 @@
         
         messagesArea.appendChild(msgDiv);
         scrollToBottom();
+        return msgDiv;
     }
 
     function scrollToBottom() {
@@ -210,8 +211,8 @@
     function buildAnalysisCard(data) {
         return `
             <div class="analysis-card p-3 rounded-3 shadow-sm mt-2 mb-2">
-                <h5 class="fw-bold text-primary mb-1"><i class="bi bi-clipboard2-pulse"></i> Image Analysis</h5>
-                <p class="mb-2"><strong>Diagnosis:</strong> ${data.condition_detected} <span class="badge bg-${data.severity === 'severe' ? 'danger' : (data.severity === 'moderate' ? 'warning' : 'success')}">${data.severity}</span></p>
+                <h5 class="fw-bold text-primary mb-1"><i class="bi bi-clipboard2-pulse"></i> DermAI Clinical Report</h5>
+                <p class="mb-2"><strong>Focus:</strong> ${data.condition_detected} <span class="badge bg-${data.severity === 'severe' ? 'danger' : (data.severity === 'moderate' ? 'warning' : 'success')}">${data.severity === 'N/A' ? 'info' : data.severity}</span></p>
                 <div class="small mb-3 text-muted">${data.explanation || ''}</div>
                 
                 <div class="row g-2">
@@ -282,7 +283,14 @@
                 typingIndicator.classList.add('d-none');
                 
                 if (analyzeRes.data.success) {
-                    appendMessage('assistant', buildAnalysisCard(analyzeRes.data.data), true);
+                    const resp = analyzeRes.data.data;
+                    let newMsg;
+                    if (resp.response_type === 'chat') {
+                        newMsg = appendMessage('assistant', resp.explanation);
+                    } else {
+                        newMsg = appendMessage('assistant', buildAnalysisCard(resp), true);
+                    }
+                    if (newMsg) newMsg.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             } else {
                 // Determine whether to chat normally
@@ -296,7 +304,14 @@
                 
                 if (chatRes.data.success) {
                     sessionId = chatRes.data.session_id; // Set session ID
-                    appendMessage('assistant', chatRes.data.response);
+                    const resp = chatRes.data.response;
+                    let newMsg;
+                    if (resp.response_type === 'clinical') {
+                        newMsg = appendMessage('assistant', buildAnalysisCard(resp), true);
+                    } else {
+                        newMsg = appendMessage('assistant', resp.explanation);
+                    }
+                    if (newMsg) newMsg.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
         } catch (error) {

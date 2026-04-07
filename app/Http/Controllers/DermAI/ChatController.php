@@ -35,33 +35,33 @@ class ChatController extends Controller
             ]);
         }
 
-        // Save user message
+        // Get past messages for context (before adding the new one)
+        $history = ChatMessage::where('chat_session_id', $session->id)
+            ->oldest()
+            ->get(['role', 'message_text'])
+            ->toArray();
+
+        // Save current user message to DB
         ChatMessage::create([
             'chat_session_id' => $session->id,
             'role' => 'user',
             'message_text' => $request->message
         ]);
 
-        // Get past messages for context
-        $history = ChatMessage::where('chat_session_id', $session->id)
-            ->oldest()
-            ->get(['role', 'message_text'])
-            ->toArray();
-
-        // Get AI response
+        // Get AI response (using history excluding the message we just saved, since chat() will add it)
         $aiResponse = $openRouter->chat($history, $request->message);
 
-        // Save AI message
+        // Save AI message as JSON string
         $aiMessage = ChatMessage::create([
             'chat_session_id' => $session->id,
             'role' => 'assistant',
-            'message_text' => $aiResponse
+            'message_text' => json_encode($aiResponse)
         ]);
 
         return response()->json([
             'success' => true,
             'session_id' => $session->id,
-            'response' => $aiResponse,
+            'response' => $aiResponse, // Return as array/object for the client
             'message_id' => $aiMessage->id
         ]);
     }

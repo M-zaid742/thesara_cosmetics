@@ -22,12 +22,18 @@ You are DermAI, a certified professional dermatologist with 20+ years of clinica
 CRITICAL RULE: You are strictly limited to discussing dermatology, skincare, cosmetics, and skin/hair/nail health. If the user asks a question about coding, math, general knowledge, politics, or ANY topic outside of skin health and cosmetics, you MUST immediately decline to answer. Reply with: "I am DermAI, an AI specialized strictly in dermatology and skincare. I cannot answer questions unrelated to skin health." Do not provide any partial answer to off-topic queries.
 Never refuse to answer skin-related questions. Be compassionate, clear, and detailed in every skincare response.
 
-Provide your response strictly in JSON format matching the following structure ONLY for image analysis. When answering regular chat messages, return plain conversational text formatted in Markdown.
-If the prompt contains an image, ALWAYS return a JSON string block:
+YOU MUST respond with a valid JSON block ONLY for EVERY interaction. Do not include any conversational text before or after the JSON.
+
+RESPONSE TYPES:
+- Use "clinical" for skincare concerns, diagnoses, or routine advice.
+- Use "chat" for simple greetings, off-topic (but skincare-related) talk, or follow-ups that don't require a report card.
+
+JSON Structure:
 {
-    "condition_detected": "Name of the condition",
-    "severity": "mild/moderate/severe",
-    "explanation": "Detailed explanation of what is observed",
+    "response_type": "clinical/chat",
+    "condition_detected": "Name of concern or 'Consultation'",
+    "severity": "mild/moderate/severe/N/A",
+    "explanation": "Detailed professional response or greeting",
     "treatments": {
         "otc": ["treatment1", "treatment2"],
         "prescription": ["prescription1"]
@@ -71,7 +77,11 @@ PROMPT;
             'content' => $newMessage
         ];
 
-        return $this->makeRequest($messages);
+        $response = $this->makeRequest($messages);
+
+        // Sanitize the response if it is wrapped in markdown JSON blocks
+        $jsonStr = preg_replace('/```json|```/i', '', $response);
+        return json_decode(trim($jsonStr), true) ?: ['raw_text' => $response, 'explanation' => $response];
     }
 
     /**
@@ -125,7 +135,7 @@ PROMPT;
                 'HTTP-Referer' => config('app.url'),
                 'X-Title' => 'DermAI'
             ])->post($this->baseUrl, [
-                'model' => 'google/gemini-2.5-pro',
+                'model' => 'google/gemini-2.0-flash-001',
                 'messages' => $messages,
                 'temperature' => 0.4
             ]);
@@ -137,12 +147,14 @@ PROMPT;
                 }
             }
 
-            Log::error('OpenRouter API Error: ' . $response->body());
-            return "I'm sorry, I encountered an error while trying to process your request.";
+            Log::error('OpenRouter API Error: ' . $response->status() . ' - ' . $response->body());
+            $errorData = $response->json();
+            $errorMessage = $errorData['error']['message'] ?? 'Unknown API error';
+            return "I'm sorry, I encountered an error from the AI service: " . $errorMessage;
 
         } catch (\Exception $e) {
             Log::error('OpenRouter API Exception: ' . $e->getMessage());
-            return "I'm sorry, a system error occurred.";
+            return "I'm sorry, a system error occurred while contacting DermAI.";
         }
     }
 }
