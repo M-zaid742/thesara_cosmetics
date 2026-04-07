@@ -161,8 +161,8 @@
                     <h6>Resources</h6>
                     <ul>
                         <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Free Demo</a></li>
-                        <li><a href="#">Press Conference</a></li>
+                        <li><a href="#">skin products</a></li>
+                        <li><a href="#">thesara cosmetics</a></li>
                     </ul>
                 </div>
 
@@ -178,8 +178,8 @@
 
                 <div class="col-md-4">
                     <h6>Contact</h6>
-                    <p>070 7774 1690</p>
-                    <p>347 Portobello, London</p>
+                    <p>03366569117</p>
+                    <p>sahiwal,pakistan</p>
                     <div class="social-icons">
                         <a href="#"><i class="bi bi-facebook"></i></a>
                         <a href="#"><i class="bi bi-instagram"></i></a>
@@ -193,7 +193,7 @@
                 <p>© THESARA COSMETICS 2025 All rights reserved.</p>
                 <div class="contact-info">
                     <span><i class="bi bi-envelope"></i> info@thesara.com</span>
-                    <span><i class="bi bi-telephone"></i> +1234-456-7890</span>
+                    <span><i class="bi bi-telephone"></i> +92 3366569117</span>
                 </div>
             </div>
         </div>
