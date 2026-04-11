@@ -45,7 +45,7 @@
                         loading="lazy"
                       >
                       <div class="home-category-content">
-                        <a href="{{ route('products.category', ['category' => $category['name']]) }}" class="btn btn-dark hero-btn">Shop Now</a>
+                        <a href="{{ route('products.category', ['category' => $category['name']]) }}" class="btn">Shop Now</a>
                       </div>
                     </div>
                     <div class="mt-2 text-center">
