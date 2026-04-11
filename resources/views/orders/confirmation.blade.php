@@ -8,9 +8,9 @@
     {{-- Success Header --}}
     <div class="text-center mb-5">
         <div style="font-size: 4rem;">✅</div>
-        <h2 class="fw-bold mt-3">Order Placed Successfully!</h2>
-        <p class="text-muted">Thank you, {{ $order->name }}. Your order has been received.</p>
-        <span class="badge bg-secondary px-3 py-2" style="font-size: 0.85rem;">
+        <h2 class="fw-bold mt-3" style="font-family: var(--font-heading);">Order Placed Successfully!</h2>
+        <p style="color: var(--text-secondary);">Thank you, {{ $order->name }}. Your order has been received.</p>
+        <span class="badge px-3 py-2" style="font-size: 0.85rem; background: var(--brand-gold); color: var(--brand-dark);">
             Order #{{ $order->id }}
         </span>
     </div>
@@ -18,7 +18,7 @@
     {{-- Order Info --}}
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-4">
-            <h5 class="fw-bold mb-3">Order Details</h5>
+            <h5 class="fw-bold mb-3" style="font-family: var(--font-heading);">Order Details</h5>
             <div class="row g-2" style="font-size: 0.9rem;">
                 <div class="col-6 text-muted">Date</div>
                 <div class="col-6 fw-semibold">{{ $order->created_at->format('d M Y, h:i A') }}</div>
@@ -43,7 +43,7 @@
     {{-- Order Items --}}
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-4">
-            <h5 class="fw-bold mb-3">Items Ordered</h5>
+            <h5 class="fw-bold mb-3" style="font-family: var(--font-heading);">Items Ordered</h5>
 
             @foreach($order->orderItems as $item)
             <div class="d-flex align-items-center gap-3 mb-3">

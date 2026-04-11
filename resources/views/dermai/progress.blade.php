@@ -141,37 +141,18 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <style>
-    body {
-        background-color: #F7F6F4;
+    .card {
+        border: 1px solid var(--border-subtle) !important;
     }
-    .text-primary {
-        color: #5a4634 !important;
+    .card-header {
+        background: var(--bg-card) !important;
+        border-bottom: 1px solid var(--border-light) !important;
     }
-    .btn-primary, .btn-outline-primary:hover {
-        background-color: #5a4634 !important;
-        border-color: #5a4634 !important;
-        color: white !important;
+    .card-body.bg-light {
+        background-color: var(--bg-body) !important;
     }
-    .btn-primary:hover {
-        background-color: #3b2c20 !important;
-        border-color: #3b2c20 !important;
-    }
-    .btn-outline-primary {
-        color: #5a4634 !important;
-        border-color: #5a4634 !important;
-    }
-    .bg-primary {
-        background-color: #5a4634 !important;
-    }
-    .bg-light { 
-        background-color: #ffffff !important; 
-    }
-    .glass-panel { 
-        background: rgba(255, 255, 255, 0.9); 
-        backdrop-filter: blur(10px); 
-    }
-    .border-primary {
-        border-color: #5a4634 !important;
+    h2.fw-bold {
+        font-family: var(--font-heading);
     }
 </style>
 @endsection

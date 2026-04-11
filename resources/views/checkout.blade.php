@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="container py-5">
-    <h2 class="fw-bold mb-4">Checkout</h2>
+    <h2 class="fw-bold mb-4" style="font-family: var(--font-heading);">Checkout</h2>
 
     {{-- Error / Success Messages --}}
     @if(session('error'))

@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thesara Cosmetics — Premium skincare products crafted to elevate your natural beauty.">
     <title>@yield('title', 'Thesara Cosmetics')</title>
+
+    <!-- Google Fonts (Preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,62 +17,11 @@
     <!-- Font Awesome (for cart icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom CSS (public/css/) -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <!-- Custom CSS (unified design system) -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     
     <!-- Page specific styles -->
     @yield('styles')
-
-    <style>
-        /* Navbar Styles (original solid bar) */
-        .navbar {
-            background: #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,.06);
-        }
-        .navbar .nav-link {
-            color: #3b2c20;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-            padding-bottom: 4px;
-        }
-        .navbar .nav-link:hover {
-            color: #7a5c3c;
-        }
-        .navbar .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background-color: #7a5c3c;
-            transition: width 0.3s ease-in-out;
-        }
-        .navbar .nav-link:hover::after,
-        .navbar .nav-link.active::after {
-            width: 100%;
-        }
-
-        /* Dropdown menu */
-        .dropdown-menu {
-            border-radius: 8px;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Profile icon */
-        .profile-icon {
-            font-size: 22px;
-            cursor: pointer;
-            color: #3b2c20;
-            transition: color 0.3s ease;
-        }
-        .profile-icon:hover {
-            color: #7a5c3c;
-        }
-    </style>
 </head>
 
 <body>

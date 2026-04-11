@@ -85,31 +85,33 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <style>
-    body {
-        background-color: #F7F6F4;
-    }
     .bg-gradient-primary {
-        background: linear-gradient(135deg, #5a4634 0%, #3b2c20 100%);
+        background: linear-gradient(135deg, var(--brand-mocha) 0%, var(--brand-brown) 100%);
+    }
+    .chat-container {
+        border: 1px solid var(--border-subtle);
     }
     .chat-box {
         height: 60vh;
         overflow-y: auto;
-        background-color: #fff;
+        background-color: var(--bg-body);
     }
     .message.user {
         flex-direction: row-reverse;
     }
     .message.user .message-content {
-        background: linear-gradient(135deg, #5a4634 0%, #3b2c20 100%) !important;
+        background: linear-gradient(135deg, var(--brand-mocha) 0%, var(--brand-brown) 100%) !important;
         color: white;
         border-bottom-right-radius: 4px !important;
     }
     .message.assistant .message-content {
+        background: var(--bg-card) !important;
+        border: 1px solid var(--border-light);
         border-bottom-left-radius: 4px !important;
     }
     .glass-panel {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
     }
     .markdown-content p:last-child {
         margin-bottom: 0;
@@ -118,25 +120,15 @@
         margin-bottom: 0.5rem;
     }
     .analysis-card {
-        background: #fff;
-        border-left: 4px solid #5a4634;
+        background: var(--bg-card);
+        border-left: 4px solid var(--brand-gold);
     }
-    .text-primary {
-        color: #5a4634 !important;
+    .chat-header h4 {
+        font-family: var(--font-heading);
     }
-    .btn-primary {
-        background-color: #5a4634 !important;
-        border-color: #5a4634 !important;
-    }
-    .btn-primary:hover {
-        background-color: #3b2c20 !important;
-        border-color: #3b2c20 !important;
-    }
-    .bg-primary {
-        background-color: #5a4634 !important;
-    }
-    .spinner-grow.text-primary {
-        color: #5a4634 !important;
+    .chat-input-area {
+        background: var(--bg-card) !important;
+        border-top: 1px solid var(--border-light) !important;
     }
 </style>
 

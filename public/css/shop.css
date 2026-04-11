@@ -1,124 +1,153 @@
-:root {
-  --primary: #3b2c20;
-  --accent: #7a5c3c;
-  --bg-light: #faf8f5;
-  --font: 'Poppins', sans-serif;
-}
+/* ============================================
+   Shop Page — Thesara Unified Theme
+   ============================================ */
 
 /* HERO SECTION */
 .shop-hero-section {
-  background: linear-gradient(120deg, #f7f6f4, #e5decf);
+  background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-body) 50%, #ede7dc 100%);
   padding: 80px 0;
+  position: relative;
 }
+
+.shop-hero-section::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201,169,110,0.08), transparent 70%);
+  border-radius: 50%;
+}
+
 .shop-hero-section h1 {
-  color: var(--primary);
-  font-family: var(--font);
-  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-size: 2.8rem;
+  font-weight: 700;
+  position: relative;
 }
+
 .shop-hero-section p {
-  color: #6c757d;
+  color: var(--text-secondary);
   font-size: 1.1rem;
+  position: relative;
 }
+
 .btn-theme {
-  background: var(--primary);
+  background: var(--brand-brown);
   color: #fff;
   border: none;
-  padding: 10px 24px;
-  border-radius: 8px;
-  transition: background 0.3s ease;
+  padding: 12px 32px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
 }
-.btn-theme:hover { background: var(--accent); }
+
+.btn-theme:hover {
+  background: var(--brand-camel);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
 
 /* CATEGORY SECTION */
 .category-card {
   text-align: center;
   transition: transform 0.3s ease;
 }
+
 .category-card img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  /* Keep full product visible inside circular frame */
   object-fit: contain;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   border: 3px solid transparent;
-  transition: border 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  background: var(--bg-cream);
 }
+
 .category-card:hover {
   transform: translateY(-6px);
 }
+
 .category-card:hover img {
-  border-color: var(--accent);
+  border-color: var(--brand-gold);
 }
+
 .category-card h6 {
-  color: var(--primary);
-  font-weight: 500;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 /* FEATURED PRODUCTS SECTION */
 .featured-products {
-  background: #faf8f5;
-  color: #3b2c20;
+  background: var(--bg-body);
+  color: var(--text-primary);
 }
 
-.product-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+.featured-products .section-title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+}
+
+.featured-products .product-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition: all 0.3s ease;
   text-align: center;
   position: relative;
   height: 100%;
+  border: 1px solid var(--border-subtle);
 }
 
-.product-card:hover {
+.featured-products .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(59,44,32,0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Product Image Area */
-.product-img {
-  background: #f6f4f1;
-  height: 260px; /* taller area for full image */
+.featured-products .product-img {
+  background: var(--bg-cream);
+  height: 260px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-bottom: 1px solid #e6e1d8;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-bottom: 1px solid var(--border-light);
 }
 
-/* Ensure image fully covers the area while maintaining proportion */
-.product-img img {
+.featured-products .product-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* fills area completely */
-  transition: transform 0.3s ease;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-/* Hover zoom for luxury feel */
-.product-card:hover .product-img img {
-  transform: scale(1.08);
+.featured-products .product-card:hover .product-img img {
+  transform: scale(1.06);
 }
-
 
 /* Info Section */
-.product-info {
-  padding: 15px 10px 20px;
+.featured-products .product-info {
+  padding: 16px 14px 20px;
 }
 
 .product-title {
   font-size: 1rem;
   font-weight: 600;
-  color: #3b2c20;
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
-.product-subtitle {
-  color: #7a6e63;
+.featured-products .product-subtitle {
+  color: var(--text-muted);
   font-size: 0.85rem;
   margin-bottom: 8px;
 }
@@ -128,49 +157,55 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .new-price {
-  color: #3b2c20;
-  font-weight: 600;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1.05rem;
 }
 
 .old-price {
-  color: #a9a9a9;
+  color: var(--text-muted);
   text-decoration: line-through;
   font-size: 0.9rem;
 }
 
 /* Add to Bag Button */
 .add-btn {
-  background: #3b2c20;
+  background: var(--brand-brown);
   color: #fff;
   border: none;
-  border-radius: 6px;
-  padding: 8px 20px;
-  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  padding: 10px 24px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .add-btn:hover {
-  background: #bfa67a; /* Thesara Gold */
-  color: #3b2c20;
+  background: var(--brand-gold);
+  color: var(--brand-dark);
+  transform: translateY(-1px);
 }
 
 /* Badge */
-.product-badge {
+.featured-products .product-badge {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #bfa67a; /* soft gold */
-  color: #3b2c20;
-  font-size: 0.75rem;
-  padding: 3px 8px;
-  border-radius: 20px;
-  font-weight: 500;
+  background: var(--brand-gold-lt);
+  color: var(--brand-dark);
+  font-size: 0.72rem;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
-.product-badge.gold {
-  background: #e6d3a3;
+.featured-products .product-badge.gold {
+  background: var(--brand-gold-lt);
 }

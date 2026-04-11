@@ -1,19 +1,21 @@
-/* Reset */
+/* ============================================
+   Splash Screen — Thesara Unified Theme
+   ============================================ */
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* temporarily hidden — will be unlocked in JS */
+  overflow: hidden;
 }
 
-/* Fullscreen splash */
 #splash-screen {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  background: #faf8f5; /* soft beige */
+  background: var(--bg-body, #faf8f5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,19 +23,17 @@ html, body {
   animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Hidden state after animation */
 #splash-screen.hide {
   opacity: 0;
   transition: opacity 0.6s ease;
   pointer-events: none;
 }
 
-/* Content wrapper */
 .splash-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row; /* product left, text right */
+  flex-direction: row;
   max-width: 90vw;
   max-height: 90vh;
   overflow: hidden;
@@ -41,7 +41,6 @@ html, body {
   text-align: left;
 }
 
-/* Product image */
 .splash-logo {
   max-width: 40vw;
   max-height: 80vh;
@@ -49,23 +48,22 @@ html, body {
   display: block;
 }
 
-/* Text */
 .brand {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem;
+  font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+  font-size: 2.8rem;
   font-weight: 700;
-  color: #3b2c20;
+  color: var(--brand-brown, #3b2c20);
   margin: 0 0 10px;
+  letter-spacing: 0.04em;
 }
 
 .tagline {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-body, 'Jost', sans-serif);
   font-size: 1.2rem;
-  color: #6c757d;
+  color: var(--text-muted, #9a8e82);
   margin: 0;
 }
 
-/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

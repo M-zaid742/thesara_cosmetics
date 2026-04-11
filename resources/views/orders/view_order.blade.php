@@ -5,7 +5,7 @@
 @section('content')
 <div class="container py-5" style="max-width: 800px;">
 
-    <h2 class="fw-bold mb-4">My Orders</h2>
+    <h2 class="fw-bold mb-4" style="font-family: var(--font-heading);">My Orders</h2>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
