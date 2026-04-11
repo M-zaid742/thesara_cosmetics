@@ -75,32 +75,43 @@
   <section class="container section reveal" id="best-sellers">
     <h3 class="section-title">Best Seller</h3>
     <div class="row g-4" id="product-list">
-      @for ($i = 1; $i <= 8; $i++)
+      @forelse ($featuredProducts as $product)
       <div class="col-6 col-md-3">
-        <article class="product-card" data-id="{{ $i }}">
+        <article class="product-card" data-id="{{ $product->id }}">
           <div class="product-thumb">
-            <img src="{{ asset('images/seller'.$i.'.png') }}" alt="Product {{ $i }}">
+            <a href="{{ route('product.show', $product->id) }}">
+              <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}">
+            </a>
           </div>
           <div class="product-body">
-            <div class="small-muted">Gentle Cleanser</div>
-            <div class="fw-semibold">CeraMo Amino Cleanser</div>
+            <div class="small-muted">{{ $product->category }}</div>
+            <div class="fw-semibold">{{ $product->name }}</div>
             <div class="rating small">
-              ⭐⭐⭐⭐☆ <span class="text-muted">(129 Reviews)</span>
+              ⭐⭐⭐⭐☆ <span class="text-muted">({{ $product->reviews_count ?? 0 }} Reviews)</span>
             </div>
-            <div class="price">$22.00 <del>$29.00</del> <span class="text-primary">-20%</span></div>
+            <div class="price">
+                ${{ number_format($product->price, 2) }} 
+                @if($product->old_price)
+                    <del>${{ number_format($product->old_price, 2) }}</del> 
+                    <span class="text-primary">-{{ round((($product->old_price - $product->price) / $product->old_price) * 100) }}%</span>
+                @endif
+            </div>
             <div class="delivery">🚚 Free delivery</div>
           </div>
           <div class="card-actions">
-            <div class="qty-control">
-              <button class="btn btn-outline-dark btn-sm btn-decrease">-</button>
-              <span class="qty px-2">1</span>
-              <button class="btn btn-outline-dark btn-sm btn-increase">+</button>
-            </div>
-            <button class="btn btn-dark btn-cart"><i class="bi bi-bag me-1"></i>Add to Cart</button>
+            <form action="{{ route('cart.add') }}" method="POST" class="w-100 d-flex gap-2">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <button type="submit" class="btn btn-dark btn-cart flex-grow-1"><i class="bi bi-bag me-1"></i>Add to Cart</button>
+            </form>
           </div>
         </article>
       </div>
-      @endfor
+      @empty
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">No featured products available at the moment.</p>
+        </div>
+      @endforelse
     </div>
   </section>
 

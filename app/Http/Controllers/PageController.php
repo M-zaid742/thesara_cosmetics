@@ -44,7 +44,9 @@ class PageController extends Controller
             ];
         });
 
-        return view('welcome', compact('categories'));
+        $featuredProducts = Product::where('is_featured', true)->latest()->take(8)->get();
+
+        return view('welcome', compact('categories', 'featuredProducts'));
     }
 
     public function faq()

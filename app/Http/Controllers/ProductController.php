@@ -144,7 +144,8 @@ class ProductController extends Controller
             'stock' => $request->stock,
             'category' => $request->category,
             'badge' => $request->badge,
-            'image' => $imagePath
+            'brand' => 'Thesara',
+            'image_url' => 'storage/' . $imagePath
         ]);
 
         return redirect()->back()->with('success', 'Product Added Successfully');
@@ -169,7 +170,7 @@ class ProductController extends Controller
                 'quantity' => $quantity,
                 'price' => $product->price,
                 'name' => $product->name,
-                'image' => $product->image,
+                'image' => $product->image_url,
             ]
         ]);
 
