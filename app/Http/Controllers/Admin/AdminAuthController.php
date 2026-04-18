@@ -75,14 +75,14 @@ public function updatePassword(Request $request)
 }
 public function messages()
 {
-    $messages = Contact::latest()->paginate(20);
-    return view('admin.messages',compact('messages'));
+    $messages = Contact::latest()->get();
+    return view('admin.messages', compact('messages'));
 }
 
 public function notifications()
 {
-    $notifications = Notification::latest()->paginate(20);
-    return view('admin.notifications',compact('notifications'));
+    $notifications = Notification::latest()->get();
+    return view('admin.notifications', compact('notifications'));
 }
 
  public function profile()

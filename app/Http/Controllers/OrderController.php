@@ -8,10 +8,6 @@ use App\Models\Product;
 
 class OrderController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['showTrackForm', 'trackSearch']);
-    }
 
     // Logged-in user's order history
     public function index()
@@ -106,23 +102,4 @@ class OrderController extends Controller
         return view('orders.confirmation', compact('order'));
     }
 
-    // Public: show track order form
-    public function showTrackForm()
-    {
-        return view('order.track');
-    }
-
-    // Public: search for order by ID
-    public function trackSearch(Request $request)
-    {
-        $request->validate(['order_id' => 'required|numeric']);
-
-        $order = Order::with('orderItems.product')->find($request->order_id); // fixed
-
-        if (!$order) {
-            return back()->with('error', 'Order not found!');
-        }
-
-        return view('order.track-result', compact('order')); // fixed
-    }
 }

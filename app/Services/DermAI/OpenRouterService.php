@@ -42,13 +42,32 @@ JSON Structure:
     "skincare_routine": {
         "am": ["cleanser", "toner"],
         "pm": ["cleanser", "retinol"]
-    }
+    },
+    "suggested_products_names": ["Exact Name 1", "Exact Name 2"]
 }
 PROMPT;
 
     public function __construct()
     {
         $this->apiKey = env('OPENROUTER_API_KEY', env('GEMINI_API_KEY'));
+    }
+
+    protected function getDynamicPrompt(): string
+    {
+        $prompt = $this->systemPrompt;
+        try {
+            $products = \App\Models\Product::select('name', 'ingredients')->whereNotNull('ingredients')->get();
+            if ($products->isNotEmpty()) {
+                $prompt .= "\n\nAvailable Products and their Ingredients:\n";
+                foreach ($products as $p) {
+                    $prompt .= "- {$p->name}: {$p->ingredients}\n";
+                }
+                $prompt .= "\nWhen suggesting treatments or a skincare routine, strictly recommend these available products based on their ingredients matching the user's diagnosis. Include their exact names in the 'suggested_products_names' JSON array.";
+            }
+        } catch (\Exception $e) {
+            // DB might not be ready
+        }
+        return $prompt;
     }
 
     /**
@@ -60,7 +79,7 @@ PROMPT;
         
         $messages[] = [
             'role' => 'system',
-            'content' => $this->systemPrompt
+            'content' => $this->getDynamicPrompt()
         ];
 
         // Format history
@@ -95,7 +114,7 @@ PROMPT;
         $messages = [
             [
                 'role' => 'system',
-                'content' => $this->systemPrompt
+                'content' => $this->getDynamicPrompt()
             ],
             [
                 'role' => 'user',

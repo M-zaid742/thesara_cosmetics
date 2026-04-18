@@ -46,9 +46,9 @@
                             @endif
 
                             <div class="product-footer">
-                                <span class="product-price">${{ number_format($product->price, 2) }}</span>
+                                <span class="product-price">Rs. {{ number_format($product->price, 2) }}</span>
                                 @if(isset($product->old_price) && $product->old_price)
-                                    <span class="product-old-price">${{ number_format($product->old_price, 2) }}</span>
+                                    <span class="product-old-price">Rs. {{ number_format($product->old_price, 2) }}</span>
                                 @endif
                             </div>
 
@@ -61,10 +61,16 @@
 
                     </div>
                 @empty
-                    <div class="empty-state">
-                        <div class="empty-icon">🔍</div>
-                        <h3>No products found</h3>
-                        <p>No products available in this category.</p>
+                    <div class="empty-state py-5 text-center w-100">
+                        <div class="mb-4">
+                            <i class="bi bi-search" style="font-size: 4rem; color: #e5c57c; opacity: 0.5;"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3" style="color: #3b2c20;">No Products Found</h3>
+                        <p class="text-muted mb-4 mx-auto" style="max-width: 400px;">
+                            We don't have any products in the <strong>{{ $category }}</strong> collection right now. 
+                            Check back later or browse our full range.
+                        </p>
+                        <a href="{{ route('shop') }}" class="btn btn-dark px-5 py-2" style="border-radius: 50px;">Browse All Products</a>
                     </div>
                 @endforelse
             </div>

@@ -50,11 +50,11 @@ Email: {{ $order->user->email ?? '' }}
 </td>
 
 <td>
-${{ $item->price }}
+Rs. {{ $item->price }}
 </td>
 
 <td>
-${{ $item->price * $item->quantity }}
+Rs. {{ $item->price * $item->quantity }}
 </td>
 
 </tr>
@@ -67,7 +67,7 @@ ${{ $item->price * $item->quantity }}
 
 <hr>
 
-<h4>Total: ${{ number_format($order->total,2) }}</h4>
+<h4>Total: Rs. {{ number_format($order->total,2) }}</h4>
 
 </div>
 </div>

@@ -7,7 +7,7 @@
     <h2>Recommendations</h2>
     <ul>
         @foreach($recommendations as $product)
-            <li>{{ $product->name }} - ${{ $product->price }}</li>
+            <li>{{ $product->name }} - Rs. {{ $product->price }}</li>
         @endforeach
     </ul>
     <p class="alert alert-warning">{{ $disclaimer }}</p>

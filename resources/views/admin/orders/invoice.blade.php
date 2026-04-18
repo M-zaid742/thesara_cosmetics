@@ -39,9 +39,9 @@ Date: {{ $order->created_at->format('d M Y') }}
 
 <td>{{ $item->quantity }}</td>
 
-<td>${{ $item->price }}</td>
+<td>Rs. {{ $item->price }}</td>
 
-<td>${{ $item->price * $item->quantity }}</td>
+<td>Rs. {{ $item->price * $item->quantity }}</td>
 
 </tr>
 
@@ -52,7 +52,7 @@ Date: {{ $order->created_at->format('d M Y') }}
 </table>
 
 <h3 class="text-right">
-Total: ${{ number_format($order->total,2) }}
+Total: Rs. {{ number_format($order->total,2) }}
 </h3>
 
 </div>

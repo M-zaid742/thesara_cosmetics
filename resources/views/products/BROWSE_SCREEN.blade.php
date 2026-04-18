@@ -35,9 +35,18 @@
     <section class="products-section">
         <div class="container">
 
-            @if($products->total() > 0)
-                <p class="results-count">{{ $products->total() }} product{{ $products->total() != 1 ? 's' : '' }} found</p>
-            @endif
+            <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+                <div>
+                    @if(request('category'))
+                        <h1 class="category-title text-capitalize">{{ request('category') }}</h1>
+                    @else
+                        <h1 class="category-title">All Products</h1>
+                    @endif
+                    @if($products->total() > 0)
+                        <p class="results-count mb-0">{{ $products->total() }} product{{ $products->total() != 1 ? 's' : '' }} in this collection</p>
+                    @endif
+                </div>
+            </div>
 
             <div class="product-grid">
                 @forelse($products as $product)
@@ -46,7 +55,7 @@
                         <div class="product-img">
                             <a href="{{ route('product.show', $product->id) }}">
                                 @if($product->image_url)
-                                    <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}">
+                                    <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" loading="lazy">
                                 @else
                                     <div class="no-img">🧴</div>
                                 @endif
@@ -65,20 +74,22 @@
                             @if($product->subtitle)
                                 <p class="product-subtitle">{{ $product->subtitle }}</p>
                             @else
-                                <p class="product-subtitle">{{ Str::limit($product->description, 40) }}</p>
+                                <p class="product-subtitle text-truncate">{{ $product->description }}</p>
                             @endif
 
-                            <div class="product-footer">
-                                <span class="product-price">${{ number_format($product->price, 2) }}</span>
+                            <div class="product-footer mt-auto">
+                                <span class="product-price">Rs. {{ number_format($product->price, 2) }}</span>
                                 @if(isset($product->old_price) && $product->old_price)
-                                    <span class="product-old-price">${{ number_format($product->old_price, 2) }}</span>
+                                    <span class="product-old-price">Rs. {{ number_format($product->old_price, 2) }}</span>
                                 @endif
                             </div>
 
-                            <form action="{{ route('cart.add') }}" method="POST">
+                            <form action="{{ route('cart.add') }}" method="POST" class="mt-2">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <button type="submit" class="btn-add-bag">Add to Bag</button>
+                                <button type="submit" class="btn-add-bag">
+                                    <i class="bi bi-bag-plus me-2"></i>Add to Bag
+                                </button>
                             </form>
                         </div>
 

@@ -53,13 +53,12 @@
 
                     {{-- Quantity Controls --}}
                     <div class="col-md-3 d-flex align-items-center justify-content-center gap-2">
-                        @if(!$isGuest)
                             {{-- Decrease --}}
                             <form action="{{ route('cart.update', $item->id) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
                                 <input type="hidden" name="quantity" value="{{ max(1, $item->quantity - 1) }}">
-                                <button type="submit" class="quantity-btn btn-decrease">-</button>
+                                <button type="submit" class="quantity-btn btn-decrease" {{ $item->quantity <= 1 ? 'disabled' : '' }}>-</button>
                             </form>
 
                             <input type="text" value="{{ $item->quantity }}"
@@ -72,32 +71,17 @@
                                 <input type="hidden" name="quantity" value="{{ $item->quantity + 1 }}">
                                 <button type="submit" class="quantity-btn btn-increase">+</button>
                             </form>
-                        @else
-                            {{-- Guest: show quantity only --}}
-                            <button class="quantity-btn" disabled>-</button>
-                            <input type="text" value="{{ $item->quantity }}"
-                                   class="quantity-input" readonly>
-                            <button class="quantity-btn" disabled>+</button>
-                        @endif
                     </div>
 
                     {{-- Remove Button --}}
                     <div class="col-md-2 text-end">
-                        @if(!$isGuest)
                             <form action="{{ route('cart.destroy', $item->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn-remove"
-                                    onclick="return confirm('Remove this item?')">
+                                <button type="submit" class="btn-remove">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
-                        @else
-                            <a href="{{ route('login') }}" class="btn-remove"
-                               title="Login to manage cart">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        @endif
                     </div>
 
                 </div>

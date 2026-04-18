@@ -4,17 +4,20 @@
 
 @section('content')
   <!-- HERO -->
-  <section class="hero-section d-flex align-items-center reveal">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 hero-text">
-          <span class="hero-tag">PREMIUM COSMETIC</span>
+  <section class="hero-section reveal">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-5 col-md-12 hero-text mb-5 mb-lg-0">
+          <span class="hero-tag">PREMIUM COSMETICS</span>
           <h1 class="hero-title">Reveal The <br> Beauty Of Skin</h1>
           <p class="hero-subtext">
             Elevate your natural beauty with our premium cosmetic products
             carefully curated to enhance your radiance.
           </p>
           <a href="{{ route('shop') }}" class="btn btn-dark hero-btn">Explore Now</a>
+        </div>
+        <div class="col-lg-7 col-md-12 d-none d-lg-flex justify-content-end align-items-center">
+            <img src="{{ asset('images/thesara-hero.png') }}" alt="Premium Skincare" class="hero-img">
         </div>
       </div>
     </div>
@@ -90,9 +93,9 @@
               ⭐⭐⭐⭐☆ <span class="text-muted">({{ $product->reviews_count ?? 0 }} Reviews)</span>
             </div>
             <div class="price">
-                ${{ number_format($product->price, 2) }} 
+                Rs. {{ number_format($product->price, 2) }} 
                 @if($product->old_price)
-                    <del>${{ number_format($product->old_price, 2) }}</del> 
+                    <del>Rs. {{ number_format($product->old_price, 2) }}</del> 
                     <span class="text-primary">-{{ round((($product->old_price - $product->price) / $product->old_price) * 100) }}%</span>
                 @endif
             </div>

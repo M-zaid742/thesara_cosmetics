@@ -61,5 +61,19 @@
 
 <!-- PAGE SCRIPTS -->
 <script src="{{url('admin/js/pages/dashboard2.js')}}"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('product_success'))
+<script>
+    Swal.fire({
+        title: 'Success!',
+        text: "{{ session('product_success') }}",
+        icon: 'success',
+        confirmButtonColor: '#d4a017'
+    });
+</script>
+@endif
+
 </body>
 </html>

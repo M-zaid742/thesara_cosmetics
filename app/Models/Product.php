@@ -26,7 +26,8 @@ class Product extends Model
         'category',
         'badge',
         'brand',
-        'image_url'
+        'image_url',
+        'ingredients'
     ];
 
     /**

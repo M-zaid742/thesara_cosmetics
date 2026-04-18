@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </span>
 
                                         <h5 class="description-header">
-    ${{ number_format($currentMonthRevenue, 2) }}
+    Rs. {{ number_format($currentMonthRevenue, 2) }}
 </h5>
 
                                         <span class="description-text">TOTAL REVENUE</span>
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                                         <h5 class="description-header">
-    ${{ number_format($totalCost, 2) }}
+    Rs. {{ number_format($totalCost, 2) }}
 </h5>
 
                                         <span class="description-text">TOTAL COST</span>
@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                                         <h5 class="description-header">
-    ${{ number_format($totalProfit, 2) }}
+    Rs. {{ number_format($totalProfit, 2) }}
 </h5>
 
                                         <span class="description-text">TOTAL PROFIT</span>
@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                                         <h5 class="description-header">
-    ${{ number_format($GoalCompletions, 2) }}
+    Rs. {{ number_format($GoalCompletions, 2) }}
 </h5>
                                         <span class="description-text">GOAL COMPLETIONS</span>
                                     </div>
@@ -616,7 +616,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         </td>
 
                         <td>
-                            ${{ number_format($order->total,2) }}
+                            Rs. {{ number_format($order->total,2) }}
                         </td>
 
                         <td>
@@ -778,7 +778,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         <a class="product-title">
                                             {{ $product->name }}
                                             <span class="badge badge-info float-right">
-                                                ${{ $product->price }}
+                                                Rs. {{ $product->price }}
                                             </span>
                                         </a>
 

@@ -162,19 +162,28 @@ img { max-width: 100%; height: auto; }
 .hero-section {
   position: relative;
   width: 100%;
-  max-width: 1232px;
-  height: 600px;
+  max-width: 1280px;
+  min-height: 600px;
   margin: 0 auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: url("../images/thesara-hero.png") no-repeat center center;
-  background-size: contain;
-  background-color: var(--bg-cream);
-  background-repeat: space;
+  background-color: var(--bg-cream); /* Smooth cream background for the text side */
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   color: var(--text-primary);
+  padding: 40px 0;
+}
+
+.hero-img {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  object-position: right center;
+  border-radius: var(--radius-md);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+  mask-image: linear-gradient(to right, transparent 0%, black 30%);
+  display: block;
 }
 
 .hero-text { max-width: 500px; }

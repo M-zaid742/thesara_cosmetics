@@ -37,15 +37,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Featured products (for homepage)
-     */
-    public function featured()
-    {
-        $products = Product::where('is_featured', 1)->latest()->get();
-        return view('products.featured', compact('products'));
-    }
-
-    /**
      * Product detail page
      */
     public function show($id)
@@ -110,6 +101,7 @@ class ProductController extends Controller
 
     /**
      * Admin - Show Add Product Form
+     * @deprecated Use Admin\ProductController::create() instead
      */
     public function create()
     {
@@ -145,10 +137,11 @@ class ProductController extends Controller
             'category' => $request->category,
             'badge' => $request->badge,
             'brand' => 'Thesara',
-            'image_url' => 'storage/' . $imagePath
+            'image_url' => 'storage/' . $imagePath,
+            'ingredients' => $request->ingredients
         ]);
 
-        return redirect()->back()->with('success', 'Product Added Successfully');
+        return redirect()->route('admin.dashboard')->with('product_success', 'Product Added Successfully');
     }
 
     /**

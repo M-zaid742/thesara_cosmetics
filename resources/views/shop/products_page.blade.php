@@ -110,9 +110,9 @@
                 </a>
                 <p class="product-subtitle">{{ $product->subtitle }}</p>
                 <div class="price">
-                  <span class="new-price">${{ number_format($product->price, 2) }}</span>
+                  <span class="new-price">Rs. {{ number_format($product->price, 2) }}</span>
                   @if($product->old_price)
-                    <span class="old-price">${{ number_format($product->old_price, 2) }}</span>
+                    <span class="old-price">Rs. {{ number_format($product->old_price, 2) }}</span>
                   @endif
                 </div>
                 <form action="{{ route('cart.add') }}" method="POST">

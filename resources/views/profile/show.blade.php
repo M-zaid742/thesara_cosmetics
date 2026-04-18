@@ -66,7 +66,7 @@
                     </div>
                     <div class="d-flex justify-content-between py-2">
                         <span class="text-muted small">Total spent</span>
-                        <strong>${{ number_format($totalSpent ?? 0, 2) }}</strong>
+                        <strong>Rs. {{ number_format($totalSpent ?? 0, 2) }}</strong>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                                                 {{ ucfirst($status) }}
                                             </span>
                                         </td>
-                                        <td class="small fw-semibold">${{ number_format($order->total ?? 0, 2) }}</td>
+                                        <td class="small fw-semibold">Rs. {{ number_format($order->total ?? 0, 2) }}</td>
                                         <td>
                                             @if($order->orderItems->isEmpty())
                                                 <span class="text-muted small">—</span>

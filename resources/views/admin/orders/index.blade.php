@@ -42,12 +42,12 @@
 </td>
 
 <td>
-${{ number_format($order->total,2) }}
+Rs. {{ number_format($order->total,2) }}
 </td>
 
 <td>
 
-<form action="{{ route('orders.status',$order->id) }}" method="POST">
+<form action="{{ route('admin.orders.status',$order->id) }}" method="POST">
 
 @csrf
 @method('PUT')
@@ -78,12 +78,12 @@ Cancelled
 
 <td>
 
-<a href="{{ route('orders.show',$order->id) }}"
+<a href="{{ route('admin.orders.show',$order->id) }}"
 class="btn btn-info btn-sm">
 View
 </a>
 
-<a href="{{ route('orders.invoice',$order->id) }}"
+<a href="{{ route('admin.orders.invoice',$order->id) }}"
 class="btn btn-success btn-sm">
 Invoice
 </a>

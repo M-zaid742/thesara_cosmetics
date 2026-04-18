@@ -12,7 +12,12 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DermAI\ProgressController as DermAIProgressController;
+use App\Http\Controllers\DermAI\ChatController as DermAIChatController;
+use App\Http\Controllers\DermAI\SkinController as DermAISkinController;
 use App\Models\Notification;
 use App\Models\Contact;
 
@@ -35,9 +40,9 @@ Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.dest
 Route::post('/wishlist/add', [WishlistController::class, 'store'])->name('wishlist.add');
 
 // ==================== AUTH ====================
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Note: Auth::routes() registers /login, /register, /logout, /password/* automatically
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // ==================== AUTHENTICATED ROUTES ====================
 Route::middleware('auth')->group(function () {
@@ -61,13 +66,13 @@ Route::middleware('auth')->group(function () {
 
 // ==================== DERMAI ROUTES ====================
 Route::middleware(['auth'])->prefix('dermai')->group(function () {
-    Route::get('/chat', [App\Http\Controllers\DermAI\ChatController::class, 'index'])->name('dermai.chat');
-    Route::post('/chat/send', [App\Http\Controllers\DermAI\ChatController::class, 'sendMessage'])->name('dermai.chat.message');
-    Route::get('/chat/history', [App\Http\Controllers\DermAI\ChatController::class, 'getHistory'])->name('dermai.chat.history');
-    Route::post('/analyze-skin', [App\Http\Controllers\DermAI\SkinController::class, 'analyzeImage'])->name('dermai.analyze');
+    Route::get('/chat', [DermAIChatController::class, 'index'])->name('dermai.chat');
+    Route::post('/chat/send', [DermAIChatController::class, 'sendMessage'])->name('dermai.chat.message');
+    Route::get('/chat/history', [DermAIChatController::class, 'getHistory'])->name('dermai.chat.history');
+    Route::post('/analyze-skin', [DermAISkinController::class, 'analyzeImage'])->name('dermai.analyze');
 
-    Route::get('/progress', [App\Http\Controllers\DermAI\ProgressController::class, 'index'])->name('dermai.progress');
-    Route::post('/progress', [App\Http\Controllers\DermAI\ProgressController::class, 'store'])->name('dermai.progress.log');
+    Route::get('/progress', [DermAIProgressController::class, 'index'])->name('dermai.progress');
+    Route::post('/progress', [DermAIProgressController::class, 'store'])->name('dermai.progress.log');
 });
 
 // ==================== TRACK ORDER (PUBLIC) ====================
@@ -92,8 +97,12 @@ Route::prefix('admin')->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         // ================= PRODUCTS =================
-        Route::get('products/create', [ProductController::class, 'create'])->name('admin.products.create');
-        Route::post('products/store', [ProductController::class, 'store'])->name('admin.products.store');
+        Route::get('products', [AdminProductController::class, 'index'])->name('admin.products.index');
+        Route::get('products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
+        Route::post('products', [AdminProductController::class, 'store'])->name('admin.products.store');
+        Route::get('products/{id}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
+        Route::put('products/{id}', [AdminProductController::class, 'update'])->name('admin.products.update');
+        Route::delete('products/{id}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 
         // ================= ORDERS =================
         Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');

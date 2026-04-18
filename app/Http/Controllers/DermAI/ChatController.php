@@ -51,6 +51,19 @@ class ChatController extends Controller
         // Get AI response (using history excluding the message we just saved, since chat() will add it)
         $aiResponse = $openRouter->chat($history, $request->message);
 
+        // Fetch suggested products explicitly
+        if (isset($aiResponse['suggested_products_names']) && is_array($aiResponse['suggested_products_names'])) {
+            $products = \App\Models\Product::whereIn('name', $aiResponse['suggested_products_names'])->get();
+            $aiResponse['products_data'] = $products->map(function($p) {
+                return [
+                    'id' => $p->id,
+                    'name' => $p->name,
+                    'image_url' => asset($p->image_url),
+                    'price' => $p->price
+                ];
+            });
+        }
+
         // Save AI message as JSON string
         $aiMessage = ChatMessage::create([
             'chat_session_id' => $session->id,

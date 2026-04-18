@@ -234,6 +234,23 @@
                             </div>
                         </div>
                     </div>
+                    ${data.products_data && data.products_data.length > 0 ? `
+                    <div class="col-12 mt-3">
+                        <h6 class="text-primary fw-bold mb-2"><i class="bi bi-cart-check"></i> Recommended Products</h6>
+                        <div class="d-flex overflow-auto gap-2 pb-2">
+                            ${data.products_data.map(p => `
+                                <div class="card shadow-sm border-0 flex-shrink-0" style="width: 140px; border-radius: 8px; overflow: hidden; background-color: var(--bg-card);">
+                                    <img src="${p.image_url}" class="card-img-top" style="height: 100px; object-fit: cover;" alt="${p.name}">
+                                    <div class="card-body p-2 text-center">
+                                        <div class="text-truncate small fw-bold mb-1" title="${p.name}">${p.name}</div>
+                                        <div class="text-primary fw-bold small mb-1">Rs. ${p.price}</div>
+                                        <a href="/product/${p.id}" class="btn btn-sm btn-outline-primary w-100 py-0" style="font-size: 0.75rem;">View Item</a>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
                 </div>
                 <div class="mt-3 small px-2 py-1 bg-warning text-dark border-warning rounded d-inline-block">
                     <i class="bi bi-exclamation-triangle-fill"></i> Please consult a physician.

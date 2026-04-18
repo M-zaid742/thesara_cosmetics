@@ -28,6 +28,18 @@ class SkinController extends Controller
         // Call Gemini
         $analysisResult = $openRouter->analyzeImage(Storage::get($path), $mimeType);
 
+        if (isset($analysisResult['suggested_products_names']) && is_array($analysisResult['suggested_products_names'])) {
+            $products = \App\Models\Product::whereIn('name', $analysisResult['suggested_products_names'])->get();
+            $analysisResult['products_data'] = $products->map(function($p) {
+                return [
+                    'id' => $p->id,
+                    'name' => $p->name,
+                    'image_url' => asset($p->image_url),
+                    'price' => $p->price
+                ];
+            });
+        }
+
         // Create Analysis record
         $analysis = SkinAnalysis::create([
             'user_id' => $user->id,

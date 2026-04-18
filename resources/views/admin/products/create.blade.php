@@ -1,99 +1,158 @@
-<!-- resources/views/admin/add-product.blade.php -->
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f4f6f8;
-        padding: 20px;
-    }
+@extends('admin.layout.layout')
 
-    .product-form-container {
-        max-width: 600px;
-        margin: 0 auto;
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
+@section('content')
+<div class="content-wrapper">
+    <!-- Content Header -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="font-weight-bold" style="color: #3b2c20;">Add New Product</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                        <li class="breadcrumb-item active">Add Product</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    .product-form-container h2 {
-        text-align: center;
-        margin-bottom: 25px;
-        color: #333;
-    }
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-outline shadow-lg" style="border-top: 3px solid #d4a017;">
+                        <div class="card-header bg-white">
+                            <h3 class="card-title text-uppercase font-weight-bold" style="letter-spacing: 1px;">Product Details</h3>
+                        </div>
+                        
+                        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
+                                <div class="row">
+                                    <!-- Basic Info -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Product Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="name" class="form-control" id="name" placeholder="e.g. Vitamin C Radiance Serum" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="subtitle">Subtitle</label>
+                                            <input type="text" name="subtitle" class="form-control" id="subtitle" placeholder="e.g. Brightening & glow">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category">Category</label>
+                                            <select name="category" class="form-control" id="category">
+                                                <option value="">Select Category</option>
+                                                <option value="serum">Serum</option>
+                                                <option value="cleanser">Cleanser</option>
+                                                <option value="moisturizer">Moisturizer</option>
+                                                <option value="toner">Toner</option>
+                                                <option value="sunscreen">Sunscreen</option>
+                                                <option value="exfoliator">Exfoliator</option>
+                                                <option value="acne">Acne Relief</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">Description</label>
+                                            <textarea name="description" class="form-control" id="description" rows="4" placeholder="Detailed product description..."></textarea>
+                                        </div>
+                                    </div>
 
-    .product-form-container input[type="text"],
-    .product-form-container input[type="number"],
-    .product-form-container textarea,
-    .product-form-container input[type="file"] {
-        width: 100%;
-        padding: 12px 15px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 14px;
-        transition: border 0.3s;
-    }
+                                    <!-- Pricing and Inventory -->
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="price">Sale Price (Rs.) <span class="text-danger">*</span></label>
+                                                    <input type="number" name="price" class="form-control" id="price" placeholder="0.00" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="old_price">Original Price (Rs.)</label>
+                                                    <input type="number" name="old_price" class="form-control" id="old_price" placeholder="0.00">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="cost_price">Cost Price (Rs.)</label>
+                                                    <input type="number" name="cost_price" class="form-control" id="cost_price" placeholder="0.00">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="stock">Inventory Stock</label>
+                                                    <input type="number" name="stock" class="form-control" id="stock" placeholder="0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="badge">Product Badge</label>
+                                            <input type="text" name="badge" class="form-control" id="badge" placeholder="e.g. New, Bestseller, -20%">
+                                        </div>
 
-    .product-form-container input[type="text"]:focus,
-    .product-form-container input[type="number"]:focus,
-    .product-form-container textarea:focus,
-    .product-form-container input[type="file"]:focus {
-        border-color: #007bff;
-        outline: none;
-    }
+                                        <div class="form-group">
+                                            <label for="image">Product Image <span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="image" id="image" required onchange="previewImage(this)">
+                                                    <label class="custom-file-label" for="image">Choose file</label>
+                                                </div>
+                                            </div>
+                                            <div id="image-preview" class="mt-2 text-center" style="display: none;">
+                                                <img id="preview" src="#" alt="Preview" style="max-width: 150px; border-radius: 8px; border: 2px solid #d4a017;">
+                                            </div>
+                                        </div>
 
-    .product-form-container label {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-        font-weight: 500;
-    }
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                <input type="checkbox" class="custom-control-input" id="is_featured" name="is_featured">
+                                                <label class="custom-control-label font-weight-bold" for="is_featured">Feature this product on homepage</label>
+                                            </div>
+                                        </div>
+                                    </div>
 
-    .product-form-container label input[type="checkbox"] {
-        margin-left: 10px;
-        width: 18px;
-        height: 18px;
-    }
-
-    .product-form-container button {
-        width: 100%;
-        padding: 12px;
-        background-color: #007bff;
-        color: #fff;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .product-form-container button:hover {
-        background-color: #0056b3;
-    }
-</style>
-
-<div class="product-form-container">
-    <h2>Add New Product</h2>
-    <form action="/admin/products/store" method="POST" enctype="multipart/form-data">
-        @csrf
-
-        <input type="text" name="name" placeholder="Product Name" required>
-        <input type="text" name="subtitle" placeholder="Subtitle">
-        <textarea name="description" placeholder="Description" rows="4"></textarea>
-        <input type="number" name="price" placeholder="Price" required>
-        <input type="number" name="cost_price" placeholder="Cost Price">
-        <input type="number" name="old_price" placeholder="Old Price">
-        <input type="number" name="stock" placeholder="Stock">
-        <input type="text" name="category" placeholder="Category">
-        <input type="text" name="badge" placeholder="Badge">
-
-        <label>
-            Featured:
-            <input type="checkbox" name="is_featured">
-        </label>
-
-        <input type="file" name="image" required>
-
-        <button type="submit">Add Product</button>
-    </form>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="ingredients">Ingredients List</label>
+                                            <textarea name="ingredients" class="form-control" id="ingredients" rows="3" placeholder="Aqua, Glycerin, Sodium Hyaluronate..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer bg-white border-top">
+                                <button type="submit" class="btn btn-lg px-5 font-weight-bold text-uppercase" style="background: #1a1208; color: #d4a017; border-radius: 50px;">
+                                    <i class="fas fa-plus-circle mr-2"></i> Create Product
+                                </button>
+                                <a href="{{ route('admin.products.index') }}" class="btn btn-lg btn-link text-muted">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
+
+<script>
+function previewImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#preview').attr('src', e.target.result);
+            $('#image-preview').show();
+        }
+        reader.readAsDataURL(input.files[0]);
+        $(input).next('.custom-file-label').html(input.files[0].name);
+    }
+}
+</script>
+@endsection

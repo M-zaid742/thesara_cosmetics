@@ -27,7 +27,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(44,33,23,0.7), rgba(90,70,52,0.5));
+  background: linear-gradient(135deg, rgba(44, 33, 23, 0.7), rgba(90, 70, 52, 0.5));
 }
 
 .overlay {
@@ -164,9 +164,21 @@
 }
 
 /* Role toggle */
-.role-toggle { display: flex; gap: 10px; margin-bottom: 18px; }
-.role-option { flex: 1; position: relative; }
-.role-option input { display: none; }
+.role-toggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.role-option {
+  flex: 1;
+  position: relative;
+}
+
+.role-option input {
+  display: none;
+}
+
 .role-label {
   cursor: pointer;
   display: block;
@@ -179,11 +191,12 @@
   background: var(--bg-body);
   transition: all 0.3s ease;
 }
-.role-option input:checked + .role-label {
+
+.role-option input:checked+.role-label {
   background: var(--brand-brown);
   color: #fff;
   border-color: var(--brand-brown);
-  box-shadow: 0 4px 14px -4px rgba(44,33,23,0.35);
+  box-shadow: 0 4px 14px -4px rgba(44, 33, 23, 0.35);
 }
 
 /* Responsive */
@@ -192,6 +205,13 @@
     flex-direction: column;
     height: auto;
   }
-  .auth-image { height: 250px; min-height: auto; }
-  .auth-form { padding: 40px; }
+
+  .auth-image {
+    height: 250px;
+    min-height: auto;
+  }
+
+  .auth-form {
+    padding: 40px;
+  }
 }

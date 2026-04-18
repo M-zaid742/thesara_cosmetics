@@ -8,10 +8,14 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 
+use Illuminate\Pagination\Paginator;
+
 class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        Paginator::useBootstrapFive();
+
         View::composer('*', function ($view) {
             // Get latest 5 messages and unread count
             $messages = Contact::latest()->take(5)->get();
