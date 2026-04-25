@@ -49,6 +49,10 @@
                         <ul class="dropdown-menu" aria-labelledby="shopDropdown">
                             <li><a class="dropdown-item" href="{{ url('/orders') }}">My Orders</a></li>
                             <li><a class="dropdown-item" href="{{ route('track.order') }}">Track Order</a></li>
+                            @auth
+                                <li><a class="dropdown-item" href="{{ route('orders.cancel.form') }}">Cancel Order</a></li>
+                                <li><a class="dropdown-item" href="{{ route('feedback.form') }}">Feedback</a></li>
+                            @endauth
                             <li><a class="dropdown-item" href="{{ route('cart.index') }}">Cart</a></li>
                         </ul>
                     </li>
@@ -71,6 +75,12 @@
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('orders.index') }}">My Orders</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('orders.cancel.form') }}">Cancel Order</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('feedback.form') }}">Feedback</a>
                             </li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
