@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SupportController;
 use App\Http\Controllers\DermAI\ProgressController as DermAIProgressController;
 use App\Http\Controllers\DermAI\ChatController as DermAIChatController;
 use App\Http\Controllers\DermAI\SkinController as DermAISkinController;
@@ -57,6 +58,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/orders/store', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/orders/confirmation/{id}', [OrderController::class, 'confirmation'])->name('orders.confirmation');
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/cancel', [SupportController::class, 'showCancelForm'])->name('orders.cancel.form');
+    Route::post('/orders/cancel', [SupportController::class, 'submitCancel'])->name('orders.cancel.submit');
+
+    // Feedback
+    Route::get('/feedback', [SupportController::class, 'showFeedbackForm'])->name('feedback.form');
+    Route::post('/feedback', [SupportController::class, 'submitFeedback'])->name('feedback.submit');
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
@@ -84,7 +91,7 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 
 // ==================== ADMIN ====================
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('localhost.only')->group(function () {
 
     // ================= ADMIN LOGIN =================
     Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');

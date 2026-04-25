@@ -69,8 +69,16 @@
                         📍 {{ $order->city }} &nbsp;|&nbsp;
                         💳 {{ strtoupper($order->payment_method) }}
                     </div>
-                    <div class="fw-bold">
-                        Total: Rs {{ number_format($order->total, 2) }}
+                    <div class="text-end">
+                        <div class="fw-bold">
+                            Total: Rs {{ number_format($order->total, 2) }}
+                        </div>
+                        <div class="mt-2 d-flex justify-content-end gap-2">
+                            @if($order->status !== 'cancelled' && $order->status !== 'delivered')
+                                <a href="{{ route('orders.cancel.form') }}" class="btn btn-sm btn-outline-danger">Cancel</a>
+                            @endif
+                            <a href="{{ route('feedback.form', ['order_id' => $order->id]) }}" class="btn btn-sm btn-outline-dark">Feedback</a>
+                        </div>
                     </div>
                 </div>
 

@@ -65,7 +65,11 @@
                                     </div>
                                 </td>
                                 <td class="align-middle">
-                                    <a href="mailto:{{ $msg->email }}" class="text-dark">{{ $msg->email }}</a>
+                                    @if(!empty($msg->email))
+                                        <a href="mailto:{{ $msg->email }}" class="text-dark">{{ $msg->email }}</a>
+                                    @else
+                                        <span class="text-muted">N/A</span>
+                                    @endif
                                 </td>
                                 <td class="align-middle">
                                     <span title="{{ $msg->message }}">

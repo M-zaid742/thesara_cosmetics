@@ -12,7 +12,7 @@ class OrderController extends Controller
     // Logged-in user's order history
     public function index()
     {
-        $orders = auth()->user()->orders()->latest()->paginate(10);
+        $orders = auth()->user()->orders()->with('orderItems.product')->latest()->paginate(10);
         return view('orders.view_order', compact('orders')); // fixed view name
     }
 

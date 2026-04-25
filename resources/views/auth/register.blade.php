@@ -49,8 +49,6 @@
             <div class="switch">
                 Already have an account?
                 <a href="{{ route('login') }}">Login</a>
-                &nbsp;•&nbsp;
-                <a href="{{ route('admin.login') }}">Admin login</a>
             </div>
         </form>
     </div>
