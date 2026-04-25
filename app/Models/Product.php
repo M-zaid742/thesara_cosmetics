@@ -23,6 +23,7 @@ class Product extends Model
         'old_price',
         'is_featured',
         'stock',
+        'category_id',
         'category',
         'badge',
         'brand',
@@ -68,5 +69,13 @@ class Product extends Model
     public function wishlists()
     {
         return $this->hasMany(Wishlist::class);
+    }
+
+    /**
+     * 🔗 Relationship: A product belongs to a category
+     */
+    public function category_rel()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

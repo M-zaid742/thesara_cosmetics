@@ -54,7 +54,7 @@ class ProductsTableSeeder extends Seeder
                 'category' => 'moisturizer',
                 'brand' => 'Thesara',
                 'badge' => 'New',
-                'image_url' => 'images/seller3.png',
+                'image_url' => 'images/products/hydra-moisturizer.png',
                 'is_featured' => false,
                 'slug' => 'hydra-balance-moisturizer'
             ],
@@ -70,7 +70,7 @@ class ProductsTableSeeder extends Seeder
                 'category' => 'cleanser',
                 'brand' => 'Thesara',
                 'badge' => 'Bestseller',
-                'image_url' => 'images/seller1.png',
+                'image_url' => 'images/products/gentle-cleanser.png',
                 'is_featured' => false,
                 'slug' => 'gentle-amino-cleanser'
             ],
@@ -253,7 +253,12 @@ class ProductsTableSeeder extends Seeder
             ],
         ];
 
+        $categoriesMap = \App\Models\Category::all()->pluck('id', 'slug')->toArray();
+
         foreach ($products as $productData) {
+            $catSlug = \Illuminate\Support\Str::slug($productData['category']);
+            $productData['category_id'] = $categoriesMap[$catSlug] ?? null;
+
             Product::updateOrCreate(
                 ['name' => $productData['name']],
                 $productData

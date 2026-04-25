@@ -44,16 +44,12 @@
                                             <input type="text" name="subtitle" class="form-control" id="subtitle" placeholder="e.g. Brightening & glow">
                                         </div>
                                         <div class="form-group">
-                                            <label for="category">Category</label>
-                                            <select name="category" class="form-control" id="category">
+                                            <label for="category_id">Category</label>
+                                            <select name="category_id" class="form-control" id="category_id">
                                                 <option value="">Select Category</option>
-                                                <option value="serum">Serum</option>
-                                                <option value="cleanser">Cleanser</option>
-                                                <option value="moisturizer">Moisturizer</option>
-                                                <option value="toner">Toner</option>
-                                                <option value="sunscreen">Sunscreen</option>
-                                                <option value="exfoliator">Exfoliator</option>
-                                                <option value="acne">Acne Relief</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">

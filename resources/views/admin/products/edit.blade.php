@@ -64,13 +64,13 @@
                                                    placeholder="e.g. Brightening & glow">
                                         </div>
                                         <div class="form-group">
-                                            <label for="category">Category</label>
-                                            <select name="category" class="form-control" id="category">
+                                            <label for="category_id">Category</label>
+                                            <select name="category_id" class="form-control" id="category_id">
                                                 <option value="">Select Category</option>
-                                                @foreach(['serum','cleanser','moisturizer','toner','sunscreen','exfoliator','acne'] as $cat)
-                                                    <option value="{{ $cat }}"
-                                                        {{ old('category', $product->category) == $cat ? 'selected' : '' }}>
-                                                        {{ ucfirst($cat) }}
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}"
+                                                        {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                                                        {{ $category->name }}
                                                     </option>
                                                 @endforeach
                                             </select>

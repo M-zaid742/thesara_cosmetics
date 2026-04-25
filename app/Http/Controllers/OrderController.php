@@ -19,14 +19,22 @@ class OrderController extends Controller
     // Place order (from cart OR buy now)
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'name'           => 'required|string|max:255',
             'email'          => 'required|email',
             'phone'          => 'required|string|max:20',
             'address'        => 'required|string',
             'city'           => 'required|string|max:100',
             'payment_method' => 'required|in:cod,card',
-        ]);
+        ];
+
+        if ($request->payment_method === 'card') {
+            $rules['card_number'] = 'required|string|min:16';
+            $rules['card_expiry'] = 'required|string';
+            $rules['card_cvv']    = 'required|string|min:3|max:4';
+        }
+
+        $request->validate($rules);
 
         $isBuyNow = $request->is_buy_now == 1;
 

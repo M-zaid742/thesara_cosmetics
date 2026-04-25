@@ -82,18 +82,40 @@
 
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="radio"
-                               name="payment_method" value="cod" id="cod" checked>
+                               name="payment_method" value="cod" id="cod" checked onchange="togglePaymentFields()">
                         <label class="form-check-label" for="cod">
                             💵 Cash on Delivery (COD)
                         </label>
                     </div>
 
-                    <div class="form-check">
+                    <div class="form-check mb-4">
                         <input class="form-check-input" type="radio"
-                               name="payment_method" value="card" id="card">
+                               name="payment_method" value="card" id="card" onchange="togglePaymentFields()">
                         <label class="form-check-label" for="card">
                             💳 Credit/Debit Card
                         </label>
+                    </div>
+
+                    {{-- Card Details Section (Hidden by default) --}}
+                    <div id="card-details" class="mt-4 p-4 rounded-4" style="display: none; background: #fdfaf4; border: 1px solid #e0d0b0;">
+                        <h6 class="fw-bold mb-3 text-uppercase small" style="letter-spacing: 1px; color: #7a5c3d;">Enter Card Details</h6>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label small fw-semibold">Card Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0"><i class="far fa-credit-card"></i></span>
+                                    <input type="text" name="card_number" class="form-control border-start-0" placeholder="0000 0000 0000 0000">
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <label class="form-label small fw-semibold">Expiry Date</label>
+                                <input type="text" name="card_expiry" class="form-control" placeholder="MM / YY">
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label small fw-semibold">CVV</label>
+                                <input type="text" name="card_cvv" class="form-control" placeholder="123">
+                            </div>
+                        </div>
                     </div>
 
                     @error('payment_method')

@@ -10,6 +10,7 @@ use App\Models\ProductImage;
 use App\Models\Cart;
 use App\Models\Wishlist;
 use App\Models\Review;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -28,7 +29,9 @@ class ProductController extends Controller
         // Category filter
         $selectedCategory = $category ?: $request->category;
         if ($selectedCategory) {
-            $products->where('category', $selectedCategory);
+            $products->whereHas('category_rel', function($q) use ($selectedCategory) {
+                $q->where('slug', $selectedCategory)->orWhere('name', $selectedCategory);
+            })->orWhere('category', $selectedCategory);
         }
 
         $products = $products->latest()->paginate(10);
@@ -87,7 +90,8 @@ class ProductController extends Controller
     public function shop()
     {
         $featuredProducts = Product::where('is_featured', 1)->latest()->get();
-        return view('shop.products_page', compact('featuredProducts'));
+        $categories = Category::all();
+        return view('shop.products_page', compact('featuredProducts', 'categories'));
     }
 
     /**
@@ -95,7 +99,15 @@ class ProductController extends Controller
      */
     public function category($category)
     {
-        $products = Product::where('category', $category)->latest()->get();
+        $cat = Category::where('slug', $category)->first();
+        
+        if ($cat) {
+            $products = Product::where('category_id', $cat->id)->latest()->get();
+        } else {
+            // Fallback for legacy string categories
+            $products = Product::where('category', $category)->latest()->get();
+        }
+        
         return view('products.category', compact('products', 'category'));
     }
 

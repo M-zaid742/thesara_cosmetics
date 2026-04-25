@@ -22,59 +22,20 @@
       <h2 class="section-title mb-4">Shop By Category</h2>
       <div class="row justify-content-center g-4">
 
+        @foreach($categories as $category)
         <div class="col-6 col-md-2">
-          <a href="{{ route('products.category', 'cleanser') }}" class="text-decoration-none text-dark">
+          <a href="{{ route('products.category', $category->slug) }}" class="text-decoration-none text-dark">
             <div class="category-card">
-              <img src="{{ asset('images/seller1.png') }}" alt="Cleanser">
-              <h6>Cleanser</h6>
+              @if($category->image_url)
+                <img src="{{ asset($category->image_url) }}" alt="{{ $category->name }}">
+              @else
+                <img src="{{ asset('images/default-category.png') }}" alt="{{ $category->name }}">
+              @endif
+              <h6>{{ $category->name }}</h6>
             </div>
           </a>
         </div>
-
-        <div class="col-6 col-md-2">
-          <a href="{{ route('products.category', 'serum') }}" class="text-decoration-none text-dark">
-            <div class="category-card">
-              <img src="{{ asset('images/serum.PNG') }}" alt="Serum">
-              <h6>Serum</h6>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-6 col-md-2">
-          <a href="{{ route('products.category', 'moisturizer') }}" class="text-decoration-none text-dark">
-            <div class="category-card">
-              <img src="{{ asset('images/seller2.png') }}" alt="Moisturizer">
-              <h6>Moisturizer</h6>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-6 col-md-2">
-          <a href="{{ route('products.category', 'sunscreen') }}" class="text-decoration-none text-dark">
-            <div class="category-card">
-              <img src="{{ asset('images/seller3.png') }}" alt="Sunscreen">
-              <h6>Sunscreen</h6>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-6 col-md-2">
-          <a href="{{ route('products.category', 'exfoliator') }}" class="text-decoration-none text-dark">
-            <div class="category-card">
-              <img src="{{ asset('images/seller4.png') }}" alt="Exfoliator">
-              <h6>Exfoliator</h6>
-            </div>
-          </a>
-        </div>
-
-        <div class="col-6 col-md-2">
-          <a href="{{ route('products.category', 'toner') }}" class="text-decoration-none text-dark">
-            <div class="category-card">
-              <img src="{{ asset('images/seller5.png') }}" alt="Toner">
-              <h6>Toner</h6>
-            </div>
-          </a>
-        </div>
+        @endforeach
 
       </div>
     </div>

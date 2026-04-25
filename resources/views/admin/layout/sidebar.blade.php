@@ -36,29 +36,29 @@
                 <li class="nav-header">MANAGEMENT</li>
 
                 <!-- Products -->
-                <li class="nav-item has-treeview {{ request()->routeIs('products.*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->routeIs('admin.products.*') || request()->routeIs('admin.categories.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.products.*') || request()->routeIs('admin.categories.*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-box-open"></i>
                         <p>
-                            Products
+                            Catalog
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('products.category', 'serum') }}" class="nav-link">
+                            <a href="{{ route('admin.categories.index') }}" class="nav-link {{ request()->routeIs('admin.categories.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Categories</p>
+                                <p>Manage Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('products.index') }}" class="nav-link">
+                            <a href="{{ route('admin.products.index') }}" class="nav-link {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Products</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.products.create') }}" class="nav-link">
+                            <a href="{{ route('admin.products.create') }}" class="nav-link {{ request()->routeIs('admin.products.create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Product</p>
                             </a>

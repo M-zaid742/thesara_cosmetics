@@ -111,6 +111,14 @@ Route::prefix('admin')->middleware('localhost.only')->group(function () {
         Route::put('products/{id}', [AdminProductController::class, 'update'])->name('admin.products.update');
         Route::delete('products/{id}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 
+        // ================= CATEGORIES =================
+        Route::get('categories', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('admin.categories.index');
+        Route::get('categories/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('admin.categories.create');
+        Route::post('categories', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('admin.categories.store');
+        Route::get('categories/{id}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('admin.categories.edit');
+        Route::put('categories/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('admin.categories.update');
+        Route::delete('categories/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin.categories.destroy');
+
         // ================= ORDERS =================
         Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
         Route::get('orders/pending', [AdminOrderController::class, 'pending'])->name('admin.orders.pending');

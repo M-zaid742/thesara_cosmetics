@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -34,7 +35,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -60,6 +62,7 @@ class ProductController extends Controller
             'old_price'   => $request->old_price,
             'is_featured' => $request->has('is_featured'),
             'stock'       => $request->stock ?? 0,
+            'category_id' => $request->category_id,
             'category'    => $request->category,
             'badge'       => $request->badge,
             'brand'       => 'Thesara',
@@ -77,7 +80,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.products.edit', compact('product'));
+        $categories = Category::all();
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -103,6 +107,7 @@ class ProductController extends Controller
             'old_price'   => $request->old_price,
             'is_featured' => $request->has('is_featured'),
             'stock'       => $request->stock ?? 0,
+            'category_id' => $request->category_id,
             'category'    => $request->category,
             'badge'       => $request->badge,
             'ingredients' => $request->ingredients,
