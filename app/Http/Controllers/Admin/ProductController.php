@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductImage;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -45,14 +47,16 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'name'           => 'required|string|max:255',
+            'price'          => 'required|numeric|min:0',
+            'image'          => 'required|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'related_images' => 'nullable|array',
+            'related_images.*' => 'image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
         $imagePath = $request->file('image')->store('products', 'public');
 
-        Product::create([
+        $product = Product::create([
             'name'        => $request->name,
             'subtitle'    => $request->subtitle,
             'slug'        => Str::slug($request->name),
@@ -70,6 +74,17 @@ class ProductController extends Controller
             'ingredients' => $request->ingredients,
         ]);
 
+        // Handle Related Images
+        if ($request->hasFile('related_images')) {
+            foreach ($request->file('related_images') as $file) {
+                $path = $file->store('products/gallery', 'public');
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => 'storage/' . $path
+                ]);
+            }
+        }
+
         return redirect()->route('admin.products.index')
                          ->with('product_success', 'Product added successfully!');
     }
@@ -79,7 +94,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('images')->findOrFail($id);
         $categories = Category::all();
         return view('admin.products.edit', compact('product', 'categories'));
     }
@@ -92,9 +107,11 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         $request->validate([
-            'name'  => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'name'           => 'required|string|max:255',
+            'price'          => 'required|numeric|min:0',
+            'image'          => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'related_images' => 'nullable|array',
+            'related_images.*' => 'image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
         $data = [
@@ -120,6 +137,17 @@ class ProductController extends Controller
 
         $product->update($data);
 
+        // Handle New Related Images
+        if ($request->hasFile('related_images')) {
+            foreach ($request->file('related_images') as $file) {
+                $path = $file->store('products/gallery', 'public');
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => 'storage/' . $path
+                ]);
+            }
+        }
+
         return redirect()->route('admin.products.index')
                          ->with('product_success', 'Product updated successfully!');
     }
@@ -133,5 +161,21 @@ class ProductController extends Controller
 
         return redirect()->route('admin.products.index')
                          ->with('product_success', 'Product deleted successfully!');
+    }
+
+    /**
+     * Delete a related image.
+     */
+    public function destroyImage($id)
+    {
+        $image = ProductImage::findOrFail($id);
+        
+        // Remove file from storage
+        $path = str_replace('storage/', '', $image->image_path);
+        Storage::disk('public')->delete($path);
+        
+        $image->delete();
+
+        return response()->json(['success' => true, 'message' => 'Image removed from gallery.']);
     }
 }

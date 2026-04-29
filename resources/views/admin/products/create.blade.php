@@ -95,15 +95,28 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="image">Product Image <span class="text-danger">*</span></label>
+                                            <label for="image">Featured Image <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" name="image" id="image" required onchange="previewImage(this)">
-                                                    <label class="custom-file-label" for="image">Choose file</label>
+                                                    <label class="custom-file-label" for="image">Choose main image</label>
                                                 </div>
                                             </div>
                                             <div id="image-preview" class="mt-2 text-center" style="display: none;">
                                                 <img id="preview" src="#" alt="Preview" style="max-width: 150px; border-radius: 8px; border: 2px solid #d4a017;">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="related_images">Related Images (Gallery)</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="related_images[]" id="related_images" multiple onchange="previewMultipleImages(this)">
+                                                    <label class="custom-file-label" for="related_images">Choose multiple images</label>
+                                                </div>
+                                            </div>
+                                            <div id="related-images-preview" class="mt-2 d-flex flex-wrap gap-2">
+                                                <!-- Previews will appear here -->
                                             </div>
                                         </div>
 
@@ -148,6 +161,32 @@ function previewImage(input) {
         }
         reader.readAsDataURL(input.files[0]);
         $(input).next('.custom-file-label').html(input.files[0].name);
+    }
+}
+
+function previewMultipleImages(input) {
+    const previewContainer = $('#related-images-preview');
+    previewContainer.empty();
+    
+    if (input.files) {
+        const filesAmount = input.files.length;
+        for (i = 0; i < filesAmount; i++) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                $($.parseHTML('<img>'))
+                    .attr('src', event.target.result)
+                    .css({
+                        'max-width': '80px',
+                        'height': '80px',
+                        'object-fit': 'cover',
+                        'border-radius': '6px',
+                        'border': '1px solid #ddd'
+                    })
+                    .appendTo(previewContainer);
+            }
+            reader.readAsDataURL(input.files[i]);
+        }
+        $(input).next('.custom-file-label').html(filesAmount + ' files selected');
     }
 }
 </script>

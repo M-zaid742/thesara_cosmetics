@@ -200,6 +200,15 @@
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 
+    function hasRealClinicalData(data) {
+        const hasOtc = data.treatments?.otc && data.treatments.otc.length > 0;
+        const hasRx = data.treatments?.prescription && data.treatments.prescription.length > 0;
+        const hasDiet = data.diet_lifestyle && data.diet_lifestyle.length > 0;
+        const hasAm = data.skincare_routine?.am && data.skincare_routine.am.length > 0;
+        const hasPm = data.skincare_routine?.pm && data.skincare_routine.pm.length > 0;
+        return hasOtc || hasRx || hasDiet || hasAm || hasPm;
+    }
+
     function buildAnalysisCard(data) {
         return `
             <div class="analysis-card p-3 rounded-3 shadow-sm mt-2 mb-2">
@@ -294,8 +303,8 @@
                 if (analyzeRes.data.success) {
                     const resp = analyzeRes.data.data;
                     let newMsg;
-                    if (resp.response_type === 'chat') {
-                        newMsg = appendMessage('assistant', resp.explanation);
+                    if (resp.response_type === 'chat' || !hasRealClinicalData(resp)) {
+                        newMsg = appendMessage('assistant', resp.explanation || "I need more details to provide an analysis. Please describe your concern or upload a clearer image.");
                     } else {
                         newMsg = appendMessage('assistant', buildAnalysisCard(resp), true);
                     }
@@ -315,13 +324,14 @@
                     sessionId = chatRes.data.session_id; // Set session ID
                     const resp = chatRes.data.response;
                     let newMsg;
-                    if (resp.response_type === 'clinical') {
+                    if (resp.response_type === 'clinical' && resp.condition_detected && resp.condition_detected !== 'N/A' && hasRealClinicalData(resp)) {
                         newMsg = appendMessage('assistant', buildAnalysisCard(resp), true);
                     } else {
-                        newMsg = appendMessage('assistant', resp.explanation);
+                        newMsg = appendMessage('assistant', resp.explanation || "I'm sorry, I couldn't perform this clinical analysis without an image or more details.");
                     }
                     if (newMsg) newMsg.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+
             }
         } catch (error) {
             console.error(error);

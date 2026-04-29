@@ -110,6 +110,7 @@ Route::prefix('admin')->middleware('localhost.only')->group(function () {
         Route::get('products/{id}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
         Route::put('products/{id}', [AdminProductController::class, 'update'])->name('admin.products.update');
         Route::delete('products/{id}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
+        Route::delete('products/image/{id}', [AdminProductController::class, 'destroyImage'])->name('admin.products.image.destroy');
 
         // ================= CATEGORIES =================
         Route::get('categories', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('admin.categories.index');

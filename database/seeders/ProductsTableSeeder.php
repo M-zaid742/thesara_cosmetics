@@ -90,7 +90,6 @@ class ProductsTableSeeder extends Seeder
                 'is_featured' => false,
                 'slug' => 'smooth-aha-exfoliator'
             ],
-            // --- 10 NEW DOCTOR RECOMMENDED PRODUCTS ---
             [
                 'name' => 'Retinol 0.5% Intense Night Oil',
                 'subtitle' => 'Anti-Aging Clinical',
@@ -250,6 +249,103 @@ class ProductsTableSeeder extends Seeder
                 'image_url' => 'images/clinical/peptide-lash.png',
                 'is_featured' => false,
                 'slug' => 'multi-peptide-lash-brow'
+            ],
+            // --- 6 NEW MEDICAL/DERMATOLOGICAL PRODUCTS ---
+            [
+                'name' => 'Anti-Fungal Rescue Cream',
+                'subtitle' => 'Targeted Fungal Relief',
+                'description' => 'Fast-acting antifungal cream that relieves itching, burning, and cracking while fighting fungal infections.',
+                'ingredients' => 'Aqua, Clotrimazole 1%, Cetearyl Alcohol, Glycerin',
+                'price' => 4500.00,
+                'old_price' => 5500.00,
+                'cost_price' => 1500.00,
+                'stock' => 200,
+                'category' => 'acne relief', // Mapping to 'acne relief' as it's the closest category for clinical skin issues
+                'brand' => 'Thesara Clinical',
+                'badge' => 'Derm Choice',
+                'image_url' => 'images/clinical/anti-fungal.png',
+                'is_featured' => false,
+                'slug' => 'anti-fungal-rescue-cream'
+            ],
+            [
+                'name' => 'Calming Rash Relief Lotion',
+                'subtitle' => 'Soothing Itch Control',
+                'description' => 'Provides instant cooling relief from rashes, insect bites, and minor skin irritations.',
+                'ingredients' => 'Aqua, Hydrocortisone 1%, Aloe Barbadensis, Oat Extract',
+                'price' => 3800.00,
+                'old_price' => 4800.00,
+                'cost_price' => 1200.00,
+                'stock' => 150,
+                'category' => 'moisturizer',
+                'brand' => 'Thesara Clinical',
+                'badge' => 'Fast Relief',
+                'image_url' => 'images/clinical/rash-relief.png',
+                'is_featured' => false,
+                'slug' => 'calming-rash-relief-lotion'
+            ],
+            [
+                'name' => 'Intensive Eczema Repair',
+                'subtitle' => 'Deep Hydration & Repair',
+                'description' => 'Clinically proven to reduce eczema flare-ups and restore the skin\'s natural barrier with colloidal oatmeal.',
+                'ingredients' => 'Aqua, Colloidal Oatmeal 2%, Ceramide NP, Shea Butter',
+                'price' => 7200.00,
+                'old_price' => 8500.00,
+                'cost_price' => 2800.00,
+                'stock' => 120,
+                'category' => 'moisturizer',
+                'brand' => 'Thesara Clinical',
+                'badge' => 'Clinical',
+                'image_url' => 'images/clinical/eczema-repair.png',
+                'is_featured' => true,
+                'slug' => 'intensive-eczema-repair'
+            ],
+            [
+                'name' => 'Tea Tree Anti-Acne Gel',
+                'subtitle' => 'Overnight Spot Treatment',
+                'description' => 'Targeted spot treatment infused with pure Tea Tree oil to reduce the size and redness of acne breakouts.',
+                'ingredients' => 'Aqua, Melaleuca Alternifolia (Tea Tree) Oil, Salicylic Acid, Glycerin',
+                'price' => 4200.00,
+                'old_price' => 5200.00,
+                'cost_price' => 1400.00,
+                'stock' => 300,
+                'category' => 'acne relief',
+                'brand' => 'Thesara Clinical',
+                'badge' => 'Bestseller',
+                'image_url' => 'images/clinical/tea-tree-gel.png',
+                'is_featured' => true,
+                'slug' => 'tea-tree-anti-acne-gel'
+            ],
+            [
+                'name' => 'Psoriasis Soothing Ointment',
+                'subtitle' => 'Scale & Flake Control',
+                'description' => 'Salicylic acid-based ointment that gently exfoliates and softens psoriasis plaques while intensely moisturizing.',
+                'ingredients' => 'Aqua, Salicylic Acid 3%, Mineral Oil, Urea',
+                'price' => 8500.00,
+                'old_price' => 10500.00,
+                'cost_price' => 3100.00,
+                'stock' => 80,
+                'category' => 'moisturizer',
+                'brand' => 'Thesara Clinical',
+                'badge' => 'Specialized',
+                'image_url' => 'images/clinical/psoriasis-ointment.png',
+                'is_featured' => false,
+                'slug' => 'psoriasis-soothing-ointment'
+            ],
+            [
+                'name' => 'Rosacea Cooling Gel',
+                'subtitle' => 'Anti-Redness Therapy',
+                'description' => 'A cooling gel formula that instantly calms flushed skin and reduces visible redness associated with Rosacea.',
+                'ingredients' => 'Aqua, Niacinamide, Centella Asiatica Extract, Green Tea',
+                'price' => 9500.00,
+                'old_price' => 11500.00,
+                'cost_price' => 3600.00,
+                'stock' => 90,
+                'category' => 'serum',
+                'brand' => 'Thesara Clinical',
+                'badge' => 'Premium Care',
+                'image_url' => 'images/clinical/rosacea-gel.png',
+                'is_featured' => false,
+                'slug' => 'rosacea-cooling-gel'
             ],
         ];
 

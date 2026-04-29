@@ -131,10 +131,10 @@
 
                                         {{-- Current Image + Upload --}}
                                         <div class="form-group">
-                                            <label>Product Image</label>
+                                            <label>Featured Image</label>
                                             @if($product->image_url)
                                             <div class="mb-2">
-                                                <p class="text-muted small mb-1">Current image:</p>
+                                                <p class="text-muted small mb-1">Current main image:</p>
                                                 <img id="preview"
                                                      src="{{ asset($product->image_url) }}"
                                                      alt="{{ $product->name }}"
@@ -148,9 +148,36 @@
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" name="image" id="image"
                                                            onchange="updatePreview(this)">
-                                                    <label class="custom-file-label" for="image">Replace image (optional)</label>
+                                                    <label class="custom-file-label" for="image">Replace main image</label>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        {{-- Gallery Images --}}
+                                        <div class="form-group">
+                                            <label>Product Gallery (Related Images)</label>
+                                            <div id="existing-gallery" class="d-flex flex-wrap gap-3 mb-3">
+                                                @foreach($product->images as $img)
+                                                    <div class="gallery-item position-relative" id="img-container-{{ $img->id }}">
+                                                        <img src="{{ asset($img->image_path) }}" 
+                                                             style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd;">
+                                                        <button type="button" 
+                                                                class="btn btn-sm btn-danger position-absolute" 
+                                                                style="top: -5px; right: -5px; border-radius: 50%; padding: 2px 6px;"
+                                                                onclick="deleteGalleryImage({{ $img->id }})">
+                                                            <i class="fas fa-times" style="font-size: 10px;"></i>
+                                                        </button>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="related_images[]" id="related_images" multiple onchange="previewMultipleImages(this)">
+                                                    <label class="custom-file-label" for="related_images">Add more images...</label>
+                                                </div>
+                                            </div>
+                                            <div id="related-images-preview" class="mt-2 d-flex flex-wrap gap-2"></div>
                                         </div>
 
                                         <div class="form-group">
@@ -194,6 +221,54 @@ function updatePreview(input) {
         };
         reader.readAsDataURL(input.files[0]);
         $(input).next('.custom-file-label').html(input.files[0].name);
+    }
+}
+
+function previewMultipleImages(input) {
+    const previewContainer = $('#related-images-preview');
+    previewContainer.empty();
+    
+    if (input.files) {
+        const filesAmount = input.files.length;
+        for (i = 0; i < filesAmount; i++) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                $($.parseHTML('<img>'))
+                    .attr('src', event.target.result)
+                    .css({
+                        'max-width': '80px',
+                        'height': '80px',
+                        'object-fit': 'cover',
+                        'border-radius': '6px',
+                        'border': '1px solid #ddd'
+                    })
+                    .appendTo(previewContainer);
+            }
+            reader.readAsDataURL(input.files[i]);
+        }
+        $(input).next('.custom-file-label').html(filesAmount + ' files selected');
+    }
+}
+
+function deleteGalleryImage(imageId) {
+    if (confirm('Are you sure you want to remove this image from the gallery?')) {
+        $.ajax({
+            url: "{{ url('admin/products/image') }}/" + imageId,
+            type: 'DELETE',
+            data: {
+                _token: "{{ csrf_token() }}"
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('#img-container-' + imageId).fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                }
+            },
+            error: function() {
+                alert('An error occurred while deleting the image.');
+            }
+        });
     }
 }
 </script>
