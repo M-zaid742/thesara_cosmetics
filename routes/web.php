@@ -89,6 +89,7 @@ Route::get('/track-order/result', [TrackController::class, 'search'])->name('tra
 // ==================== ABOUT & FAQ ====================
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+Route::get('/return-policy', [PageController::class, 'returnPolicy'])->name('return.policy');
 
 // ==================== ADMIN ====================
 Route::prefix('admin')->middleware('localhost.only')->group(function () {

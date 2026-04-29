@@ -1,0 +1,61 @@
+/**
+ * DermAI Chatbot Styles
+ * Handles the look and feel of the chat interface.
+ */
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--brand-mocha) 0%, var(--brand-brown) 100%);
+}
+
+.chat-container {
+    border: 1px solid var(--border-subtle);
+}
+
+.chat-box {
+    height: 60vh;
+    overflow-y: auto;
+    background-color: var(--bg-body);
+}
+
+.message.user {
+    flex-direction: row-reverse;
+}
+
+.message.user .message-content {
+    background: linear-gradient(135deg, var(--brand-mocha) 0%, var(--brand-brown) 100%) !important;
+    color: white;
+    border-bottom-right-radius: 4px !important;
+}
+
+.message.assistant .message-content {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-light);
+    border-bottom-left-radius: 4px !important;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+}
+
+.markdown-content p:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-content ul, .markdown-content ol {
+    margin-bottom: 0.5rem;
+}
+
+.analysis-card {
+    background: var(--bg-card);
+    border-left: 4px solid var(--brand-gold);
+}
+
+.chat-header h4 {
+    font-family: var(--font-heading);
+}
+
+.chat-input-area {
+    background: var(--bg-card) !important;
+    border-top: 1px solid var(--border-light) !important;
+}

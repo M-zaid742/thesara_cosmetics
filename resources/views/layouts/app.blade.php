@@ -133,10 +133,10 @@
                 <div class="col-md-4">
                     <h6>Legal</h6>
                     <ul>
+                        <li><a href="{{ route('return.policy') }}">Exchange & Return Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Cookies Policy</a></li>
-                        <li><a href="#">Data Processing</a></li>
                     </ul>
                 </div>
 

@@ -310,9 +310,13 @@ img { max-width: 100%; height: auto; }
   width: 100%;
   height: 100%;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
+}
+
+.product-thumb a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .product-thumb img {
@@ -377,13 +381,8 @@ img { max-width: 100%; height: auto; }
 .card-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.product-card:hover .card-actions {
-  opacity: 1;
+  gap: 10px;
+  width: 100%;
 }
 
 .btn-cart {

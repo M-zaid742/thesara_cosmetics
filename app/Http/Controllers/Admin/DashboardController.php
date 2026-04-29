@@ -17,41 +17,41 @@ class DashboardController extends Controller
         // ===============================
         // TOTAL COUNTS
         // ===============================
-        $totalOrders       = Order::count();
-        $totalSales        = Order::where('status', 'completed')->count();
-        $totalRevenue      = Order::where('status', 'completed')->sum('total');
-        $totalUsers        = User::count();
-        $totalProducts     = Product::count();
-        $messagesCount     = Contact::count();
-        $inventoryCount    = Product::count(); // Total products
-        $mentionsCount     = Contact::count(); // Mentions table
-        $downloadsCount    = 0; // No Download model, placeholder
+        $totalOrders = Order::count();
+        $totalSales = Order::where('status', 'completed')->count();
+        $totalRevenue = Order::where('status', 'completed')->sum('total');
+        $totalUsers = User::count();
+        $totalProducts = Product::count();
+        $messagesCount = Contact::count();
+        $inventoryCount = Product::count(); // Total products
+        $mentionsCount = Contact::count(); // Mentions table
+        $downloadsCount = 0; // No Download model, placeholder
         $directMessagesCount = 0; // No Message model, placeholder
 
         // ===============================
         // GOAL COMPLETION
         // ===============================
-        $cartCount      = Order::where('status', 'cart')->count();
+        $cartCount = Order::where('status', 'cart')->count();
         $completedCount = Order::where('status', 'completed')->count();
-        $pendingCount   = Order::where('status', 'pending')->count();
+        $pendingCount = Order::where('status', 'pending')->count();
 
-        $cartPercent      = $totalOrders > 0 ? ($cartCount / $totalOrders) * 100 : 0;
+        $cartPercent = $totalOrders > 0 ? ($cartCount / $totalOrders) * 100 : 0;
         $completedPercent = $totalOrders > 0 ? ($completedCount / $totalOrders) * 100 : 0;
-        $pendingPercent   = $totalOrders > 0 ? ($pendingCount / $totalOrders) * 100 : 0;
+        $pendingPercent = $totalOrders > 0 ? ($pendingCount / $totalOrders) * 100 : 0;
 
         // ===============================
         // MONTHLY SALES (Last 12 Months)
         // ===============================
         $monthlySales = Order::select(
-                DB::raw('DATE_FORMAT(created_at, "%b %Y") as month'),
-                DB::raw('SUM(total) as total')
-            )
+            DB::raw('DATE_FORMAT(created_at, "%b %Y") as month'),
+            DB::raw('SUM(total) as total')
+        )
             ->where('status', 'completed')
             ->where('created_at', '>=', Carbon::now()->subMonths(11))
             ->groupBy('month')
             ->orderBy(DB::raw('MIN(created_at)'))
             ->pluck('total', 'month');
-        
+
 
         // ===============================
         // CURRENT MONTH REPORT
@@ -66,7 +66,7 @@ class DashboardController extends Controller
             ->whereYear('created_at', now()->subMonth()->year)
             ->sum('total');
 
-        $totalCost   = 0;
+        $totalCost = 0;
         $totalProfit = $currentMonthRevenue - $totalCost;
 
         $growthPercentage = $lastMonthRevenue > 0
@@ -79,11 +79,11 @@ class DashboardController extends Controller
         // LATEST DATA
         // ===============================
         // $latestOrders   = Order::with('items')->latest()->limit(5)->get();
-        $latestOrders = Order::with(['items','user'])
-                ->latest()
-                ->take(10)
-                ->get();
-        $latestUsers    = User::latest()->take(8)->get();
+        $latestOrders = Order::with(['items', 'user'])
+            ->latest()
+            ->take(10)
+            ->get();
+        $latestUsers = User::latest()->take(8)->get();
         $latestProducts = Product::latest()->take(5)->get();
         $latestMessages = Contact::latest()->take(5)->get();
 

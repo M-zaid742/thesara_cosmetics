@@ -1,0 +1,13 @@
+.card {
+    border: 1px solid var(--border-subtle) !important;
+}
+.card-header {
+    background: var(--bg-card) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+}
+.card-body.bg-light {
+    background-color: var(--bg-body) !important;
+}
+h2.fw-bold {
+    font-family: var(--font-heading);
+}

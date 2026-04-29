@@ -121,4 +121,9 @@ class PageController extends Controller
             'items', 'subtotal', 'shipping', 'total', 'isBuyNow'
         ));
     }
+
+    public function returnPolicy()
+    {
+        return view('return-policy');
+    }
 }

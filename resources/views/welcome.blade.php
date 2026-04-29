@@ -99,14 +99,15 @@
                     <span class="text-primary">-{{ round((($product->old_price - $product->price) / $product->old_price) * 100) }}%</span>
                 @endif
             </div>
-            <div class="delivery">🚚 Free delivery</div>
-          </div>
-          <div class="card-actions">
-            <form action="{{ route('cart.add') }}" method="POST" class="w-100 d-flex gap-2">
-                @csrf
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                <button type="submit" class="btn btn-dark btn-cart flex-grow-1"><i class="bi bi-bag me-1"></i>Add to Cart</button>
-            </form>
+            <div class="delivery mb-3">🚚 Free delivery</div>
+
+            <div class="card-actions">
+              <form action="{{ route('cart.add') }}" method="POST" class="w-100 d-flex gap-2">
+                  @csrf
+                  <input type="hidden" name="product_id" value="{{ $product->id }}">
+                  <button type="submit" class="btn btn-dark btn-cart flex-grow-1"><i class="bi bi-bag me-1"></i>Add to Cart</button>
+              </form>
+            </div>
           </div>
         </article>
       </div>

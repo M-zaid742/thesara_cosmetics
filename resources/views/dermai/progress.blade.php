@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/dermai-progress.css') }}">
+@endsection
+
 @section('content')
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
@@ -139,20 +143,4 @@
     </div>
 </div>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-<style>
-    .card {
-        border: 1px solid var(--border-subtle) !important;
-    }
-    .card-header {
-        background: var(--bg-card) !important;
-        border-bottom: 1px solid var(--border-light) !important;
-    }
-    .card-body.bg-light {
-        background-color: var(--bg-body) !important;
-    }
-    h2.fw-bold {
-        font-family: var(--font-heading);
-    }
-</style>
 @endsection
