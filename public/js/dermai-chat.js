@@ -206,7 +206,12 @@ class DermAIChat {
                     this.sessionId = chatRes.data.session_id;
                     const resp = chatRes.data.response;
                     let newMsg;
-                    if (resp.response_type === 'clinical' && resp.condition_detected && resp.condition_detected !== 'N/A' && this.hasRealClinicalData(resp)) {
+                    
+                    // Show card if it's explicitly clinical OR if it contains actual medical data (treatments, routine, etc.)
+                    const isClinical = resp.response_type === 'clinical';
+                    const hasData = this.hasRealClinicalData(resp);
+                    
+                    if ((isClinical || hasData) && resp.condition_detected && resp.condition_detected !== 'N/A') {
                         newMsg = this.appendMessage('assistant', this.buildAnalysisCard(resp), true);
                     } else {
                         newMsg = this.appendMessage('assistant', resp.explanation || "I'm sorry, I couldn't perform this clinical analysis.");

@@ -20,13 +20,13 @@ You are DermAI, a certified professional dermatologist with 20+ years of clinica
 6. Answer follow-up questions conversationally, clearly, and professionally.
 7. Always include a disclaimer: "This is AI-generated advice. Please consult a licensed dermatologist before starting any new medication or treatment."
 CRITICAL RULE: You are strictly limited to discussing dermatology, skincare, cosmetics, and skin/hair/nail health. If the user asks a question about coding, math, general knowledge, politics, or ANY topic outside of skin health and cosmetics, you MUST immediately decline to answer. Reply with: "I am DermAI, an AI specialized strictly in dermatology and skincare. I cannot answer questions unrelated to skin health." Do not provide any partial answer to off-topic queries.
-CRITICAL RULE 2: If the user asks for a diagnosis, to identify their skin type, or to analyze their skin, but they HAVE NOT provided an image (or you cannot perform the analysis), you MUST set "response_type" to "chat", set all other fields to null or empty arrays, and politely explain in the "explanation" field that you need them to upload an image to determine their skin type accurately. Do NOT use "clinical" if you are unable to provide a real analysis.
+CRITICAL RULE 2: If the user provides a text description but no image, try your best to provide a "clinical" response based on their description. However, if the query is too vague, is a general greeting, or you are truly unable to provide a safe diagnosis/routine, set "response_type" to "chat", set all other fields (treatments, routine, etc.) to null or empty arrays, and provide your full answer/response in the "explanation" field as simple text.
 
 YOU MUST respond with a valid JSON block ONLY for EVERY interaction. Do not include any conversational text before or after the JSON.
 
 RESPONSE TYPES:
-- Use "clinical" ONLY when you are actively identifying a concern, diagnosing an image, or providing a detailed routine based on specific provided symptoms.
-- Use "chat" for simple greetings, off-topic (but skincare-related) talk, follow-ups, AND when you are unable to fulfill an analysis request (e.g., you need them to upload an image to see their skin type).
+- Use "clinical" when you are identifying a concern, providing a routine, or suggesting treatments (even if based only on text).
+- Use "chat" for greetings, general skincare advice that doesn't involve a specific routine/treatment, or when you cannot provide a structured solution. In "chat" mode, your entire response should be in the "explanation" field.
 
 JSON Structure:
 {
@@ -97,10 +97,38 @@ PROMPT;
         ];
 
         $response = $this->makeRequest($messages);
+        return $this->extractAndDecodeJson($response);
+    }
 
-        // Sanitize the response if it is wrapped in markdown JSON blocks
-        $jsonStr = preg_replace('/```json|```/i', '', $response);
-        return json_decode(trim($jsonStr), true) ?: ['raw_text' => $response, 'explanation' => $response];
+    /**
+     * Robustly extract and decode JSON from AI response.
+     */
+    protected function extractAndDecodeJson($response)
+    {
+        if (is_array($response)) return $response;
+
+        // Try to find a JSON block between ```json and ```
+        if (preg_match('/```json\s*(.*?)\s*```/s', $response, $matches)) {
+            $decoded = json_decode(trim($matches[1]), true);
+            if ($decoded) return $decoded;
+        }
+
+        // Try to find the first '{' and last '}'
+        $firstBrace = strpos($response, '{');
+        $lastBrace = strrpos($response, '}');
+
+        if ($firstBrace !== false && $lastBrace !== false) {
+            $potentialJson = substr($response, $firstBrace, $lastBrace - $firstBrace + 1);
+            $decoded = json_decode(trim($potentialJson), true);
+            if ($decoded) return $decoded;
+        }
+
+        // Fallback for non-JSON or broken JSON
+        return [
+            'response_type' => 'chat',
+            'explanation' => $response,
+            'raw_text' => $response
+        ];
     }
 
     /**
@@ -134,10 +162,7 @@ PROMPT;
         ];
 
         $response = $this->makeRequest($messages);
-
-        // Sanitize the response if it is wrapped in markdown JSON blocks
-        $jsonStr = preg_replace('/```json|```/i', '', $response);
-        return json_decode(trim($jsonStr), true) ?: ['raw_text' => $response];
+        return $this->extractAndDecodeJson($response);
     }
 
     protected function makeRequest(array $messages)
